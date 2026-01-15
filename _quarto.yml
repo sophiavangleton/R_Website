@@ -1,0 +1,16 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "R Lessons"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: R_Lessons/index.html
+        text: Lessons App
+
+format:
+  html:
+    theme: cosmo
