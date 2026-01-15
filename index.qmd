@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## Cognitive Dynamics Lab R Lessons Homepage
+## Start Here
 
 Hi Cognitve Dynamics Folks! If you're new to R, you can get started by installing the latest version of R from the official [CRAN download page](https://cran.r-project.org/) and then downloading RStudio from the official [RStudio (Posit) download page](https://posit.co/download/rstudio-desktop/). Together, these tools provide everything you need to write code, build visualizations, and explore data.
 

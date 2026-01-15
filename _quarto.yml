@@ -3,11 +3,11 @@ project:
   output-dir: docs
 
 website:
-  title: "R Lessons"
+  title: "Cognitive Dynamics Lab R Lessons"
   navbar:
     left:
       - href: index.qmd
-        text: Home
+        text: Start Here
       - href: R_Lessons/index.html
         text: Lessons App
 
