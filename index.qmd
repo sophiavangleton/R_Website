@@ -8,4 +8,4 @@ editor: visual
 
 Hi Cognitve Dynamics Folks! If you're new to R, you can get started by installing the latest version of R from the official [CRAN download page](https://cran.r-project.org/) and then downloading RStudio from the official [RStudio (Posit) download page](https://posit.co/download/rstudio-desktop/). Together, these tools provide everything you need to write code, build visualizations, and explore data.
 
-Lets get started!
+Note: Make sure you follow the download instructions that are suited for your computer (Mac, Windows, Etc.)!
