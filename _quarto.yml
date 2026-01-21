@@ -28,9 +28,7 @@ website:
             href: week7.qmd
       - text: "What's Next?"
         href: NextSteps.qmd
-
-format:
+format: 
   html:
-    css: styles/brite.css
-
+    theme: simplex
 
