@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Cognitive Dynamics Lab R Lessons",
+    "section": "",
+    "text": "Hi Cognitve Dynamics Folks! If you’re new to R, you can get started by installing the latest version of R from the official CRAN download page and then downloading RStudio from the official RStudio (Posit) download page. Together, these tools provide everything you need to write code, build visualizations, and explore data.\nNote: Make sure you follow the download instructions that are suited for your computer (Mac, Windows, Etc.)!"
+  },
+  {
+    "objectID": "index.html#start-here",
+    "href": "index.html#start-here",
+    "title": "Cognitive Dynamics Lab R Lessons",
+    "section": "",
+    "text": "Hi Cognitve Dynamics Folks! If you’re new to R, you can get started by installing the latest version of R from the official CRAN download page and then downloading RStudio from the official RStudio (Posit) download page. Together, these tools provide everything you need to write code, build visualizations, and explore data.\nNote: Make sure you follow the download instructions that are suited for your computer (Mac, Windows, Etc.)!"
+  }
+]

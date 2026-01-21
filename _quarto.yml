@@ -31,4 +31,6 @@ website:
 
 format:
   html:
-    theme: _bootswatch.scss
+    css: styles/brite.css
+
+
