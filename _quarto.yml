@@ -10,21 +10,25 @@ website:
         text: Start Here
       - href: R_Lessons/index.html
         text: Lessons App
-      - text: "Week 1"
-        href: week1.qmd
-      - text: "Week 2"
-        href: week2.qmd
-      - text: "Week 3"
-        href: week3.qmd
-      - text: "Week 4"
-        href: week4.qmd
-      - text: "Week 5"
-        href: week5.qmd
-      - text: "Week 6"
-        href: week6.qmd
-      - text: "Week 7"
-        href: week7.qmd
+      - text: "Weekly Lessons"
+        menu:
+          - text: "Week 1"
+            href: week1.qmd
+          - text: "Week 2"
+            href: week2.qmd
+          - text: "Week 3"
+            href: week3.qmd
+          - text: "Week 4"
+            href: week4.qmd
+          - text: "Week 5"
+            href: week5.qmd
+          - text: "Week 6"
+            href: week6.qmd
+          - text: "Week 7"
+            href: week7.qmd
+      - text: "What's Next?"
+        href: NextSteps.qmd
 
 format:
   html:
-    theme: bootstrap.min.css
+    theme: _bootswatch.scss
