@@ -13,21 +13,21 @@ website:
       - text: "Weekly Lessons"
         menu:
           - text: "Week 1"
-            href: week1.qmd
+            href: week1.html
           - text: "Week 2"
-            href: week2.qmd
+            href: week2.html
           - text: "Week 3"
-            href: week3.qmd
+            href: week3.html
           - text: "Week 4"
-            href: week4.qmd
+            href: week4.html
           - text: "Week 5"
-            href: week5.qmd
+            href: week5.html
           - text: "Week 6"
-            href: week6.qmd
+            href: week6.html
           - text: "Week 7"
-            href: week7.qmd
+            href: week7.html
       - text: "What's Next?"
-        href: NextSteps.qmd
+        href: NextSteps.html
 format: 
   html:
     theme: simplex
