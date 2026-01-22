@@ -21,20 +21,21 @@ website:
       - href: R_Lessons/index.html
         text: Lessons App
       - text: "Weekly Lessons"
-      - text: "Week 1"
-        href: week1.html
-      - text: "Week 2"
-        href: week2.html
-      - text: "Week 3"
-        href: week3.html
-      - text: "Week 4"
-        href: week4.html
-      - text: "Week 5"
-        href: week5.html
-      - text: "Week 6"
-        href: week6.html
-      - text: "Week 7"
-        href: week7.html
+        menu:
+          - text: "Week 1"
+            href: week1.html
+          - text: "Week 2"
+            href: week2.html
+          - text: "Week 3"
+            href: week3.html
+          - text: "Week 4"
+            href: week4.html
+          - text: "Week 5"
+            href: week5.html
+          - text: "Week 6"
+            href: week6.html
+          - text: "Week 7"
+            href: week7.html
       - text: "What's Next?"
         href: NextSteps.html
 
