@@ -6,6 +6,50 @@ editor: visual
 
 ## Start Here
 
-Hi Cognitve Dynamics Folks! If you're new to R, you can get started by installing the latest version of R from the official [CRAN download page](https://cran.r-project.org/) and then downloading RStudio from the official [RStudio (Posit) download page](https://posit.co/download/rstudio-desktop/). Together, these tools provide everything you need to write code, build visualizations, and explore data.
+Hi Cognitive Dynamics Folks! If you're new to R, you can get started by installing the latest version of R from the official [CRAN download page](https://cran.r-project.org/) and then downloading RStudio from the official [RStudio (Posit) download page](https://posit.co/download/rstudio-desktop/). Together, these tools provide everything you need to write code, build visualizations, and explore data.
 
-Note: Make sure you follow the download instructions that are suited for your computer (Mac, Windows, Etc.)!
+*Note:* Make sure you follow the download instructions that are suited for your computer (Mac, Windows, Etc.)!
+
+## R Glossary:
+
+For your reference I've compiled a shortlist of R & Computer Science jargon that will inevitably be used when we are explaining basics of R!
+
+-   **Object** — A piece of data stored in R (a number, vector, dataset, model, plot, etc.).
+
+-   **Variable** — A name that refers to an object (e.g., `x <- 5`).
+
+-   **Assignment (**`<-`**)** — The operation of storing a value in a variable.
+
+-   **Function** — A reusable piece of code that performs a task; always written with parentheses (e.g., `mean()`).
+
+-   **Argument** — Information you pass into a function so it knows what to do (e.g., `by = 2` in `seq()`).
+
+-   **Console** — The place where R runs your code and prints output, errors, and messages.
+
+-   **Script** — A saved file containing R code (`.R` or `.qmd`) that you run from the editor.
+
+-   **Environment** — A list of all objects currently stored in your R session.
+
+-   **Vector** — A one‑dimensional list of values of the same type (e.g., `1:10`, `c("a", "b")`).
+
+-   **Data Type (Class)** — The kind of data an object holds (numeric, character, integer, logical, factor, complex).
+
+-   **Package** — A collection of functions, data, and documentation that extends R’s capabilities.
+
+-   **Working Directory** — The folder R is currently “looking at” for reading and writing files.
+
+-   **Knitting / Rendering** — The process of turning a `.qmd` or `.Rmd` file into a finished HTML, PDF, or Word document.
+
+-   **Code Chunk** — A block of R code inside a Quarto document that runs and displays output.
+
+-   **Comment (**`#`**)** — Text that R ignores; used to explain code or leave notes.
+
+-   **Error** — A message indicating R could not run your code; execution stops.
+
+-   **Warning** — A message indicating something might be wrong, but R still ran the code.
+
+-   **Logical Value** — TRUE or FALSE; used in comparisons and filtering.
+
+-   **Indexing** — Selecting specific elements from a vector or dataset (e.g., `x[3]`).
+
+-   **Session** — Your current R workspace, including objects, loaded packages, and Console history.

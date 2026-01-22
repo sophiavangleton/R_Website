@@ -1,4 +1,38 @@
 ---
-title: "Week 1"
-editor: visual
+title: "Getting Started with R"
+description: "Introduction to R, RStudio, and basic syntax"
+toc: true
+toc-depth: 3
 ---
+
+# Getting Situated
+
+Before writing any code, lets get situated with the Rstudio interface. There are **four main panels** in RStudio you will need to become familiar with:
+
+1.  **Script**: this is found in the *top left* of your screen. This is where you write and save your code. This is where you will be working in the most.
+
+    -   To save code, you need to press the file icon at the top of your script, this icon looks like a small disk drive.
+
+2.  **Console**: this is found in the *bottom left* of your screen. This is where R *runs* your code.
+
+    -   You will notice that there are different tabs in the bottom left pane, each of these have different purposes as well. You won’t use these other tabs in Week 1, but it becomes essential for reproducible workflows and GitHub!
+
+        -   **Terminal:** This tab gives you access to your computer’s command line (e.g., Bash, PowerShell). You can use it for tasks like: Navigating folders, Running Git commands, Installing system tools, Managing files outside of R.
+
+        -   **Background Jobs:** This tab shows background tasks that RStudio is running. You’ll see it used when you: knit a large Quarto document, run a long simulation, render a website, run code that RStudio offloads to a separate process. Overall, It’s helpful because it keeps long-running tasks from freezing your main session.
+
+3.  **Environment**: found in the top right of your interface. This shows objects you’ve created. We will unpack what objects are in this lesson.
+
+4.  **Files/Plots/Packages/Help:** Finally, this is found in our bottom right of your screen. Everything in this pane helps you navigate your current project, understand the tools on R, and this is the pane that visualizes any outputs you render.
+
+    -   **Files:** This is one of the most important things to understand how to read as a beginner. Files shows you the files and folders in your current working directory.
+
+        -   **Exercise 1** type `getwd()` into your Console. What happens?
+
+    -   **Plots:** Whenever you create a plot (e.g. using `plot()` , `ggplot()` , or Quarto visualizations), it will appear here. This is not something you need to worry about now but helpful to know its there.
+
+    -   **Packages:** This tab lists every R package installed on your computer. We will get into what a package is later into this course! This tab (although I don't personally use it very often) shows you see which packages are currently loaded, load or unload packages with a checkbox, install new packages, update existing packages, view package documentation.
+
+        -   *Note:* You can also check these things via commands in your console as well.
+
+    -   **Help:** Whenever you type a function with a ? before it (e.g. `?mean()`) the documentation for that function appears in this pane. This is extremely useful to: read function descriptions, see examples, check argument names, understand error messages, and explore package documentation. You will be using this a lot!
