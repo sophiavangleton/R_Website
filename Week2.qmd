@@ -1,4 +1,7 @@
 ---
-title: "Week 2"
-editor: visual
+title: "What the Heck are Packages?"
+format: html
+description: "Introduction to R, RStudio, and basic syntax"
+toc: true
+toc-depth: 3
 ---

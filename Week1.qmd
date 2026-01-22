@@ -1,11 +1,12 @@
 ---
 title: "Getting Started with R"
+format: html
 description: "Introduction to R, RStudio, and basic syntax"
 toc: true
 toc-depth: 3
 ---
 
-# Getting Situated
+# Getting Situated 
 
 Before writing any code, lets get situated with the Rstudio interface. There are **four main panels** in RStudio you will need to become familiar with:
 

@@ -1,4 +1,7 @@
 ---
-title: "Week 6"
-editor: visual
+title: "More Visualizing Data"
+format: html
+description: "Introduction to R, RStudio, and basic syntax"
+toc: true
+toc-depth: 3
 ---

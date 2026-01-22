@@ -1,4 +1,7 @@
 ---
-title: "What's Next?"
-editor: visual
+title: "The Big Wide World of R"
+format: html
+description: "Extra resources on and off campus, limitations of R, best practices using genAI"
+toc: true
+toc-depth: 3
 ---
