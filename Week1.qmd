@@ -6,7 +6,7 @@ toc: true
 toc-depth: 3
 ---
 
-# Getting Situated 
+# Getting Situated
 
 Before writing any code, lets get situated with the Rstudio interface. There are **four main panels** in RStudio you will need to become familiar with:
 
@@ -37,3 +37,218 @@ Before writing any code, lets get situated with the Rstudio interface. There are
         -   *Note:* You can also check these things via commands in your console as well.
 
     -   **Help:** Whenever you type a function with a ? before it (e.g. `?mean()`) the documentation for that function appears in this pane. This is extremely useful to: read function descriptions, see examples, check argument names, understand error messages, and explore package documentation. You will be using this a lot!
+
+# Let's Make a Project
+
+First, lets go to File -\> new project
+
+There are different ways you can create your working directory folder:
+
+1.  New Directory → creates a brand‑new folder on your computer
+2.  Existing Directory → turns an existing folder into an R project
+3.  Version Control → if you’re cloning from GitHub
+
+For todays purposes, we will start with a new directory.
+
+Name your project, then choose where you want it to be saved. This is part of your working directory path.
+
+We can create files within your exisiting project, we can also import an existing file. Today we will practice importing this file into your exsiting project. You have a few options:
+
+1.  **Drag and Drop (simplest method)**
+
+-   Open your project folder in Finder/File Explorer
+
+-   Drag your .qmd file into the folder. It will appear in the RStudio Files pane
+
+-   Click it to open
+
+2.  **Use RStudio’s “Upload” or “Import”**
+
+-   In the Files pane click Upload (if using RStudio Server) or Click More → Show Folder in New Window (desktop)
+-   Move your .qmd file into the folder
+-   Refresh the Files pane
+-   Click the file to open it
+
+# Basic R use
+
+R can simply be used as a calculator
+
+```{r}
+# Basic math 
+5+3
+2*6
+18/2
+4^8
+
+# long operations 
+(3+5)*2+5
+```
+
+But wait- Those value weren't saved anywhere! To keep them in memory, we will need assign them to a variable.
+
+Let's create a variable called x, that is assigned the number 9. *Note:* A variable is a name that we use to store values. 
+
+```{r}
+x <- 8 #this is R syntax 
+x = 8 
+
+# What is the value we assign to x? 
+x
+
+# What about y? 
+# y
+
+# We will need to assign something to y! 
+y <- 2 
+y
+
+# And we can do things with these variables: 
+x+y 
+x*y
+```
+
+You can use any name for variables, but object names need to start with a letter, and can only contain letters, number, "\_"and "."
+
+## Object and File Formatting:
+
+```{r}
+snake_case <- 1
+CamelCase <- 1
+some.people.like.periods <- 9
+Or_STRANE.combiNtions <- 0 # this would be really hard for other people to read your script ;)
+```
+
+## Vectors
+We can also assign a range of values. Vectors are just 1-dimensional lists of numbers. VECTOR (atomic vector) = a collection of objects of the same class
+
+*Note:* most other programming languages refer to this as an array
+
+```{r}
+x <- 1:9 #x is now a vector of numbers 1 through 9 
+x
+```
+ *Also note:* x is no longer number 8, it take on whatever the most assignment
+
+```{r}
+
+# another way to assign a vector 
+
+x <- c(2,3,4,5)
+```
+
+So far we only use one type of variable (class attribute of an R object), in R it's called class. What classes are those vectors?
+
+## Variable classes (types)
+
+R's basic data types are character, numeric, integer, complex, and logical. You can also embed plots, for example:
+
+```{r}
+a <- "12345"
+class(a)
+
+b <- 12344
+class(b)
+
+c <- c("1", "2", "3")
+class(c)
+
+d <- 1:10
+class(d)
+
+
+e <- c(1.1, 2.2, 3.3) +1
+class(e)
+
+
+
+# Sequence of numbers, 1 thru 10, by 2
+seq(from = 1, to = 10, by = 2) #can say "from", "to", and "by=", but they're not necessary
+seq(1,10,2)
+```
+
+**Exercise 2** Create a variable called x that is assigned the number 8. Create a variable called y that is a sequence of numbers from 2 to 16, by 2. Add x and y. What happens?
+
+```{r}
+
+```
+
+**Exercise 2a.** Create a variable called z that is a vector containing the numbers 5 and 10. Create a variable called q that is a sequence of numbers from 5 to 25, by 5. Multiply x and y. What happens?
+
+```{r}
+
+```
+
+## Functions
+
+`seq` that we used above is a **function**. Everything you typically want to do in statistical programming uses functions. Functions can take different **arguments** (input).
+
+For example, `sqrt` is a function that can take one numeric argument. We are going to **apply** the function `sqrt` to the value 16.
+
+```{r}
+sqrt(16)
+
+
+# I could have assigned 16 to a variable first:
+x <- 16
+# And then taken the square root of that variable:
+sqrt(x)
+```
+
+To help you learn how to use a function you can use `?sqrt` (try it!)
+
+We can also use function to do things for every item in the vector
+
+```{r}
+# Create a vector:
+x <- 1:10
+# Get the square root of every number in that vector:
+sqrt(x)
+```
+
+Another good example is the function `mean`. `mean` takes one **argument**, a numeric vector. We are going to create a vector called `z` and **apply** this function to that vector.
+
+```{r}
+z <- 0:20
+mean(z)
+
+# Now, let's get the mean of this vector:
+q <- c(2, 8, 6, NA, 4, 8)
+q
+mean(q)
+```
+
+Is that the answer you'd expect? let's get some information about the function `mean`
+
+```{r}
+?mean
+```
+
+We need to add an additional argument to tell the function that we want to ignore NAs (the default for this argument is FALSE, that's why NAs weren't ignored above).
+
+```{r}
+mean(q, na.rm = TRUE)
+```
+
+**Exercise 3** R has a function called `rnorm` that will allow you to get a random sample of numbers drawn from a normal distribtuion. Get a sample of 5 numbers with a mean of 0 and a standard deviation of 0.5.
+
+```{r}
+
+```
+
+There are multiple ways to create arrays of number. As before, we can get a sequence of numbers, 1 thru 10, by 2
+
+```{r}
+s <- seq(1,10,2) #can say "by=" before the 2, but it's not necessary
+# Sequence of 11 equally spaced numbers between 0 and 1
+s2 <- seq(0,1,length.out=11) 
+```
+
+*Side note:* what if I don't want these things in my environment any more?
+
+```{r}
+rm(x)
+rm(q)
+rm(s)
+# Remove everything
+# rm(list=ls())
+```
