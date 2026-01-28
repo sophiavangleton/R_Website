@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Cognitive Dynamics Lab R Lessons",
+    "section": "",
+    "text": "Hi Cognitive Dynamics Folks! If you’re new to R, you can get started by installing the latest version of R from the official CRAN download page and then downloading RStudio from the official RStudio (Posit) download page. Together, these tools provide everything you need to write code, build visualizations, and explore data.\nNote: Make sure you follow the download instructions that are suited for your computer (Mac, Windows, Etc.)!"
+  },
+  {
+    "objectID": "index.html#start-here",
+    "href": "index.html#start-here",
+    "title": "Cognitive Dynamics Lab R Lessons",
+    "section": "",
+    "text": "Hi Cognitive Dynamics Folks! If you’re new to R, you can get started by installing the latest version of R from the official CRAN download page and then downloading RStudio from the official RStudio (Posit) download page. Together, these tools provide everything you need to write code, build visualizations, and explore data.\nNote: Make sure you follow the download instructions that are suited for your computer (Mac, Windows, Etc.)!"
+  },
+  {
+    "objectID": "index.html#r-glossary",
+    "href": "index.html#r-glossary",
+    "title": "Cognitive Dynamics Lab R Lessons",
+    "section": "R Glossary:",
+    "text": "R Glossary:\nFor your reference I’ve compiled a shortlist of R & Computer Science jargon that will inevitably be used when we are explaining basics of R!\n\nObject — A piece of data stored in R (a number, vector, dataset, model, plot, etc.).\nVariable — A name that refers to an object (e.g., x &lt;- 5).\nAssignment (&lt;-) — The operation of storing a value in a variable.\nFunction — A reusable piece of code that performs a task; always written with parentheses (e.g., mean()).\nArgument — Information you pass into a function so it knows what to do (e.g., by = 2 in seq()).\nConsole — The place where R runs your code and prints output, errors, and messages.\nScript — A saved file containing R code (.R or .qmd) that you run from the editor.\nEnvironment — A list of all objects currently stored in your R session.\nVector — A one‑dimensional list of values of the same type (e.g., 1:10, c(\"a\", \"b\")).\nData Type (Class) — The kind of data an object holds (numeric, character, integer, logical, factor, complex).\nPackage — A collection of functions, data, and documentation that extends R’s capabilities.\nWorking Directory — The folder R is currently “looking at” for reading and writing files.\nKnitting / Rendering — The process of turning a .qmd or .Rmd file into a finished HTML, PDF, or Word document.\nCode Chunk — A block of R code inside a Quarto document that runs and displays output.\nComment (#) — Text that R ignores; used to explain code or leave notes.\nError — A message indicating R could not run your code; execution stops.\nWarning — A message indicating something might be wrong, but R still ran the code.\nLogical Value — TRUE or FALSE; used in comparisons and filtering.\nIndexing — Selecting specific elements from a vector or dataset (e.g., x[3]).\nSession — Your current R workspace, including objects, loaded packages, and Console history."
+  },
+  {
+    "objectID": "week1.html",
+    "href": "week1.html",
+    "title": "Getting Started with R",
+    "section": "",
+    "text": "Before writing any code, lets get situated with the Rstudio interface. There are four main panels in RStudio you will need to become familiar with:\n\nScript: this is found in the top left of your screen. This is where you write and save your code. This is where you will be working in the most.\n\nTo save code, you need to press the file icon at the top of your script, this icon looks like a small disk drive.\n\nConsole: this is found in the bottom left of your screen. This is where R runs your code.\n\nYou will notice that there are different tabs in the bottom left pane, each of these have different purposes as well. You won’t use these other tabs in Week 1, but it becomes essential for reproducible workflows and GitHub!\n\nTerminal: This tab gives you access to your computer’s command line (e.g., Bash, PowerShell). You can use it for tasks like: Navigating folders, Running Git commands, Installing system tools, Managing files outside of R.\nBackground Jobs: This tab shows background tasks that RStudio is running. You’ll see it used when you: knit a large Quarto document, run a long simulation, render a website, run code that RStudio offloads to a separate process. Overall, It’s helpful because it keeps long-running tasks from freezing your main session.\n\n\nEnvironment: found in the top right of your interface. This shows objects you’ve created. We will unpack what objects are in this lesson.\nFiles/Plots/Packages/Help: Finally, this is found in our bottom right of your screen. Everything in this pane helps you navigate your current project, understand the tools on R, and this is the pane that visualizes any outputs you render.\n\nFiles: This is one of the most important things to understand how to read as a beginner. Files shows you the files and folders in your current working directory.\n\nExercise 1 type getwd() into your Console. What happens?\n\nPlots: Whenever you create a plot (e.g. using plot() , ggplot() , or Quarto visualizations), it will appear here. This is not something you need to worry about now but helpful to know its there.\nPackages: This tab lists every R package installed on your computer. We will get into what a package is later into this course! This tab (although I don’t personally use it very often) shows you see which packages are currently loaded, load or unload packages with a checkbox, install new packages, update existing packages, view package documentation.\n\nNote: You can also check these things via commands in your console as well.\n\nHelp: Whenever you type a function with a ? before it (e.g. ?mean()) the documentation for that function appears in this pane. This is extremely useful to: read function descriptions, see examples, check argument names, understand error messages, and explore package documentation. You will be using this a lot!"
+  },
+  {
+    "objectID": "week1.html#object-and-file-formatting",
+    "href": "week1.html#object-and-file-formatting",
+    "title": "Getting Started with R",
+    "section": "Object and File Formatting:",
+    "text": "Object and File Formatting:\n\nsnake_case &lt;- 1\nCamelCase &lt;- 1\nsome.people.like.periods &lt;- 9\nOr_STRANE.combiNtions &lt;- 0 # this would be really hard for other people to read your script ;)"
+  },
+  {
+    "objectID": "week1.html#vectors",
+    "href": "week1.html#vectors",
+    "title": "Getting Started with R",
+    "section": "Vectors",
+    "text": "Vectors\nWe can also assign a range of values. Vectors are just 1-dimensional lists of numbers. VECTOR (atomic vector) = a collection of objects of the same class\nNote: most other programming languages refer to this as an array\n\nx &lt;- 1:9 #x is now a vector of numbers 1 through 9 \nx\n\n[1] 1 2 3 4 5 6 7 8 9\n\n\nAlso note: x is no longer number 8, it take on whatever the most assignment\n\n# another way to assign a vector \n\nx &lt;- c(2,3,4,5)\nx\n\n[1] 2 3 4 5\n\n\nSo far we only use one type of variable (class attribute of an R object), in R it’s called class. What classes are those vectors?"
+  },
+  {
+    "objectID": "week1.html#variable-classes-types",
+    "href": "week1.html#variable-classes-types",
+    "title": "Getting Started with R",
+    "section": "Variable classes (types)",
+    "text": "Variable classes (types)\nR’s basic data types are character, numeric, integer, complex, and logical. You can also embed plots, for example:\n\na &lt;- \"12345\"\nclass(a)\n\n[1] \"character\"\n\nb &lt;- 12344\nclass(b)\n\n[1] \"numeric\"\n\nc &lt;- c(\"1\", \"2\", \"3\")\nclass(c)\n\n[1] \"character\"\n\nd &lt;- 1:10\nclass(d)\n\n[1] \"integer\"\n\ne &lt;- c(1.1, 2.2, 3.3) +1\nclass(e)\n\n[1] \"numeric\"\n\n# Sequence of numbers, 1 thru 10, by 2\nseq(from = 1, to = 10, by = 2) #can say \"from\", \"to\", and \"by=\", but they're not necessary\n\n[1] 1 3 5 7 9\n\nseq(1,10,2)\n\n[1] 1 3 5 7 9\n\n\nExercise 2 Create a variable called x that is assigned the number 8. Create a variable called y that is a sequence of numbers from 2 to 16, by 2. Add x and y. What happens?\n\nx &lt;- 8\ny &lt;- seq(2,16,2)\nx+y\n\n[1] 10 12 14 16 18 20 22 24\n\n\nExercise 2a. Create a variable called z that is a vector containing the numbers 5 and 10. Create a variable called q that is a sequence of numbers from 5 to 25, by 5. Multiply z and q. What happens?\n\nz &lt;- c(5,10)\n\nq &lt;- seq(5,30,5)\n\nz*q\n\n[1]  25 100  75 200 125 300"
+  },
+  {
+    "objectID": "week1.html#functions",
+    "href": "week1.html#functions",
+    "title": "Getting Started with R",
+    "section": "Functions",
+    "text": "Functions\nseq that we used above is a function. Everything you typically want to do in statistical programming uses functions. Functions can take different arguments (input).\nFor example, sqrt is a function that can take one numeric argument. We are going to apply the function sqrt to the value 16.\n\nsqrt(16)\n\n[1] 4\n\n# I could have assigned 16 to a variable first:\nx &lt;- 16\n# And then taken the square root of that variable:\nsqrt(x)\n\n[1] 4\n\n\nTo help you learn how to use a function you can use ?sqrt (try it!)\nWe can also use function to do things for every item in the vector\n\n?sqrt()\n\nstarting httpd help server ... done\n\n# Create a vector:\nx &lt;- 1:10\n# Get the square root of every number in that vector:\nsqrt(x)\n\n [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427\n [9] 3.000000 3.162278\n\n\nAnother good example is the function mean. mean takes one argument, a numeric vector. We are going to create a vector called z and apply this function to that vector.\n\nz &lt;- 0:20\nmean(z)\n\n[1] 10\n\n# Now, let's get the mean of this vector:\nq &lt;- c(2, 8, 6, NA, 4, 8)\nq\n\n[1]  2  8  6 NA  4  8\n\nmean(q)\n\n[1] NA\n\n\nIs that the answer you’d expect? let’s get some information about the function mean\n\n#?mean\n\nWe need to add an additional argument to tell the function that we want to ignore NAs (the default for this argument is FALSE, that’s why NAs weren’t ignored above).\n\nmean(q, na.rm = TRUE)\n\n[1] 5.6\n\n\nExercise 3 R has a function called rnorm that will allow you to get a random sample of numbers drawn from a normal distribtuion. Get a sample of 5 numbers with a mean of 0 and a standard deviation of 0.5.\n\n?rnorm()\n\nrnorm(5, sd = 0.5)\n\n[1] -0.8142784  0.5074542 -0.3716503  0.8357556 -0.7711090\n\n\nThere are multiple ways to create arrays of number. As before, we can get a sequence of numbers, 1 thru 10, by 2\n\ns &lt;- seq(1,10,2) #can say \"by=\" before the 2, but it's not necessary\n# Sequence of 11 equally spaced numbers between 0 and 1\ns2 &lt;- seq(0,1,length.out=11) \n\nSide note: what if I don’t want these things in my environment any more?\n\nrm(x)\nrm(q)\nrm(s)\n# Remove everything\n# rm(list=ls())"
+  }
+]
