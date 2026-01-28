@@ -6,7 +6,7 @@ toc: true
 toc-depth: 3
 ---
 
-Please download this [Week 1 Download](downloadforstudent/week_1_studentversion.qmd) to get the .qmd for this weeks lesson. You will be creating your own project and practice importing this weeks file into your project.
+Please download this [Week_1_Download](/Week1.qmd) to get the .qmd for this weeks lesson. You will be creating your own project and practice importing this weeks file into your project.
 
 # Getting Situated
 

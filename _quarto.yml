@@ -4,6 +4,7 @@ project:
   render:
     - index.qmd
     - week1.qmd
+    - '!/downloadforstudent'
     - week2.qmd
     - week3.qmd
     - week4.qmd
