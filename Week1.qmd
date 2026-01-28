@@ -96,7 +96,7 @@ x = 8
 x
 
 # What about y? 
-# y
+y
 
 # We will need to assign something to y! 
 y <- 2 
@@ -134,6 +134,7 @@ x
 # another way to assign a vector 
 
 x <- c(2,3,4,5)
+x
 ```
 
 So far we only use one type of variable (class attribute of an R object), in R it's called class. What classes are those vectors?
@@ -160,7 +161,6 @@ e <- c(1.1, 2.2, 3.3) +1
 class(e)
 
 
-
 # Sequence of numbers, 1 thru 10, by 2
 seq(from = 1, to = 10, by = 2) #can say "from", "to", and "by=", but they're not necessary
 seq(1,10,2)
@@ -169,13 +169,19 @@ seq(1,10,2)
 **Exercise 2** Create a variable called x that is assigned the number 8. Create a variable called y that is a sequence of numbers from 2 to 16, by 2. Add x and y. What happens?
 
 ```{r}
-
+x <- 8
+y <- seq(2,16,2)
+x+y
 ```
 
-**Exercise 2a.** Create a variable called z that is a vector containing the numbers 5 and 10. Create a variable called q that is a sequence of numbers from 5 to 25, by 5. Multiply x and y. What happens?
+**Exercise 2a.** Create a variable called z that is a vector containing the numbers 5 and 10. Create a variable called q that is a sequence of numbers from 5 to 25, by 5. Multiply z and q. What happens?
 
 ```{r}
+z <- c(5,10)
 
+q <- seq(5,30,5)
+
+z*q
 ```
 
 ## Functions
@@ -199,6 +205,7 @@ To help you learn how to use a function you can use `?sqrt` (try it!)
 We can also use function to do things for every item in the vector
 
 ```{r}
+?sqrt()
 # Create a vector:
 x <- 1:10
 # Get the square root of every number in that vector:
@@ -220,7 +227,7 @@ mean(q)
 Is that the answer you'd expect? let's get some information about the function `mean`
 
 ```{r}
-?mean
+#?mean
 ```
 
 We need to add an additional argument to tell the function that we want to ignore NAs (the default for this argument is FALSE, that's why NAs weren't ignored above).
@@ -232,7 +239,9 @@ mean(q, na.rm = TRUE)
 **Exercise 3** R has a function called `rnorm` that will allow you to get a random sample of numbers drawn from a normal distribtuion. Get a sample of 5 numbers with a mean of 0 and a standard deviation of 0.5.
 
 ```{r}
+?rnorm()
 
+rnorm(5, sd = 0.5)
 ```
 
 There are multiple ways to create arrays of number. As before, we can get a sequence of numbers, 1 thru 10, by 2
