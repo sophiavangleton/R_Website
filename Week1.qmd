@@ -96,7 +96,7 @@ x = 8
 x
 
 # What about y? 
-y
+#y
 
 # We will need to assign something to y! 
 y <- 2 
