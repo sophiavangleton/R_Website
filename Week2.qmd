@@ -186,7 +186,7 @@ vec[which(vec < 13)]
 vec <- c(vec, 99)
 ```
 
-*Side Note:* some helpful functions with df inspection! We can also get the first and last few items of a vector like this: (*forshadowing*)
+*Side Note:* some helpful functions with df inspection! We can also get the first and last few items of a vector like this: (*foreshadowing*)
 ```{r}
 head(vec, 2) #getting the first 6 elements
 tail(vec, 2) #getting the last 6 elements
@@ -197,7 +197,7 @@ tail(mydf, 2)
 ## What is a dataframe?
 
 Dataframe is a type of variable (or a mode of storage) to keep data. It is basically a spreadsheet like format, and this is the most often used mode in R. 
-Features of a DF: It looks like a list of possibly heterogenous elements of equal length (matrix-esque list)
+Features of a DF: It looks like a list of possibly heterogeneous elements of equal length (matrix-esque list)
 - contains rows (cases) and columns (variables)
 - top rows are names of each variable
 - each column represents one kind of content
@@ -258,7 +258,7 @@ nrow(df)
 
 Think! `df[level, room]`
 
-*Exercise 6.* Get 4th row, 2nd column. 
+**Exercise 6.** Get 4th row, 2nd column. 
 ```{r}
 
 ```

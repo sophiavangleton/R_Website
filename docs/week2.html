@@ -462,7 +462,7 @@ $beh
 </div>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(vec, <span class="dv">99</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Side Note:</em> some helpful functions with df inspection! We can also get the first and last few items of a vector like this: (<em>forshadowing</em>)</p>
+<p><em>Side Note:</em> some helpful functions with df inspection! We can also get the first and last few items of a vector like this: (<em>foreshadowing</em>)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(vec, <span class="dv">2</span>) <span class="co">#getting the first 6 elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -483,7 +483,7 @@ $beh
 </section>
 <section id="what-is-a-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-a-dataframe">What is a dataframe?</h2>
-<p>Dataframe is a type of variable (or a mode of storage) to keep data. It is basically a spreadsheet like format, and this is the most often used mode in R. Features of a DF: It looks like a list of possibly heterogenous elements of equal length (matrix-esque list) - contains rows (cases) and columns (variables) - top rows are names of each variable - each column represents one kind of content - every column must have the same length (but missing data are allowed)</p>
+<p>Dataframe is a type of variable (or a mode of storage) to keep data. It is basically a spreadsheet like format, and this is the most often used mode in R. Features of a DF: It looks like a list of possibly heterogeneous elements of equal length (matrix-esque list) - contains rows (cases) and columns (variables) - top rows are names of each variable - each column represents one kind of content - every column must have the same length (but missing data are allowed)</p>
 <section id="lets-generate-a-dataframe" class="level3">
 <h3 class="anchored" data-anchor-id="lets-generate-a-dataframe">Lets generate a dataframe!</h3>
 <div class="cell">
@@ -573,7 +573,7 @@ $beh
 <p><em>Note:</em> that none of these operations will change the content of dataframes. But, it will be important to constantly check your data.frame as it gets updated.</p>
 <p><strong>Let’s extract or index variables or specific values.</strong> This is like the room number: The first number(s) is/are the vertical level (rows), the second number(s)/value(s) is/are the rows (room on level).</p>
 <p>Think! <code>df[level, room]</code></p>
-<p><em>Exercise 6.</em> Get 4th row, 2nd column.</p>
+<p><strong>Exercise 6.</strong> Get 4th row, 2nd column.</p>
 <p>With indexing, there are often multiple ways to achieve the same thing:</p>
 <p>You can get 2nd element of column “Position”</p>
 <div class="cell">
