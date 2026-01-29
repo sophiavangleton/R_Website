@@ -30,7 +30,7 @@ Before writing any code, lets get situated with the Rstudio interface. There are
 
     -   **Files:** This is one of the most important things to understand how to read as a beginner. Files shows you the files and folders in your current working directory.
 
-        -   **Exercise 1** type `getwd()` into your Console. What happens?
+        -   **Exercise 1.** type `getwd()` into your Console. What happens?
 
     -   **Plots:** Whenever you create a plot (e.g. using `plot()` , `ggplot()` , or Quarto visualizations), it will appear here. This is not something you need to worry about now but helpful to know its there.
 
@@ -168,7 +168,7 @@ seq(from = 1, to = 10, by = 2) #can say "from", "to", and "by=", but they're not
 seq(1,10,2)
 ```
 
-**Exercise 2** Create a variable called x that is assigned the number 8. Create a variable called y that is a sequence of numbers from 2 to 16, by 2. Add x and y. What happens?
+**Exercise 2.** Create a variable called x that is assigned the number 8. Create a variable called y that is a sequence of numbers from 2 to 16, by 2. Add x and y. What happens?
 
 ```{r}
 x <- 8
@@ -176,7 +176,7 @@ y <- seq(2,16,2)
 x+y
 ```
 
-**Exercise 2a.** Create a variable called z that is a vector containing the numbers 5 and 10. Create a variable called q that is a sequence of numbers from 5 to 25, by 5. Multiply z and q. What happens?
+**Exercise 2.a.** Create a variable called z that is a vector containing the numbers 5 and 10. Create a variable called q that is a sequence of numbers from 5 to 25, by 5. Multiply z and q. What happens?
 
 ```{r}
 z <- c(5,10)
@@ -238,7 +238,7 @@ We need to add an additional argument to tell the function that we want to ignor
 mean(q, na.rm = TRUE)
 ```
 
-**Exercise 3** R has a function called `rnorm` that will allow you to get a random sample of numbers drawn from a normal distribtuion. Get a sample of 5 numbers with a mean of 0 and a standard deviation of 0.5.
+**Exercise 3.** R has a function called `rnorm` that will allow you to get a random sample of numbers drawn from a normal distribtuion. Get a sample of 5 numbers with a mean of 0 and a standard deviation of 0.5.
 
 ```{r}
 
