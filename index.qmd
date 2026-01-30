@@ -53,3 +53,11 @@ For your reference I've compiled a shortlist of R & Computer Science jargon that
 -   **Indexing** — Selecting specific elements from a vector or dataset (e.g., `x[3]`).
 
 -   **Session** — Your current R workspace, including objects, loaded packages, and Console history.
+
+## About This Series
+
+This website is a compilation of all the scripts revised over the years created and taught by the various graduate students in the Cognitive Dynamics Lab. I (one of the current grad students Sophia) made this website as a place for all these files to live in a more straightforward way, and added some clarifying elements to each weeks content. I hope this resource will be a good tool to reference back to for y'all as young researchers and will help streamline teaching this series for future grad students. 
+
+Thank you to everyone who contributed to each weeks content over the years and imparted their knowledge to the next round of R users. Yay collective knowledge!!
+
+![Cognitive Dynamics Lab 2025](images/labphoto.png)
