@@ -6,8 +6,6 @@ toc: true
 toc-depth: 3
 ---
 
-Please download this [Week 2 Download](downloadforstudent/week_1_studentversion.qmd) to get the .qmd for this weeks lesson. You will be creating your own project and practice importing this weeks file into your project. (note to self, need to fix link)
-
 ## What Is a Package/Library?
 
 Directories are the location of files. Packages/libraries on R are optional set of functions that you can attach to the coding environment. You can think of them as toolkit you can freely download to do complicated and advanced stuff. To use them, you need to first install it. Then, you can load to the current session. Libraries are constantly getting created and updated. Once you pass the basic level, using R(analyzing data) becomes equivalent to "using packages efficiently". So, once you identify your specific issues to solve, always look for packages related to your issue.
@@ -186,7 +184,7 @@ vec[which(vec < 13)]
 vec <- c(vec, 99)
 ```
 
-*Side Note:* some helpful functions with df inspection! We can also get the first and last few items of a vector like this: (*forshadowing*)
+*Side Note:* some helpful functions with df inspection! We can also get the first and last few items of a vector like this: (*foreshadowing*)
 ```{r}
 head(vec, 2) #getting the first 6 elements
 tail(vec, 2) #getting the last 6 elements
@@ -197,7 +195,7 @@ tail(mydf, 2)
 ## What is a dataframe?
 
 Dataframe is a type of variable (or a mode of storage) to keep data. It is basically a spreadsheet like format, and this is the most often used mode in R. 
-Features of a DF: It looks like a list of possibly heterogenous elements of equal length (matrix-esque list)
+Features of a DF: It looks like a list of possibly heterogeneous elements of equal length (matrix-esque list)
 - contains rows (cases) and columns (variables)
 - top rows are names of each variable
 - each column represents one kind of content
@@ -205,7 +203,7 @@ Features of a DF: It looks like a list of possibly heterogenous elements of equa
 
 ### Lets generate a dataframe!
 ```{r}
-People <- c('Tess', 'Taren', 'Dominik', "Ulrich") #vector with names
+People <- c('Neha', 'Sophia', 'Dominik', "Ulrich") #vector with names
   Positions <- c(rep("GE", 3), "PI") #vector with positions, select from PI, LM (Lab Managaer), GE, and RA
   Count <- 1:length(Positions) #vector with numbers from 1 to N
   
@@ -258,7 +256,7 @@ nrow(df)
 
 Think! `df[level, room]`
 
-*Exercise 6.* Get 4th row, 2nd column. 
+**Exercise 6.** Get 4th row, 2nd column. 
 ```{r}
 
 ```

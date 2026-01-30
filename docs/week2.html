@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8e80e45b405cdf6bef599e74052dea33.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-11587c5d6302432a50f236a5b7bcaba8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Please download this <a href="downloadforstudent/week_2_studentversion.qmd">Week 2 Download</a> to get the .qmd for this weeks lesson. You will be creating your own project and practice importing this weeks file into your project. (note to self, need to fix link)</p>
+<p>Please download this <a href="downloadforstudent/week_2_studentversion.qmd">Week 2 Download</a> to get the .qmd for this weeks lesson. Practice importing this file into your project for this series!</p>
 <section id="what-is-a-packagelibrary" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-a-packagelibrary">What Is a Package/Library?</h2>
 <p>Directories are the location of files. Packages/libraries on R are optional set of functions that you can attach to the coding environment. You can think of them as toolkit you can freely download to do complicated and advanced stuff. To use them, you need to first install it. Then, you can load to the current session. Libraries are constantly getting created and updated. Once you pass the basic level, using R(analyzing data) becomes equivalent to “using packages efficiently”. So, once you identify your specific issues to solve, always look for packages related to your issue.</p>
@@ -271,8 +271,8 @@ Attaching package: 'dplyr'</code></pre>
 <p><code>library()</code> should be colored in blue on Rstudio, which indicates this is a special syntax like “for” or “if” or “while”. You can provide either character(with ““) or just a name.</p>
 <p><strong>Things to be careful when you use packages:</strong> There are few important things to keep in mind when you use libraries.</p>
 <ul>
-<li><em>Make sure that function names are not overlapping.</em> Each library is often independently developed, so they may contain functions with a same name but different contents. When you load functions with same names from different packages, later ones are prioritized. So, what do we do? To resolve this, you can specify which library is the source of a given function. Say two packages (“packA” and “packB”) contain a function called “banana”. You can write “packA::banana” to use banana from packA, and vice versa.</li>
-<li><em>Remember that loaded libraries do not disappear even after “rm(list = ls(all = TRUE))”.</em> After you found some form of interference mentioned above, you may want to start over the analysis. To completely start over, you need to shutdown Rstudio because libraries are still loaded even after you clear Environment(workspace)</li>
+<li>Make sure that function names are not overlapping. Each library is often independently developed, so they may contain functions with a same name but different contents. When you load functions with same names from different packages, later ones are prioritized. So, what do we do? To resolve this, you can specify which library is the source of a given function. Say two packages (“packA” and “packB”) contain a function called “banana”. You can write “packA::banana” to use banana from packA, and vice versa.</li>
+<li>Remember that loaded libraries do not disappear even after <code>rm(list = ls(all = TRUE))</code>. After you found some form of interference mentioned above, you may want to start over the analysis. To completely start over, you need to shutdown Rstudio because libraries are still loaded even after you clear environment.</li>
 </ul>
 <p><a href="https://support.posit.co/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages">Here is a resource</a> I found online that compiles a list of useful R packages and why they are useful. In general, if you want to do something in R- there is a package for it so always try to look for them first!</p>
 <p><strong>Exercise 1.</strong> Look up the function name <code>lmer()</code> using the R help command you learned. What happens? Search the internet and figure out what package the function is from. Install the package and load it.</p>
@@ -487,7 +487,7 @@ $beh
 <section id="lets-generate-a-dataframe" class="level3">
 <h3 class="anchored" data-anchor-id="lets-generate-a-dataframe">Lets generate a dataframe!</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>People <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Tess'</span>, <span class="st">'Taren'</span>, <span class="st">'Dominik'</span>, <span class="st">"Ulrich"</span>) <span class="co">#vector with names</span></span>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>People <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Neha'</span>, <span class="st">'Sophia'</span>, <span class="st">'Dominik'</span>, <span class="st">"Ulrich"</span>) <span class="co">#vector with names</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  Positions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"GE"</span>, <span class="dv">3</span>), <span class="st">"PI"</span>) <span class="co">#vector with positions, select from PI, LM (Lab Managaer), GE, and RA</span></span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  Count <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(Positions) <span class="co">#vector with numbers from 1 to N</span></span>
 <span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -503,16 +503,16 @@ $beh
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   People Positions Count
-1    Tess        GE     1
-2   Taren        GE     2
+1    Neha        GE     1
+2  Sophia        GE     2
 3 Dominik        GE     3
 4  Ulrich        PI     4</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   People Positions Count
-1    Tess        GE     1
-2   Taren        GE     2
+1    Neha        GE     1
+2  Sophia        GE     2
 3 Dominik        GE     3
 4  Ulrich        PI     4</code></pre>
 </div>
@@ -522,16 +522,16 @@ $beh
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   People Positions Count
-1    Tess        GE     1
-2   Taren        GE     2
+1    Neha        GE     1
+2  Sophia        GE     2
 3 Dominik        GE     3
 4  Ulrich        PI     4</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  People Positions Count
-1   Tess        GE     1
-2  Taren        GE     2</code></pre>
+1   Neha        GE     1
+2 Sophia        GE     2</code></pre>
 </div>
 </div>
 <p><code>tail()</code> shows the content from the bottom</p>
@@ -539,8 +539,8 @@ $beh
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   People Positions Count
-1    Tess        GE     1
-2   Taren        GE     2
+1    Neha        GE     1
+2  Sophia        GE     2
 3 Dominik        GE     3
 4  Ulrich        PI     4</code></pre>
 </div>
@@ -600,7 +600,7 @@ $beh
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">2</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  People Positions Count
-2  Taren        GE     2</code></pre>
+2 Sophia        GE     2</code></pre>
 </div>
 </div>
 <p><em>Note:</em> When you extract a column from data.frame, it is no longer a data.frame. Do you remember how to check what class of variable it is?</p>
@@ -640,7 +640,7 @@ $beh
 <span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>df[Positions <span class="sc">==</span> <span class="st">"GE"</span> <span class="sc">&amp;</span> Count <span class="sc">==</span> <span class="dv">2</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  People Positions Count
-2  Taren        GE     2</code></pre>
+2 Sophia        GE     2</code></pre>
 </div>
 </div>
 

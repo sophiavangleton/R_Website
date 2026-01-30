@@ -132,7 +132,7 @@ We can also make new columns using the `$`
 data$New <- 1:nrow(data)
 ```
 
-Why would we need to do this? Often useful for cleaning data #So let's clean our data! Sometimes data files contain data that we don't want to analyze for various reasons... 
+Why would we need to do this? Often useful for cleaning data, so let's clean our data! Sometimes data files contain data that we don't want to analyze for various reasons... 
 
 ...like the first trial in a block might be counted as practice 
 

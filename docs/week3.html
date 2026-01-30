@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Introduction to R, RStudio, and basic syntax">
+<meta name="description" content="Finding, importing, and working with a dataset">
 
 <title>Let’s Work With Dataframes – Cognitive Dynamics Lab R Lessons</title>
 <style>
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -40,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8e80e45b405cdf6bef599e74052dea33.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-11587c5d6302432a50f236a5b7bcaba8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -147,8 +182,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#find-the-data" id="toc-find-the-data" class="nav-link active" data-scroll-target="#find-the-data">Find the data</a></li>
+  <li><a href="#import-the-data" id="toc-import-the-data" class="nav-link" data-scroll-target="#import-the-data">Import The Data</a></li>
+  <li><a href="#working-with-data" id="toc-working-with-data" class="nav-link" data-scroll-target="#working-with-data">Working with data</a></li>
+  <li><a href="#analyze-your-data" id="toc-analyze-your-data" class="nav-link" data-scroll-target="#analyze-your-data">Analyze Your Data!</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -160,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Introduction to R, RStudio, and basic syntax
+    Finding, importing, and working with a dataset
   </div>
 </div>
 
@@ -177,8 +221,232 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Please download this <a href="downloadforstudent/week_3_studentversion.qmd">Week 3 Download</a> to get the .qmd for this weeks lesson. Also be sure to download this <a href="downloadforstudent/data.zip">folder containing the datafiles you will be using today</a>. Practice importing these files into your project for this series!</p>
+<section id="find-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="find-the-data">Find the data</h2>
+<p>What is a directory? Directories are the location of files.</p>
+<p><strong>How do I check the current working directory?</strong> For each session (i.e., every time you open Rstudio), the current working directory is set as the default location. You can change this using <a href="https://stackoverflow.com/questions/22432344/how-do-you-change-the-default-directory-in-rstudio-or-r">this guide</a>. When you have an R project open, the working directory is the location of the project. When you have don’t have an R project, have R closed and open R by double clicking on a script, then R will open a session with the working directory being the location of the file. If you open R by just clicking on the R icon, it will open a new session with some kind of default location (for windows, this is often “Documents”).</p>
+<p>Let’s check our working directory first.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co">#print it in a command window </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/forrest/OneDrive/Documents/EDLD Sequence/RLessonsCognitiveDynamics/R_Website"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dirWD <span class="ot">&lt;-</span> <span class="fu">getwd</span>() <span class="co">#store the current directory as dirWD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Specifying a working directory is important for loading and saving files, and it is recommended to define at the beginning of sessions. In R, directories are expressed in the form of string variable like:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This defines a string variable called "dir1".</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>dir1 <span class="ot">&lt;-</span> <span class="st">"C:/Users/forrest/OneDrive/Documents/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Note:</em> that each folder is separated by “/”. Pressing the tab key may help selecting the right folder/file without typing errors.</p>
+<p>How do I change the current working directory? To change the current working directory, you need to specify the directory to jump to. And, feed it in to <code>setwd()</code> function (you could also give a string without making a variable).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(dir1) <span class="co">#changing directory</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co">#check if it worked or not</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/forrest/OneDrive/Documents"</code></pre>
+</div>
+</div>
+<p><strong>To read in a datafile, you will need to set the working directory to the folder containing the “data” folder:</strong> The path types we have talked about are absolute paths. They are called absolute paths because their origin is at the root location of YOUR system. This means that if you want to share your script #with someone else, it won’t work (because they might place files at a different location compared to you). That’s why it’s important to use R projects or open scripts by opening a fresh R session by double clicking on the script - that way, the working directory location is consistent. So, what if #we need to find a file that’s not levels down in our hierarchy, but up?</p>
+<p>What’s is available in our working directory <code>fs::dir_tree(path = "..", recurse = TRUE)</code> If we want to find a file that requires us to go up one level in the hierarchy, we can do the following “../experiment/” or we can set the wd one level higher: setwd(“../”) should you need to.</p>
+</section>
+<section id="import-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="import-the-data">Import The Data</h2>
+<p>There are many different forms datafiles can take. There are different ways of reading in different files (or different packages that help read in certain datafiles).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#txt files </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>txt <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"data/dogwood.txt"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">fill =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#csv files </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/2021_demographic.csv"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#spss files </span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign) </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>spss <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">read.spss</span>(<span class="st">"data/Experiment_1.sav"</span>))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#RDS files </span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>rds <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/CCdata.RDS"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#creates results directory </span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"results"</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#SAVE FILES </span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(txt, <span class="st">"results/data2.RDS"</span>) </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(txt, <span class="st">"results/data2.txt"</span>, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>) </span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(txt, <span class="st">"results/data2.csv"</span>) </span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="fu">write.foreign</span>(txt, <span class="st">"results/data2.sav"</span>, <span class="at">package =</span> <span class="st">"SPSS"</span>, <span class="at">codefile =</span> <span class="st">"code.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, let’s read in the .txt file dogwood.txt (data/data2.RDS) and assign it to the name data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"data/dogwood.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="working-with-data" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-data">Working with data</h2>
+<p>First….let’s look at the data! The <code>$</code> sign is your new best friend. It let’s you index into a dataframe without needing to know the position of the column.</p>
+<p><strong>Exercise 1.</strong> Try typing <code>data$</code> to see all of your column names!</p>
+<p>There are lots of ways to index dataframes. You should know them all!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>ID</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">1</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Trial[<span class="dv">5</span>] </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">5</span>,<span class="dv">3</span>]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">1</span>,] <span class="co">#note the comma! </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>ID[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can reference the data inside the brackets too</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data[data<span class="sc">$</span>Trial <span class="sc">==</span> <span class="dv">5</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Exercise 2.</strong> Create a dataframe that contains trials 1 through 5. Then create a dataframe that contains trials 1, 2, and 7</p>
+<p>We can also make new columns using the <code>$</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>New <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Why would we need to do this? Often useful for cleaning data, so let’s clean our data! Sometimes data files contain data that we don’t want to analyze for various reasons…</p>
+<p>…like the first trial in a block might be counted as practice</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Trial <span class="sc">&gt;</span> <span class="dv">1</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>data[data<span class="sc">$</span>Trial <span class="sc">&gt;</span> <span class="dv">1</span>,] <span class="co">#index based on this logical argument</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>dataCleaned <span class="ot">&lt;-</span> data[data<span class="sc">$</span>Trial <span class="sc">&gt;</span> <span class="dv">1</span>,] <span class="co">#make sure to save the result!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Functions can also be useful for cleaning. Let’s remove RTs that are NaN. (What is Nan?)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dataCleaned <span class="ot">&lt;-</span> dataCleaned[<span class="sc">!</span><span class="fu">is.na</span>(dataCleaned<span class="sc">$</span>RT),]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dataCleaned <span class="ot">&lt;-</span> dataCleaned[data<span class="sc">$</span>RT <span class="sc">&gt;</span> <span class="fu">mean</span>(data<span class="sc">$</span>RT),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now let’s remove certain trials demo of the AND operator</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dataCleaned <span class="ot">&lt;-</span> dataCleaned[data<span class="sc">$</span>Trial <span class="sc">!=</span> <span class="dv">5</span> <span class="sc">&amp;</span> data<span class="sc">$</span>Trial <span class="sc">!=</span> <span class="dv">8</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We could only look at cue check trials, demo of the OR operator</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dataCleaned2 &lt;- dataCleaned2[dataCleaned$LCueCheck == 1|| dataCleaned$RCueCheck ==1,]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Exercise 3.</strong> remove the first block from our data. We will count it as a practice block.</p>
+</section>
+<section id="analyze-your-data" class="level2">
+<h2 class="anchored" data-anchor-id="analyze-your-data">Analyze Your Data!</h2>
+<p><em>Check your understanding:</em> What is the mean error?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data) <span class="co">#An easy way to get a lot of info </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       ID         Block           Trial         BlockType    
+ Min.   :10   Min.   : 1.00   Min.   :  1.0   Min.   :1.000  
+ 1st Qu.:10   1st Qu.: 7.00   1st Qu.:117.0   1st Qu.:2.000  
+ Median :10   Median :11.00   Median :245.0   Median :2.000  
+ Mean   :10   Mean   :11.29   Mean   :245.7   Mean   :1.985  
+ 3rd Qu.:10   3rd Qu.:15.00   3rd Qu.:373.0   3rd Qu.:2.000  
+ Max.   :10   Max.   :19.00   Max.   :500.0   Max.   :2.000  
+                                                             
+     Task             TextLeft          TextRight            CueLeft      
+ Length:8180        Length:8180        Length:8180        Min.   :0.0000  
+ Class :character   Class :character   Class :character   1st Qu.:0.0000  
+ Mode  :character   Mode  :character   Mode  :character   Median :0.0000  
+                                                          Mean   :0.4888  
+                                                          3rd Qu.:1.0000  
+                                                          Max.   :1.0000  
+                                                                          
+   LCueCheck        RCueCheck          Img                Pos           
+ Min.   :0.0000   Min.   :0.0000   Length:8180        Length:8180       
+ 1st Qu.:0.0000   1st Qu.:0.0000   Class :character   Class :character  
+ Median :0.0000   Median :0.0000   Mode  :character   Mode  :character  
+ Mean   :0.0443   Mean   :0.0467                                        
+ 3rd Qu.:0.0000   3rd Qu.:0.0000                                        
+ Max.   :1.0000   Max.   :1.0000                                        
+ NA's   :6509     NA's   :6509                                          
+      Win             Loss            Placeh          Dotdiff      
+ Min.   :1.000   Min.   :-4.000   Min.   :0.0000   Min.   :0.0000  
+ 1st Qu.:4.000   1st Qu.:-4.000   1st Qu.:0.0000   1st Qu.:0.0000  
+ Median :4.000   Median :-4.000   Median :1.0000   Median :0.0000  
+ Mean   :3.934   Mean   :-3.934   Mean   :0.5078   Mean   :0.4998  
+ 3rd Qu.:4.000   3rd Qu.:-4.000   3rd Qu.:1.0000   3rd Qu.:1.0000  
+ Max.   :4.000   Max.   :-1.000   Max.   :1.0000   Max.   :1.0000  
+                                                                   
+     Costs            Reward       Correct           SwitchTrial    
+ Min.   :0.0000   Min.   : -36   Length:8180        Min.   :0.0000  
+ 1st Qu.:0.0000   1st Qu.: 292   Class :character   1st Qu.:0.0000  
+ Median :0.0000   Median : 480   Mode  :character   Median :0.0000  
+ Mean   :0.4929   Mean   : 576                      Mean   :0.1744  
+ 3rd Qu.:1.0000   3rd Qu.: 888                      3rd Qu.:0.0000  
+ Max.   :1.0000   Max.   :1244                      Max.   :1.0000  
+                  NA's   :6629                                      
+    SwitchP           Switch          LeftCueX       LeftCueY      RightCueX   
+ Min.   :0.0000   Min.   :0.0000   Min.   :51     Min.   :39     Min.   :1869  
+ 1st Qu.:0.1000   1st Qu.:0.0000   1st Qu.:51     1st Qu.:39     1st Qu.:1869  
+ Median :0.1000   Median :0.0000   Median :51     Median :39     Median :1869  
+ Mean   :0.1724   Mean   :0.1742   Mean   :51     Mean   :39     Mean   :1869  
+ 3rd Qu.:0.2500   3rd Qu.:0.0000   3rd Qu.:51     3rd Qu.:39     3rd Qu.:1869  
+ Max.   :0.2500   Max.   :1.0000   Max.   :51     Max.   :39     Max.   :1869  
+                                   NA's   :6509   NA's   :6509   NA's   :6509  
+   RightCueY      Response             Error              RT         
+ Min.   :39     Length:8180        Min.   :0.0000   Min.   :  461.8  
+ 1st Qu.:39     Class :character   1st Qu.:0.0000   1st Qu.:  720.9  
+ Median :39     Mode  :character   Median :0.0000   Median : 1027.4  
+ Mean   :39                        Mean   :0.3651   Mean   : 1479.2  
+ 3rd Qu.:39                        3rd Qu.:1.0000   3rd Qu.: 1809.4  
+ Max.   :39                        Max.   :1.0000   Max.   :17378.0  
+ NA's   :6509                      NA's   :6509     NA's   :6509     
+      New      
+ Min.   :   1  
+ 1st Qu.:2046  
+ Median :4090  
+ Mean   :4090  
+ 3rd Qu.:6135  
+ Max.   :8180  
+               </code></pre>
+</div>
+</div>
+<p>The mean is rarely enough on it’s own to tell us much… We want to know how values differ across different experimental conditions.</p>
+<p><em>Check your understanding:</em> What is the error rate for each blockType?</p>
+<p>Hopefully you can see that this would be a pain to do by hand… Luckily, there is a better way! Enter, the {dplyr} package. Aggregation in R requires the <code>group_by()</code> function, and the <code>summarize()</code> function. Pipes are weird… but AWESOME.</p>
+<p>{dplyr} is part of the {tidyverse} meta-package, which contains packages designed to help with data wrangling, but most importantly, plotting. Piping feeds in the first argument to a function <code>data %&gt;% group_by(BlockType)</code> which is the same as <code>group_by(data, BlockType)</code> we need to save this to do anything with it… or we can use pipes</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>errorRates <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(BlockType) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanError =</span> <span class="fu">mean</span>(Error))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This does the same thing without pipes, just harder to read</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>errorRates2 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(data, BlockType), <span class="at">meanError =</span> <span class="fu">mean</span>(Error))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Usually we do a 2 step aggregation, which means we do this process twice. Once for each subject individually, then a second time using all subjects data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>errorRates3 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(BlockType, Block) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">meanError =</span> <span class="fu">mean</span>(Error)) <span class="sc">%&gt;%</span> <span class="co">#now we do it again</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(BlockType) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Error =</span> <span class="fu">mean</span>(meanError), <span class="at">Error_SD =</span> <span class="fu">sd</span>(meanError)) <span class="co">#be sure to use the new name of your mean column!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Again you could try to do this without piping… it starts to get really hard.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>errorRates3 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">summarise</span>(<span class="fu">group_by</span>(data, BlockType, Block), <span class="at">meanError =</span> <span class="fu">mean</span>(Error)), BlockType), <span class="at">Error =</span> <span class="fu">mean</span>(meanError), <span class="at">Error_SD =</span> <span class="fu">sd</span>(meanError))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>But wait, this now contains the entire (raw!) dataset! Let’s see tidyverse’s version of data cleaning!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Block <span class="sc">&gt;=</span> <span class="dv">3</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(RT) <span class="sc">&amp;</span> RT <span class="sc">&lt;</span> <span class="dv">10000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(BlockType, Block) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">meanError =</span> <span class="fu">mean</span>(Error)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(BlockType) <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Error =</span> <span class="fu">mean</span>(meanError), <span class="at">Error_SD =</span> <span class="fu">sd</span>(meanError))</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  BlockType Error Error_SD
+      &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+1         2 0.391   0.0737</code></pre>
+</div>
+</div>
+<p>Most likely, your data cleaning will be much more complex, so you will have to decide whether and when to save a cleaned version of your dataset, if you want to run multiple different analyses with it (instead of doing both, data cleaning, and analysis in one set of pipes).</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
