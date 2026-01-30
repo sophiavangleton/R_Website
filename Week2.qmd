@@ -6,7 +6,7 @@ toc: true
 toc-depth: 3
 ---
 
-Please download this [Week 2 Download](downloadforstudent/week_2_studentversion.qmd) to get the .qmd for this weeks lesson. You will be creating your own project and practice importing this weeks file into your project. (note to self, need to fix link)
+Please download this [Week 2 Download](downloadforstudent/week_2_studentversion.qmd) to get the .qmd for this weeks lesson. Practice importing this file into your project for this series!
 
 ## What Is a Package/Library?
 
@@ -205,7 +205,7 @@ Features of a DF: It looks like a list of possibly heterogeneous elements of equ
 
 ### Lets generate a dataframe!
 ```{r}
-People <- c('Tess', 'Taren', 'Dominik', "Ulrich") #vector with names
+People <- c('Neha', 'Sophia', 'Dominik', "Ulrich") #vector with names
   Positions <- c(rep("GE", 3), "PI") #vector with positions, select from PI, LM (Lab Managaer), GE, and RA
   Count <- 1:length(Positions) #vector with numbers from 1 to N
   

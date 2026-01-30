@@ -6,7 +6,8 @@ toc: true
 toc-depth: 3
 ---
 
-Please download this [Week 3 Download](downloadforstudent/week_3_studentversion.qmd) to get the .qmd for this weeks lesson. Also be sure to download this [folder containing the datafiles you will be using today](downloadforstudent/data.zip). Practice importing these files into your project for this series!
+Please download this [Week 3 Download](downloadforstudent/week_2_studentversion.qmd) to get the .qmd for this weeks lesson. Practice importing this file into your project for this series!
+
 
 ## Find the data
 

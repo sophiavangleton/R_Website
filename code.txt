@@ -1,0 +1,47 @@
+SET DECIMAL=DOT.
+
+DATA LIST FILE= "results/data2.sav"  free (",")
+ENCODING="UTF8"
+/ ID Block Trial BlockType * Task (A9) TextLeft (A9) TextRight (A9) 
+ CueLeft LCueCheck RCueCheck * Img (A9) Pos (A9) Win Loss Placeh 
+ Dotdiff Costs Reward * Correct (A9) SwitchTrial SwitchP Switch 
+ LeftCueX LeftCueY RightCueX RightCueY * Response (A9) Error RT 
+  .
+
+VARIABLE LABELS
+ID "ID" 
+ Block "Block" 
+ Trial "Trial" 
+ BlockType "BlockType" 
+ Task "Task" 
+ TextLeft "TextLeft" 
+ TextRight "TextRight" 
+ CueLeft "CueLeft" 
+ LCueCheck "LCueCheck" 
+ RCueCheck "RCueCheck" 
+ Img "Img" 
+ Pos "Pos" 
+ Win "Win" 
+ Loss "Loss" 
+ Placeh "Placeh" 
+ Dotdiff "Dotdiff" 
+ Costs "Costs" 
+ Reward "Reward" 
+ Correct "Correct" 
+ SwitchTrial "SwitchTrial" 
+ SwitchP "SwitchP" 
+ Switch "Switch" 
+ LeftCueX "LeftCueX" 
+ LeftCueY "LeftCueY" 
+ RightCueX "RightCueX" 
+ RightCueY "RightCueY" 
+ Response "Response" 
+ Error "Error" 
+ RT "RT" 
+ .
+VARIABLE LEVEL ID, Block, Trial, BlockType, CueLeft, LCueCheck, RCueCheck, Win, 
+ Loss, Placeh, Dotdiff, Costs, Reward, SwitchTrial, SwitchP, Switch, 
+ LeftCueX, LeftCueY, RightCueX, RightCueY, Error, RT 
+ (scale).
+
+EXECUTE.
