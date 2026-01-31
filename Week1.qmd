@@ -42,7 +42,7 @@ Before writing any code, lets get situated with the Rstudio interface. There are
 
 # Let's Make a Project
 
-First, lets go to File -\> new project
+First, lets go to File -> new project
 
 There are different ways you can create your working directory folder:
 
