@@ -159,7 +159,7 @@ vec <- 10:16
 vec[3] <- vec[6]
 ```
 
-**4.C.*And finally add the number 99 at the end of this vector!
+**4.C.** And finally add the number 99 at the end of this vector!
 
 ```{r}
 vec[8] <- 99
