@@ -169,19 +169,13 @@ seq(1,10,2)
 **Exercise 2** Create a variable called x that is assigned the number 8. Create a variable called y that is a sequence of numbers from 2 to 16, by 2. Add x and y. What happens?
 
 ```{r}
-x <- 8
-y <- seq(2,16,2)
-x+y
+
 ```
 
 **Exercise 2a.** Create a variable called z that is a vector containing the numbers 5 and 10. Create a variable called q that is a sequence of numbers from 5 to 25, by 5. Multiply z and q. What happens?
 
 ```{r}
-z <- c(5,10)
 
-q <- seq(5,30,5)
-
-z*q
 ```
 
 ## Functions

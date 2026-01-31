@@ -131,9 +131,7 @@ vec[2:5] #elements 2 through 5
 vec[c(3, 5)] #elements 3 and 5
 ```
 
-**Exercise 3.** How can we get every second element?
-- Look up what the function `seq()` does
-- Generate a sequence with every second number going from 1 to the last element of the vector
+**Exercise 3.** How can we get every second element? Look up what the function `seq()` does. Then generate a sequence with every second number going from 1 to the last element of the vector
 ```{r}
 vec[seq(from = 1, to = length(vec), by = 2)]
 ```
@@ -149,12 +147,21 @@ vec <- vec[c(-5, -3)] #here we remove element 5 and 3 from this vector
 ```
 
 
-**Exercise 4.** Generate a vector with 7 elements (You can mix strings and numbers!) 
+**Exercise 4.A** Generate a vector with 7 elements (You can mix strings and numbers!) 
+
 ```{r}
 vec <- 10:16
-#and substitute the 3rd element for the 6th!
+```
+
+**4.B.**Now substitute the 3rd element for the 6th
+
+```{r}
 vec[3] <- vec[6]
-#Please add the number 99 at the end of this vector!
+```
+
+**4.C.*And finally add the number 99 at the end of this vector!
+
+```{r}
 vec[8] <- 99
 vec[length(vec) + 1] <- 99
 vec <- append(vec, 99)
