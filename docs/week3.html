@@ -173,6 +173,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">What’s Next?</span></a>
   </li>  
 </ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">GitHub</span>
+    </span>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sophiavangleton/R_Website"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
@@ -250,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] "C:/Users/forrest/OneDrive/Documents"</code></pre>
 </div>
 </div>
-<p><strong>To read in a datafile, you will need to set the working directory to the folder containing the “data” folder:</strong> The path types we have talked about are absolute paths. They are called absolute paths because their origin is at the root location of YOUR system. This means that if you want to share your script #with someone else, it won’t work (because they might place files at a different location compared to you). That’s why it’s important to use R projects or open scripts by opening a fresh R session by double clicking on the script - that way, the working directory location is consistent. So, what if #we need to find a file that’s not levels down in our hierarchy, but up?</p>
+<p><strong>To read in a datafile, you will need to set the working directory to the folder containing the “data” folder:</strong> The path types we have talked about are absolute paths. They are called absolute paths because their origin is at the root location of YOUR system. This means that if you want to share your script with someone else, it won’t work (because they might place files at a different location compared to you). That’s why it’s important to use R projects or open scripts by opening a fresh R session by double clicking on the script - that way, the working directory location is consistent. So, what if we need to find a file that’s not levels down in our hierarchy, but up?</p>
 <p>What’s is available in our working directory <code>fs::dir_tree(path = "..", recurse = TRUE)</code> If we want to find a file that requires us to go up one level in the hierarchy, we can do the following “../experiment/” or we can set the wd one level higher: setwd(“../”) should you need to.</p>
 </section>
 <section id="import-the-data" class="level2">

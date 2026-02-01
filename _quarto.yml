@@ -39,6 +39,10 @@ website:
             href: week7.html
       - text: "What's Next?"
         href: NextSteps.html
+    right: 
+      - text: GitHub
+      - icon: github
+        href: https://github.com/sophiavangleton/R_Website
 
 format:
   html:

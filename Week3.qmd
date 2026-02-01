@@ -38,7 +38,7 @@ setwd(dir1) #changing directory
 getwd() #check if it worked or not
 ```
 
-**To read in a datafile, you will need to set the working directory to the folder containing the "data" folder:** The path types we have talked about are absolute paths. They are called absolute paths because their origin is at the root location of YOUR system. This means that if you want to share your script #with someone else, it won't work (because they might place files at a different location compared to you). That's why it's important to use R projects or open scripts by opening a fresh R session by double clicking on the script - that way, the working directory location is consistent. So, what if #we need to find a file that's not levels down in our hierarchy, but up?
+**To read in a datafile, you will need to set the working directory to the folder containing the "data" folder:** The path types we have talked about are absolute paths. They are called absolute paths because their origin is at the root location of YOUR system. This means that if you want to share your script with someone else, it won't work (because they might place files at a different location compared to you). That's why it's important to use R projects or open scripts by opening a fresh R session by double clicking on the script - that way, the working directory location is consistent. So, what if we need to find a file that's not levels down in our hierarchy, but up?
 
 What's is available in our working directory `fs::dir_tree(path = "..", recurse = TRUE)` If we want to find a file that requires us to go up one level in the hierarchy, we can do the following "../experiment/" or we can set the wd one level higher: setwd("../") should you need to.
 
