@@ -43,4 +43,5 @@ website:
 format:
   html:
     theme: morph
+    css: theme.css
 
