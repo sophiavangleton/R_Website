@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Introduction to R, RStudio, and basic syntax">
+<meta name="description" content="Introduction to Tidyverse packages">
 
-<title>Let’s Keep Working With Dataframes – Cognitive Dynamics Lab R Lessons</title>
+<title>Let’s traverse the TIDYVERSE! – Cognitive Dynamics Lab R Lessons</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -160,20 +195,32 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-tidyverse" id="toc-what-is-tidyverse" class="nav-link active" data-scroll-target="#what-is-tidyverse">What is {tidyverse}?</a></li>
+  <li><a href="#lets-load-in-the-tidyverse" id="toc-lets-load-in-the-tidyverse" class="nav-link" data-scroll-target="#lets-load-in-the-tidyverse">Let’s load in the {tidyverse}!</a></li>
+  <li><a href="#how-to-extract-or-index-variables" id="toc-how-to-extract-or-index-variables" class="nav-link" data-scroll-target="#how-to-extract-or-index-variables">How to extract or index variables</a></li>
+  <li><a href="#adding-and-removing-variables-columns" id="toc-adding-and-removing-variables-columns" class="nav-link" data-scroll-target="#adding-and-removing-variables-columns">Adding and removing variables (columns)</a></li>
+  <li><a href="#filtering-rows-by-condition" id="toc-filtering-rows-by-condition" class="nav-link" data-scroll-target="#filtering-rows-by-condition">Filtering rows by condition</a></li>
+  <li><a href="#why-bother-with-the-tidyverse" id="toc-why-bother-with-the-tidyverse" class="nav-link" data-scroll-target="#why-bother-with-the-tidyverse">Why bother with the {tidyverse}?</a></li>
+  <li><a href="#more-fun-with-dplyr" id="toc-more-fun-with-dplyr" class="nav-link" data-scroll-target="#more-fun-with-dplyr">More fun with {dplyr}!</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Let’s Keep Working With Dataframes</h1>
+<h1 class="title">Let’s traverse the TIDYVERSE!</h1>
 </div>
 
 <div>
   <div class="description">
-    Introduction to R, RStudio, and basic syntax
+    Introduction to Tidyverse packages
   </div>
 </div>
 
@@ -190,8 +237,362 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="what-is-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-tidyverse">What is {tidyverse}?</h2>
+<p>The {tidyverse} is a <em>collection</em> of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar. Packages within this collection include:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Packages In The {tidyverse}:</th>
+<th>Main Uses:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>dplyr</strong></td>
+<td>Houses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling.</td>
+</tr>
+<tr class="even">
+<td><strong>ggplot2</strong></td>
+<td>Create custom data visualizations, compatible with themes and other custom functions</td>
+</tr>
+<tr class="odd">
+<td><strong>tidyr</strong></td>
+<td>Data tidying and shaping. This package helps you pivot, separate, join and organize data structures.</td>
+</tr>
+<tr class="even">
+<td><strong>readr</strong></td>
+<td>Reads in datafiles (like CSV’s)</td>
+</tr>
+<tr class="odd">
+<td><strong>tibble</strong></td>
+<td>This creates a more modern version of a dataframe that is cleaner and easier to use.</td>
+</tr>
+<tr class="even">
+<td><strong>forcats</strong></td>
+<td>works with <em>cat</em>agorical variables (get it!). Lets you build more customizable plots</td>
+</tr>
+<tr class="odd">
+<td><strong>stringr</strong></td>
+<td>Makes it easy to detect, extract, replace, and clean up strings (text data).</td>
+</tr>
+<tr class="even">
+<td><strong>purrr</strong></td>
+<td>Lets you repeat operations without writing loops. Great for applying a function to many things at once.</td>
+</tr>
+<tr class="odd">
+<td><strong>lubridate</strong></td>
+<td>Helps you parse, extract, and do math with dates and times.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lets-load-in-the-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="lets-load-in-the-tidyverse">Let’s load in the {tidyverse}!</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.1     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.2
+✔ purrr     1.2.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<p>And pick up where we left off last week working with basic dataframes. First, we will define the data.frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the data.frame</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>People <span class="ot">&lt;-</span>    <span class="fu">c</span>(<span class="st">"Ulrich"</span>,<span class="st">"Dom"</span>,<span class="st">"Sophia"</span>,<span class="st">"Neha"</span>,<span class="st">"ExampleRA"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Positions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"PI"</span>, <span class="st">"GE"</span>, <span class="st">"GE"</span>,   <span class="st">"GE"</span>,  <span class="st">"RA"</span>) </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Sleep <span class="ot">&lt;-</span>     <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">7</span>,<span class="dv">8</span>) <span class="co">#Sleep in hours</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>)<span class="co">#Years in our lab</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Count <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(People))<span class="co">#should indicate row number</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(People, Positions, Sleep, Years, Count)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     People Positions Sleep Years Count
+1    Ulrich        PI     4    25     1
+2       Dom        GE     6     6     2
+3    Sophia        GE     8     2     3
+4      Neha        GE     7     2     4
+5 ExampleRA        RA     8     1     5</code></pre>
+</div>
+</div>
+<p>Now, let’s do everything we just did with dataframes, but using tidyverse functions</p>
+<p>We can use the package {dplyr} to group the data and aggregate by mean. Let’s break it down first:</p>
+<ul>
+<li><strong><code>group_by()</code> function:</strong> tells R how to organize your data before you do any calculations. We’re essentially spliting our data into different groups to look closer at differences between groups.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Positions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+# Groups:   Positions [3]
+  People    Positions Sleep Years Count
+  &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+1 Ulrich    PI            4    25     1
+2 Dom       GE            6     6     2
+3 Sophia    GE            8     2     3
+4 Neha      GE            7     2     4
+5 ExampleRA RA            8     1     5</code></pre>
+</div>
+</div>
+<ul>
+<li><strong><code>summarize()</code> function:</strong> takes each group created by <code>group_by()</code> and computes something for it. (can be a mean, median, count, etc.). Where <code>group_by()</code> organizes the data but doesn’t do any calculation, <code>summarize()</code> looks inside each group specified and computes a summary of whats inside.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Positions) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_sleep =</span> <span class="fu">mean</span>(Sleep, <span class="at">na.rm =</span> T)) <span class="co">#note: summarize and summarise are the same function, dif spelling </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  Positions mean_sleep
+  &lt;chr&gt;          &lt;dbl&gt;
+1 GE                 7
+2 PI                 4
+3 RA                 8</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>piping, i.e., <code>%&gt;%</code>:</strong> The pipe connects steps together so you can read the code like a sentence. It makes your code flow top‑to‑bottom instead of nesting functions inside each other.</li>
+</ul>
+<p>We use piping so that we can perform multiple functions on a single dataframe. where your dataframe is always the first argument in tidyverse functions- piping automatically fills that argument for you</p>
+<p>Format:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dataframe %&gt;% </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> <span class="co"># some_function() %&gt;% </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># the_next_function()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="how-to-extract-or-index-variables" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-extract-or-index-variables">How to extract or index variables</h2>
+<p>Let’s using some new functions found in {tidyverse} packages to extract or index variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Positions <span class="co"># Get a column "Position"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "PI" "GE" "GE" "GE" "RA"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df[,<span class="fu">c</span>(<span class="st">"People"</span>,<span class="st">"Positions"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     People Positions
+1    Ulrich        PI
+2       Dom        GE
+3    Sophia        GE
+4      Neha        GE
+5 ExampleRA        RA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(df<span class="sc">$</span>People,df<span class="sc">$</span>Positions) <span class="co"># Get multiple columns ("People" and "Position")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]        [,2]
+[1,] "Ulrich"    "PI"
+[2,] "Dom"       "GE"
+[3,] "Sophia"    "GE"
+[4,] "Neha"      "GE"
+[5,] "ExampleRA" "RA"</code></pre>
+</div>
+</div>
+<p>In the {tidyverse}, you can use <code>select()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Positions) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Positions
+1        PI
+2        GE
+3        GE
+4        GE
+5        RA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(People, Positions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     People Positions
+1    Ulrich        PI
+2       Dom        GE
+3    Sophia        GE
+4      Neha        GE
+5 ExampleRA        RA</code></pre>
+</div>
+</div>
+<p><strong>Exercise 1.</strong> Create a new dataframe called ‘df_new’ that contains only People, Positions, and Sleep (using <code>select()</code>)</p>
+</section>
+<section id="adding-and-removing-variables-columns" class="level2">
+<h2 class="anchored" data-anchor-id="adding-and-removing-variables-columns">Adding and removing variables (columns)</h2>
+<p>You can directly add variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>RowNum <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>or directly remove</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>RowNum <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>But in the {tidyverse}, you can use <code>mutate()</code> and <code>select()</code> (for adding and removing, respectively)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">RowNum =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.), <span class="at">Years_2026 =</span> Years <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>RowNum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="filtering-rows-by-condition" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-rows-by-condition">Filtering rows by condition</h2>
+<p>Filtering is an operation to keep or remove certain rows</p>
+<p>For example, we can filter rows corresponding to GEs</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_only_GE <span class="ot">&lt;-</span> df[Positions <span class="sc">==</span> <span class="st">"GE"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the {tidyverse}, you can use <code>filter()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_only_GE <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Positions <span class="sc">==</span> <span class="st">"GE"</span> <span class="sc">|</span> Sleep <span class="sc">&gt;=</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="why-bother-with-the-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="why-bother-with-the-tidyverse">Why bother with the {tidyverse}?</h2>
+<p>So far, everything we learned we also learned a very similar way to do using base R functions. So why should we even use {tidyverse}?</p>
+<p>{tidyverse} (particularly piping) is helpful for stacking functions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Count) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sleep_ideal =</span> Sleep <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Positions <span class="sc">==</span> <span class="st">"RA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     People Positions Sleep Years Years_2026 sleep_ideal
+1 ExampleRA        RA     8     1          2          10</code></pre>
+</div>
+</div>
+<p>It’s also helpful for aggregating:</p>
+<p><em>What?:</em> Aggregation means taking lots of individual data points and combining them into a smaller set of summary values. <em>Why?</em> We do this becuase raw data is often too detailed to interpret directly. It also helps us see patterns more clearly in the data, prepare data for more complicated statistical models (e.g.&nbsp;ANOVA, regression, t-tests), and helps us to communicate results clearly to a wide audience.</p>
+<p><em>How?:</em></p>
+<p>For aggregation, we need to use <code>group_by()</code> and <code>summarize()</code></p>
+<p>Let’s aggregate the average Sleep time for different Positions (PI,GE,RA)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Positions) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meanSleep =</span> <span class="fu">mean</span>(Sleep, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  Positions meanSleep
+  &lt;chr&gt;         &lt;dbl&gt;
+1 GE                7
+2 PI                4
+3 RA                8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum of Sleep time for different Positions (PI,GTF,RA)</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Positions) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sumSleep =</span> <span class="fu">sum</span>(Sleep, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  Positions sumSleep
+  &lt;chr&gt;        &lt;dbl&gt;
+1 GE              21
+2 PI               4
+3 RA               8</code></pre>
+</div>
+</div>
+<p>What happens if you use People as a grouping variable?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(People) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meanSleep =</span> <span class="fu">mean</span>(Sleep, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="co"># Since people is unique for every row, data will not be reduced at all!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  People    meanSleep
+  &lt;chr&gt;         &lt;dbl&gt;
+1 Dom               6
+2 ExampleRA         8
+3 Neha              7
+4 Sophia            8
+5 Ulrich            4</code></pre>
+</div>
+</div>
+<p>What if we want to get mean Sleep time for (Group1 = PI &amp; GE, Group2 = RA)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#?ifelse()</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df<span class="sc">%&gt;%</span> </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PositionsR =</span> <span class="fu">ifelse</span>(Positions <span class="sc">==</span> <span class="st">"RA"</span>, <span class="st">"RA"</span>, <span class="st">"PI&amp;GE"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PositionsR) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meanSleep =</span> <span class="fu">mean</span>(Sleep, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="more-fun-with-dplyr" class="level2">
+<h2 class="anchored" data-anchor-id="more-fun-with-dplyr">More fun with {dplyr}!</h2>
+<p>We will be using datasets from the base package to show off some cool stuff we can do with {tidyverse} packages.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(state.x77)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Population Income Illiteracy Life Exp Murder HS Grad Frost   Area
+Alabama          3615   3624        2.1    69.05   15.1    41.3    20  50708
+Alaska            365   6315        1.5    69.31   11.3    66.7   152 566432
+Arizona          2212   4530        1.8    70.55    7.8    58.1    15 113417
+Arkansas         2110   3378        1.9    70.66   10.1    39.9    65  51945
+California      21198   5114        1.1    71.71   10.3    62.6    20 156361
+Colorado         2541   4884        0.7    72.06    6.8    63.9   166 103766</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span><span class="fu">cbind</span>(state.x77, <span class="fu">data.frame</span>(state.division),<span class="fu">data.frame</span>(state.region))</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span>df2 <span class="sc">%&gt;%</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state.region) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">IlliteracyRate=</span><span class="fu">mean</span>(Illiteracy, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="co">#someone walk us through what we're doing here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>{ggplot2} is a wonderful package in {tidyverse} that creates some very customizable visualizations:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(a, <span class="fu">aes</span>(<span class="at">x=</span>state.region, <span class="at">y=</span>IlliteracyRate, <span class="at">fill=</span>IlliteracyRate)) <span class="sc">+</span> <span class="co">#sidenote: why the plus? shouldnt it be %&gt;% ?!</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="fu">position_dodge</span>(), <span class="at">stat=</span><span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week4_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span>df2 <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state.division) <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">IlliteracyRate=</span><span class="fu">mean</span>(Illiteracy, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">AvgIncome=</span><span class="fu">mean</span>(Income, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(b, <span class="fu">aes</span>(<span class="at">x=</span>state.division, <span class="at">y=</span>IlliteracyRate, <span class="at">fill=</span>AvgIncome))<span class="sc">+</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="fu">position_dodge</span>(), <span class="at">stat=</span><span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week4_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df2, <span class="fu">aes</span>(<span class="at">x=</span>Income, <span class="at">y=</span>Illiteracy,<span class="at">color=</span>state.region))<span class="sc">+</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">shape=</span><span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week4_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
