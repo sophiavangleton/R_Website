@@ -4,41 +4,102 @@ format: html
 description: "Introduction to Tidyverse packages"
 toc: true
 toc-depth: 3
+filters:
+   - panel-accordion
 ---
+```{r}
+#| include: False
+library(tidyverse)
+```
 
 ## What is {tidyverse}?
 
-The {tidyverse} is a *collection* of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar. Packages within this collection include:
+The {tidyverse} is a *collection* of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar. 
 
-::: {.accordion}
+**Packages within this collection include:**
 
-## dplyr
+::: {.panel-accordion}
+
+### dplyr
 Houses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling.
 
-## ggplot2
+Cool stuff you can do! 
+
+*Note:* there are a lot of different preloaded datasets to play around with, like mtcars, iris, and (my personal favorite) penguins
+```{r}
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(mean_mpg = mean(mpg))
+
+```
+
+
+### ggplot2
 Create custom data visualizations, compatible with themes and other custom functions.
 
-## tidyr
+Cool stuff you can do! 
+```{r}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot()
+```
+### tidyr
 Data tidying and shaping. Helps you pivot, separate, join, and organize data structures.
 
-## readr
+Cool stuff you can do! 
+```{r}
+pivot <- pivot_longer(airquality, 
+             cols = c(Ozone, Wind), 
+             names_to = "variable", 
+             values_to = "value")
+head(pivot)
+```
+### readr
 Reads in data files (like CSVs).
 
-## tibble
+Cool stuff you can do! 
+```{r}
+# Example using a built-in readr dataset
+read_csv(readr_example("mtcars.csv"))
+```
+### tibble
 Creates a more modern version of a dataframe that is cleaner and easier to use.
 
-## forcats
+Cool stuff you can do! 
+```{r}
+tibble(
+  x = 1:5,
+  y = x^2
+)
+```
+### forcats
 Works with *cat*egorical variables. Lets you build more customizable plots.
 
-## stringr
+Cool stuff you can do! 
+```{r}
+fct_reorder(iris$Species, iris$Sepal.Length) %>%
+  head()
+```
+### stringr
 Makes it easy to detect, extract, replace, and clean up strings (text data).
 
-## purrr
+Cool stuff you can do! 
+```{r}
+str_detect(c("apple", "banana", "pear"), "a")
+```
+### purrr
 Lets you repeat operations without writing loops. Great for applying a function to many things at once.
 
-## lubridate
+Cool stuff you can do! 
+```{r}
+map_dbl(1:5, ~ .x^2)
+```
+### lubridate
 Helps you parse, extract, and do math with dates and times.
 
+Cool stuff you can do! 
+```{r}
+ymd("2024-02-01") + days(10)
+```
 :::
 
 
