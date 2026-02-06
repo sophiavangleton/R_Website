@@ -202,11 +202,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#what-is-tidyverse" id="toc-what-is-tidyverse" class="nav-link active" data-scroll-target="#what-is-tidyverse">What is {tidyverse}?</a></li>
-  <li><a href="#lets-load-in-the-tidyverse" id="toc-lets-load-in-the-tidyverse" class="nav-link" data-scroll-target="#lets-load-in-the-tidyverse">Let’s load in the {tidyverse}!</a></li>
+  <li><a href="#lets-work-with-tidyverse" id="toc-lets-work-with-tidyverse" class="nav-link" data-scroll-target="#lets-work-with-tidyverse">Let’s work with {tidyverse}!</a>
+  <ul class="collapse">
   <li><a href="#how-to-extract-or-index-variables" id="toc-how-to-extract-or-index-variables" class="nav-link" data-scroll-target="#how-to-extract-or-index-variables">How to extract or index variables</a></li>
   <li><a href="#adding-and-removing-variables-columns" id="toc-adding-and-removing-variables-columns" class="nav-link" data-scroll-target="#adding-and-removing-variables-columns">Adding and removing variables (columns)</a></li>
   <li><a href="#filtering-rows-by-condition" id="toc-filtering-rows-by-condition" class="nav-link" data-scroll-target="#filtering-rows-by-condition">Filtering rows by condition</a></li>
   <li><a href="#why-bother-with-the-tidyverse" id="toc-why-bother-with-the-tidyverse" class="nav-link" data-scroll-target="#why-bother-with-the-tidyverse">Why bother with the {tidyverse}?</a></li>
+  </ul></li>
   <li><a href="#more-fun-with-dplyr" id="toc-more-fun-with-dplyr" class="nav-link" data-scroll-target="#more-fun-with-dplyr">More fun with {dplyr}!</a></li>
   </ul>
 </nav>
@@ -476,8 +478,9 @@ Levels: setosa versicolor virginica</code></pre>
   </div>
 </div>
 </section>
-<section id="lets-load-in-the-tidyverse" class="level2">
-<h2 class="anchored" data-anchor-id="lets-load-in-the-tidyverse">Let’s load in the {tidyverse}!</h2>
+<section id="lets-work-with-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="lets-work-with-tidyverse">Let’s work with {tidyverse}!</h2>
+<p>Start off with loading in the package:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -548,9 +551,8 @@ Levels: setosa versicolor virginica</code></pre>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a> <span class="co"># some_function() %&gt;% </span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># the_next_function()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="how-to-extract-or-index-variables" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-extract-or-index-variables">How to extract or index variables</h2>
+<section id="how-to-extract-or-index-variables" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-extract-or-index-variables">How to extract or index variables</h3>
 <p>Let’s using some new functions found in {tidyverse} packages to extract or index variables</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Positions <span class="co"># Get a column "Position"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -601,8 +603,8 @@ Levels: setosa versicolor virginica</code></pre>
 </div>
 <p><strong>Exercise 1.</strong> Create a new dataframe called ‘df_new’ that contains only People, Positions, and Sleep (using <code>select()</code>)</p>
 </section>
-<section id="adding-and-removing-variables-columns" class="level2">
-<h2 class="anchored" data-anchor-id="adding-and-removing-variables-columns">Adding and removing variables (columns)</h2>
+<section id="adding-and-removing-variables-columns" class="level3">
+<h3 class="anchored" data-anchor-id="adding-and-removing-variables-columns">Adding and removing variables (columns)</h3>
 <p>You can directly add variables</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>RowNum <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -618,8 +620,8 @@ Levels: setosa versicolor virginica</code></pre>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>RowNum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="filtering-rows-by-condition" class="level2">
-<h2 class="anchored" data-anchor-id="filtering-rows-by-condition">Filtering rows by condition</h2>
+<section id="filtering-rows-by-condition" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-rows-by-condition">Filtering rows by condition</h3>
 <p>Filtering is an operation to keep or remove certain rows</p>
 <p>For example, we can filter rows corresponding to GEs</p>
 <div class="cell">
@@ -631,8 +633,8 @@ Levels: setosa versicolor virginica</code></pre>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Positions <span class="sc">==</span> <span class="st">"GE"</span> <span class="sc">|</span> Sleep <span class="sc">&gt;=</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="why-bother-with-the-tidyverse" class="level2">
-<h2 class="anchored" data-anchor-id="why-bother-with-the-tidyverse">Why bother with the {tidyverse}?</h2>
+<section id="why-bother-with-the-tidyverse" class="level3">
+<h3 class="anchored" data-anchor-id="why-bother-with-the-tidyverse">Why bother with the {tidyverse}?</h3>
 <p>So far, everything we learned we also learned a very similar way to do using base R functions. So why should we even use {tidyverse}?</p>
 <p>{tidyverse} (particularly piping) is helpful for stacking functions:</p>
 <div class="cell">
@@ -699,6 +701,7 @@ Levels: setosa versicolor virginica</code></pre>
 <span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PositionsR) <span class="sc">%&gt;%</span> </span>
 <span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meanSleep =</span> <span class="fu">mean</span>(Sleep, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
 </section>
 <section id="more-fun-with-dplyr" class="level2">
 <h2 class="anchored" data-anchor-id="more-fun-with-dplyr">More fun with {dplyr}!</h2>

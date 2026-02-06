@@ -103,8 +103,9 @@ ymd("2024-02-01") + days(10)
 :::
 
 
+## Let's work with {tidyverse}!
 
-## Let's load in the {tidyverse}!
+Start off with loading in the package: 
 ```{r}
 library(tidyverse)
 ```
@@ -155,7 +156,7 @@ Format:
  # the_next_function()
 ```
 
-## How to extract or index variables
+### How to extract or index variables
 
 Let's using some new functions found in {tidyverse} packages to extract or index variables
 
@@ -181,7 +182,7 @@ df %>%
 
 ```
 
-## Adding and removing variables (columns)
+### Adding and removing variables (columns)
 
 You can directly add variables
 
@@ -204,7 +205,7 @@ df <- df %>% select(-RowNum)
 
 ```
 
-## Filtering rows by condition
+### Filtering rows by condition
 
 Filtering is an operation to keep or remove certain rows
 
@@ -221,7 +222,7 @@ df_only_GE <- df %>%
   filter(Positions == "GE" | Sleep >= 6)
 ```
 
-## Why bother with the {tidyverse}?
+### Why bother with the {tidyverse}?
 
 So far, everything we learned we also learned a very similar way to do using base R functions. So why should we even use {tidyverse}?
 
