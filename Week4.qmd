@@ -301,6 +301,7 @@ aplot
 ```
 
 ```{r}
+#| fig.show: "show"
 b <-df2 %>%
   group_by(state.division) %>%
   summarize(
