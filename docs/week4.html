@@ -240,57 +240,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="what-is-tidyverse" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-tidyverse">What is {tidyverse}?</h2>
 <p>The {tidyverse} is a <em>collection</em> of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar. Packages within this collection include:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Packages In The {tidyverse}:</th>
-<th>Main Uses:</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>dplyr</strong></td>
-<td>Houses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling.</td>
-</tr>
-<tr class="even">
-<td><strong>ggplot2</strong></td>
-<td>Create custom data visualizations, compatible with themes and other custom functions</td>
-</tr>
-<tr class="odd">
-<td><strong>tidyr</strong></td>
-<td>Data tidying and shaping. This package helps you pivot, separate, join and organize data structures.</td>
-</tr>
-<tr class="even">
-<td><strong>readr</strong></td>
-<td>Reads in datafiles (like CSV’s)</td>
-</tr>
-<tr class="odd">
-<td><strong>tibble</strong></td>
-<td>This creates a more modern version of a dataframe that is cleaner and easier to use.</td>
-</tr>
-<tr class="even">
-<td><strong>forcats</strong></td>
-<td>works with <em>cat</em>agorical variables (get it!). Lets you build more customizable plots</td>
-</tr>
-<tr class="odd">
-<td><strong>stringr</strong></td>
-<td>Makes it easy to detect, extract, replace, and clean up strings (text data).</td>
-</tr>
-<tr class="even">
-<td><strong>purrr</strong></td>
-<td>Lets you repeat operations without writing loops. Great for applying a function to many things at once.</td>
-</tr>
-<tr class="odd">
-<td><strong>lubridate</strong></td>
-<td>Helps you parse, extract, and do math with dates and times.</td>
-</tr>
-</tbody>
-</table>
 </section>
+<div class="accordion">
+<section id="dplyr" class="level2">
+<h2 class="anchored" data-anchor-id="dplyr">dplyr</h2>
+<p>Houses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling.</p>
+</section>
+<section id="ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="ggplot2">ggplot2</h2>
+<p>Create custom data visualizations, compatible with themes and other custom functions.</p>
+</section>
+<section id="tidyr" class="level2">
+<h2 class="anchored" data-anchor-id="tidyr">tidyr</h2>
+<p>Data tidying and shaping. Helps you pivot, separate, join, and organize data structures.</p>
+</section>
+<section id="readr" class="level2">
+<h2 class="anchored" data-anchor-id="readr">readr</h2>
+<p>Reads in data files (like CSVs).</p>
+</section>
+<section id="tibble" class="level2">
+<h2 class="anchored" data-anchor-id="tibble">tibble</h2>
+<p>Creates a more modern version of a dataframe that is cleaner and easier to use.</p>
+</section>
+<section id="forcats" class="level2">
+<h2 class="anchored" data-anchor-id="forcats">forcats</h2>
+<p>Works with <em>cat</em>egorical variables. Lets you build more customizable plots.</p>
+</section>
+<section id="stringr" class="level2">
+<h2 class="anchored" data-anchor-id="stringr">stringr</h2>
+<p>Makes it easy to detect, extract, replace, and clean up strings (text data).</p>
+</section>
+<section id="purrr" class="level2">
+<h2 class="anchored" data-anchor-id="purrr">purrr</h2>
+<p>Lets you repeat operations without writing loops. Great for applying a function to many things at once.</p>
+</section>
+<section id="lubridate" class="level2">
+<h2 class="anchored" data-anchor-id="lubridate">lubridate</h2>
+<p>Helps you parse, extract, and do math with dates and times.</p>
+</section>
+</div>
 <section id="lets-load-in-the-tidyverse" class="level2">
 <h2 class="anchored" data-anchor-id="lets-load-in-the-tidyverse">Let’s load in the {tidyverse}!</h2>
 <div class="cell">
@@ -551,8 +539,10 @@ Colorado         2541   4884        0.7    72.06    6.8    63.9   166 103766</co
 </div>
 <p>{ggplot2} is a wonderful package in {tidyverse} that creates some very customizable visualizations:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(a, <span class="fu">aes</span>(<span class="at">x=</span>state.region, <span class="at">y=</span>IlliteracyRate, <span class="at">fill=</span>IlliteracyRate)) <span class="sc">+</span> <span class="co">#sidenote: why the plus? shouldnt it be %&gt;% ?!</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="fu">position_dodge</span>(), <span class="at">stat=</span><span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>aplot<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(a, <span class="fu">aes</span>(<span class="at">x=</span>state.region, <span class="at">y=</span>IlliteracyRate, <span class="at">fill=</span>IlliteracyRate)) <span class="sc">+</span> <span class="co">#sidenote: why the plus? shouldnt it be %&gt;% ?!</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="fu">position_dodge</span>(), <span class="at">stat=</span><span class="st">"identity"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>aplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -569,8 +559,10 @@ Colorado         2541   4884        0.7    72.06    6.8    63.9   166 103766</co
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">AvgIncome=</span><span class="fu">mean</span>(Income, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(b, <span class="fu">aes</span>(<span class="at">x=</span>state.division, <span class="at">y=</span>IlliteracyRate, <span class="at">fill=</span>AvgIncome))<span class="sc">+</span></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="fu">position_dodge</span>(), <span class="at">stat=</span><span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>bplot<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(b, <span class="fu">aes</span>(<span class="at">x=</span>state.division, <span class="at">y=</span>IlliteracyRate, <span class="at">fill=</span>AvgIncome))<span class="sc">+</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="fu">position_dodge</span>(), <span class="at">stat=</span><span class="st">"identity"</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>bplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -580,8 +572,10 @@ Colorado         2541   4884        0.7    72.06    6.8    63.9   166 103766</co
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df2, <span class="fu">aes</span>(<span class="at">x=</span>Income, <span class="at">y=</span>Illiteracy,<span class="at">color=</span>state.region))<span class="sc">+</span> </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">shape=</span><span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df2plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df2, <span class="fu">aes</span>(<span class="at">x=</span>Income, <span class="at">y=</span>Illiteracy,<span class="at">color=</span>state.region))<span class="sc">+</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">shape=</span><span class="dv">18</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>df2plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

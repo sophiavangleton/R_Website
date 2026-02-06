@@ -4,14 +4,77 @@
     "href": "week4.html",
     "title": "Let’s traverse the TIDYVERSE!",
     "section": "",
-    "text": "The {tidyverse} is a collection of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar. Packages within this collection include:\n\n\n\n\n\n\n\nPackages In The {tidyverse}:\nMain Uses:\n\n\n\n\ndplyr\nHouses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling.\n\n\nggplot2\nCreate custom data visualizations, compatible with themes and other custom functions\n\n\ntidyr\nData tidying and shaping. This package helps you pivot, separate, join and organize data structures.\n\n\nreadr\nReads in datafiles (like CSV’s)\n\n\ntibble\nThis creates a more modern version of a dataframe that is cleaner and easier to use.\n\n\nforcats\nworks with catagorical variables (get it!). Lets you build more customizable plots\n\n\nstringr\nMakes it easy to detect, extract, replace, and clean up strings (text data).\n\n\npurrr\nLets you repeat operations without writing loops. Great for applying a function to many things at once.\n\n\nlubridate\nHelps you parse, extract, and do math with dates and times."
+    "text": "The {tidyverse} is a collection of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar. Packages within this collection include:"
   },
   {
     "objectID": "week4.html#what-is-tidyverse",
     "href": "week4.html#what-is-tidyverse",
     "title": "Let’s traverse the TIDYVERSE!",
     "section": "",
-    "text": "The {tidyverse} is a collection of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar. Packages within this collection include:\n\n\n\n\n\n\n\nPackages In The {tidyverse}:\nMain Uses:\n\n\n\n\ndplyr\nHouses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling.\n\n\nggplot2\nCreate custom data visualizations, compatible with themes and other custom functions\n\n\ntidyr\nData tidying and shaping. This package helps you pivot, separate, join and organize data structures.\n\n\nreadr\nReads in datafiles (like CSV’s)\n\n\ntibble\nThis creates a more modern version of a dataframe that is cleaner and easier to use.\n\n\nforcats\nworks with catagorical variables (get it!). Lets you build more customizable plots\n\n\nstringr\nMakes it easy to detect, extract, replace, and clean up strings (text data).\n\n\npurrr\nLets you repeat operations without writing loops. Great for applying a function to many things at once.\n\n\nlubridate\nHelps you parse, extract, and do math with dates and times."
+    "text": "The {tidyverse} is a collection of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar. Packages within this collection include:"
+  },
+  {
+    "objectID": "week4.html#dplyr",
+    "href": "week4.html#dplyr",
+    "title": "Let’s traverse the TIDYVERSE!",
+    "section": "dplyr",
+    "text": "dplyr\nHouses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling."
+  },
+  {
+    "objectID": "week4.html#ggplot2",
+    "href": "week4.html#ggplot2",
+    "title": "Let’s traverse the TIDYVERSE!",
+    "section": "ggplot2",
+    "text": "ggplot2\nCreate custom data visualizations, compatible with themes and other custom functions."
+  },
+  {
+    "objectID": "week4.html#tidyr",
+    "href": "week4.html#tidyr",
+    "title": "Let’s traverse the TIDYVERSE!",
+    "section": "tidyr",
+    "text": "tidyr\nData tidying and shaping. Helps you pivot, separate, join, and organize data structures."
+  },
+  {
+    "objectID": "week4.html#readr",
+    "href": "week4.html#readr",
+    "title": "Let’s traverse the TIDYVERSE!",
+    "section": "readr",
+    "text": "readr\nReads in data files (like CSVs)."
+  },
+  {
+    "objectID": "week4.html#tibble",
+    "href": "week4.html#tibble",
+    "title": "Let’s traverse the TIDYVERSE!",
+    "section": "tibble",
+    "text": "tibble\nCreates a more modern version of a dataframe that is cleaner and easier to use."
+  },
+  {
+    "objectID": "week4.html#forcats",
+    "href": "week4.html#forcats",
+    "title": "Let’s traverse the TIDYVERSE!",
+    "section": "forcats",
+    "text": "forcats\nWorks with categorical variables. Lets you build more customizable plots."
+  },
+  {
+    "objectID": "week4.html#stringr",
+    "href": "week4.html#stringr",
+    "title": "Let’s traverse the TIDYVERSE!",
+    "section": "stringr",
+    "text": "stringr\nMakes it easy to detect, extract, replace, and clean up strings (text data)."
+  },
+  {
+    "objectID": "week4.html#purrr",
+    "href": "week4.html#purrr",
+    "title": "Let’s traverse the TIDYVERSE!",
+    "section": "purrr",
+    "text": "purrr\nLets you repeat operations without writing loops. Great for applying a function to many things at once."
+  },
+  {
+    "objectID": "week4.html#lubridate",
+    "href": "week4.html#lubridate",
+    "title": "Let’s traverse the TIDYVERSE!",
+    "section": "lubridate",
+    "text": "lubridate\nHelps you parse, extract, and do math with dates and times."
   },
   {
     "objectID": "week4.html#lets-load-in-the-tidyverse",
@@ -53,7 +116,7 @@
     "href": "week4.html#more-fun-with-dplyr",
     "title": "Let’s traverse the TIDYVERSE!",
     "section": "More fun with {dplyr}!",
-    "text": "More fun with {dplyr}!\nWe will be using datasets from the base package to show off some cool stuff we can do with {tidyverse} packages.\n\nhead(state.x77)\n\n           Population Income Illiteracy Life Exp Murder HS Grad Frost   Area\nAlabama          3615   3624        2.1    69.05   15.1    41.3    20  50708\nAlaska            365   6315        1.5    69.31   11.3    66.7   152 566432\nArizona          2212   4530        1.8    70.55    7.8    58.1    15 113417\nArkansas         2110   3378        1.9    70.66   10.1    39.9    65  51945\nCalifornia      21198   5114        1.1    71.71   10.3    62.6    20 156361\nColorado         2541   4884        0.7    72.06    6.8    63.9   166 103766\n\n\n\ndf2 &lt;-cbind(state.x77, data.frame(state.division),data.frame(state.region))\n\na &lt;-df2 %&gt;%\n  group_by(state.region) %&gt;% \n  summarize(IlliteracyRate=mean(Illiteracy, na.rm=TRUE)) #someone walk us through what we're doing here\n\n{ggplot2} is a wonderful package in {tidyverse} that creates some very customizable visualizations:\n\nggplot(a, aes(x=state.region, y=IlliteracyRate, fill=IlliteracyRate)) + #sidenote: why the plus? shouldnt it be %&gt;% ?!\n  geom_bar(position=position_dodge(), stat=\"identity\")\n\n\n\n\n\n\n\n\n\nb &lt;-df2 %&gt;%\n  group_by(state.division) %&gt;%\n  summarize(\n    IlliteracyRate=mean(Illiteracy, na.rm=TRUE),\n    AvgIncome=mean(Income, na.rm=TRUE)\n    )\n\nggplot(b, aes(x=state.division, y=IlliteracyRate, fill=AvgIncome))+\n  geom_bar(position=position_dodge(), stat=\"identity\")\n\n\n\n\n\n\n\n\n\nggplot(df2, aes(x=Income, y=Illiteracy,color=state.region))+ \n  geom_point(stat=\"identity\", size=4, shape=18)"
+    "text": "More fun with {dplyr}!\nWe will be using datasets from the base package to show off some cool stuff we can do with {tidyverse} packages.\n\nhead(state.x77)\n\n           Population Income Illiteracy Life Exp Murder HS Grad Frost   Area\nAlabama          3615   3624        2.1    69.05   15.1    41.3    20  50708\nAlaska            365   6315        1.5    69.31   11.3    66.7   152 566432\nArizona          2212   4530        1.8    70.55    7.8    58.1    15 113417\nArkansas         2110   3378        1.9    70.66   10.1    39.9    65  51945\nCalifornia      21198   5114        1.1    71.71   10.3    62.6    20 156361\nColorado         2541   4884        0.7    72.06    6.8    63.9   166 103766\n\n\n\ndf2 &lt;-cbind(state.x77, data.frame(state.division),data.frame(state.region))\n\na &lt;-df2 %&gt;%\n  group_by(state.region) %&gt;% \n  summarize(IlliteracyRate=mean(Illiteracy, na.rm=TRUE)) #someone walk us through what we're doing here\n\n{ggplot2} is a wonderful package in {tidyverse} that creates some very customizable visualizations:\n\naplot&lt;- ggplot(a, aes(x=state.region, y=IlliteracyRate, fill=IlliteracyRate)) + #sidenote: why the plus? shouldnt it be %&gt;% ?!\n  geom_bar(position=position_dodge(), stat=\"identity\")\n\naplot\n\n\n\n\n\n\n\n\n\nb &lt;-df2 %&gt;%\n  group_by(state.division) %&gt;%\n  summarize(\n    IlliteracyRate=mean(Illiteracy, na.rm=TRUE),\n    AvgIncome=mean(Income, na.rm=TRUE)\n    )\n\nbplot&lt;- ggplot(b, aes(x=state.division, y=IlliteracyRate, fill=AvgIncome))+\n  geom_bar(position=position_dodge(), stat=\"identity\")\n\nbplot\n\n\n\n\n\n\n\n\n\ndf2plot &lt;- ggplot(df2, aes(x=Income, y=Illiteracy,color=state.region))+ \n  geom_point(stat=\"identity\", size=4, shape=18)\n\ndf2plot"
   },
   {
     "objectID": "week2.html",

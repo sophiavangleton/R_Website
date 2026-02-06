@@ -10,17 +10,38 @@ toc-depth: 3
 
 The {tidyverse} is a *collection* of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar. Packages within this collection include:
 
-| Packages In The {tidyverse}: | Main Uses: |
-|----|----|
-| **dplyr** | Houses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling. |
-| **ggplot2** | Create custom data visualizations, compatible with themes and other custom functions |
-| **tidyr** | Data tidying and shaping.  This package helps you pivot, separate, join and organize data structures. |
-| **readr** | Reads in datafiles (like CSV's) |
-| **tibble** | This creates a more modern version of a dataframe that is cleaner and easier to use. |
-| **forcats** | works with *cat*agorical variables (get it!). Lets you build more customizable plots |
-| **stringr** | Makes it easy to detect, extract, replace, and clean up strings (text data). |
-| **purrr** | Lets you repeat operations without writing loops. Great for applying a function to many things at once. |
-| **lubridate** | Helps you parse, extract, and do math with dates and times. |
+::: {.accordion}
+
+## dplyr
+Houses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling.
+
+## ggplot2
+Create custom data visualizations, compatible with themes and other custom functions.
+
+## tidyr
+Data tidying and shaping. Helps you pivot, separate, join, and organize data structures.
+
+## readr
+Reads in data files (like CSVs).
+
+## tibble
+Creates a more modern version of a dataframe that is cleaner and easier to use.
+
+## forcats
+Works with *cat*egorical variables. Lets you build more customizable plots.
+
+## stringr
+Makes it easy to detect, extract, replace, and clean up strings (text data).
+
+## purrr
+Lets you repeat operations without writing loops. Great for applying a function to many things at once.
+
+## lubridate
+Helps you parse, extract, and do math with dates and times.
+
+:::
+
+
 
 ## Let's load in the {tidyverse}!
 ```{r}
@@ -212,8 +233,10 @@ a <-df2 %>%
 {ggplot2} is a wonderful package in {tidyverse} that creates some very customizable visualizations:
 
 ```{r}
-ggplot(a, aes(x=state.region, y=IlliteracyRate, fill=IlliteracyRate)) + #sidenote: why the plus? shouldnt it be %>% ?!
+aplot<- ggplot(a, aes(x=state.region, y=IlliteracyRate, fill=IlliteracyRate)) + #sidenote: why the plus? shouldnt it be %>% ?!
   geom_bar(position=position_dodge(), stat="identity")
+
+aplot
 ```
 
 ```{r}
@@ -224,11 +247,15 @@ b <-df2 %>%
     AvgIncome=mean(Income, na.rm=TRUE)
     )
 
-ggplot(b, aes(x=state.division, y=IlliteracyRate, fill=AvgIncome))+
+bplot<- ggplot(b, aes(x=state.division, y=IlliteracyRate, fill=AvgIncome))+
   geom_bar(position=position_dodge(), stat="identity")
+
+bplot
 ```
 
 ```{r}
-ggplot(df2, aes(x=Income, y=Illiteracy,color=state.region))+ 
+df2plot <- ggplot(df2, aes(x=Income, y=Illiteracy,color=state.region))+ 
   geom_point(stat="identity", size=4, shape=18)
+
+df2plot
 ```
