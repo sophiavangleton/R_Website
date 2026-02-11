@@ -8,7 +8,7 @@
 
 <meta name="description" content="Introduction to Tidyverse packages">
 
-<title>Let’s traverse the TIDYVERSE! – Cognitive Dynamics Lab R Lessons</title>
+<title>Let’s traverse the TIDYVERSE!</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,146 +59,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-11587c5d6302432a50f236a5b7bcaba8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/panel-accordion-0.0.1/panel-accordion.js"></script>
-<script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
+<script src="Week4_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Week4_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Week4_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Week4_files/libs/quarto-html/popper.min.js"></script>
+<script src="Week4_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Week4_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Week4_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Week4_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Week4_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Week4_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Week4_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="Week4_files/libs/quarto-contrib/panel-accordion-0.0.1/panel-accordion.js"></script>
 
 
-<link rel="stylesheet" href="theme.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="quarto-light">
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Cognitive Dynamics Lab R Lessons</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Start Here</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./R_Lessons/index.html"> 
-<span class="menu-text">Lessons App</span></a>
-  </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-weekly-lessons" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Weekly Lessons</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-weekly-lessons">    
-        <li>
-    <a class="dropdown-item" href="./week1.html">
- <span class="dropdown-text">Week 1</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./week2.html">
- <span class="dropdown-text">Week 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./week3.html">
- <span class="dropdown-text">Week 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./week4.html">
- <span class="dropdown-text">Week 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./week5.html">
- <span class="dropdown-text">Week 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./week6.html">
- <span class="dropdown-text">Week 6</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./week7.html">
- <span class="dropdown-text">Week 7</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./NextSteps.html"> 
-<span class="menu-text">What’s Next?</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <span class="nav-link">
-<span class="menu-text">GitHub</span>
-    </span>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/sophiavangleton/R_Website"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
   <li><a href="#what-is-tidyverse" id="toc-what-is-tidyverse" class="nav-link active" data-scroll-target="#what-is-tidyverse">What is {tidyverse}?</a></li>
@@ -207,13 +89,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#how-to-extract-or-index-variables" id="toc-how-to-extract-or-index-variables" class="nav-link" data-scroll-target="#how-to-extract-or-index-variables">How to extract or index variables</a></li>
   <li><a href="#adding-and-removing-variables-columns" id="toc-adding-and-removing-variables-columns" class="nav-link" data-scroll-target="#adding-and-removing-variables-columns">Adding and removing variables (columns)</a></li>
   <li><a href="#filtering-rows-by-condition" id="toc-filtering-rows-by-condition" class="nav-link" data-scroll-target="#filtering-rows-by-condition">Filtering rows by condition</a></li>
-  <li><a href="#why-bother-with-the-tidyverse" id="toc-why-bother-with-the-tidyverse" class="nav-link" data-scroll-target="#why-bother-with-the-tidyverse">Why bother with the {tidyverse}?</a></li>
   </ul></li>
   <li><a href="#more-fun-with-dplyr" id="toc-more-fun-with-dplyr" class="nav-link" data-scroll-target="#more-fun-with-dplyr">More fun with {dplyr}!</a></li>
   </ul>
 </nav>
-    </div>
-<!-- main -->
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -289,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="week4_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Week4_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -508,12 +388,6 @@ Levels: setosa versicolor virginica</code></pre>
 </div>
 <p>Now, let’s do everything we just did with dataframes, but using tidyverse functions</p>
 <p>We can use the package {dplyr} to group the data and aggregate by mean. Let’s break it down first:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/o.png" class="img-fluid figure-img"></p>
-<figcaption>dplyr syntax</figcaption>
-</figure>
-</div>
 <ul>
 <li><strong><code>group_by()</code> function:</strong> tells R how to organize your data before you do any calculations. We’re essentially spliting our data into different groups to look closer at differences between groups.</li>
 </ul>
@@ -639,9 +513,7 @@ Levels: setosa versicolor virginica</code></pre>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df_only_GE <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Positions <span class="sc">==</span> <span class="st">"GE"</span> <span class="sc">|</span> Sleep <span class="sc">&gt;=</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="why-bother-with-the-tidyverse" class="level3">
-<h3 class="anchored" data-anchor-id="why-bother-with-the-tidyverse">Why bother with the {tidyverse}?</h3>
+<p><code>filter()</code> is great for more complex filtering conditions, such as filtering out ### Why bother with the {tidyverse}?</p>
 <p>So far, everything we learned we also learned a very similar way to do using base R functions. So why should we even use {tidyverse}?</p>
 <p>{tidyverse} (particularly piping) is helpful for stacking functions:</p>
 <div class="cell">
@@ -741,7 +613,7 @@ Colorado         2541   4884        0.7    72.06    6.8    63.9   166 103766</co
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="week4_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Week4_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -761,7 +633,7 @@ Colorado         2541   4884        0.7    72.06    6.8    63.9   166 103766</co
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="week4_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Week4_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -774,16 +646,15 @@ Colorado         2541   4884        0.7    72.06    6.8    63.9   166 103766</co
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="week4_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Week4_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-
-
 </section>
 
-</main> <!-- /main -->
+</main>
+<!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

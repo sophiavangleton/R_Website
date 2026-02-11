@@ -131,6 +131,7 @@ Now, let's do everything we just did with dataframes, but using tidyverse functi
 
 We can use the package {dplyr} to group the data and aggregate by mean. Let's break it down first:
 
+
 -   **`group_by()` function:** tells R how to organize your data before you do any calculations. We're essentially spliting our data into different groups to look closer at differences between groups.
 
 ```{r}
@@ -223,7 +224,7 @@ In the {tidyverse}, you can use `filter()`
 df_only_GE <- df %>% 
   filter(Positions == "GE" | Sleep >= 6)
 ```
-
+`filter()` is great for more complex filtering conditions, such as filtering out 
 ### Why bother with the {tidyverse}?
 
 So far, everything we learned we also learned a very similar way to do using base R functions. So why should we even use {tidyverse}?

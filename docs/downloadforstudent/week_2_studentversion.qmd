@@ -210,7 +210,7 @@ Features of a DF: It looks like a list of possibly heterogeneous elements of equ
 ### Lets generate a dataframe!
 ```{r}
 People <- c('Neha', 'Sophia', 'Dominik', "Ulrich") #vector with names
-  Positions <- c(rep("GE", 3), "PI") #vector with positions, select from PI, LM (Lab Managaer), GE, and RA
+  Positions <- c("GE","GE","GE" ,"PI") #vector with positions, select from PI, LM (Lab Managaer), GE, and RA
   Count <- 1:length(Positions) #vector with numbers from 1 to N
   
   df <- data.frame(People, Positions, Count)

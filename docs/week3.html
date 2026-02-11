@@ -262,6 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] "C:/Users/forrest/OneDrive/Documents"</code></pre>
 </div>
 </div>
+<p><em>Note:</em> Look at the warning if you run this in your script window (this window) “The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks.” This is because when you are setting your working directory, for it to actually change past this code chunk we’d need to run <code>setwd()</code> in the Console pane.</p>
 <p><strong>To read in a datafile, you will need to set the working directory to the folder containing the “data” folder:</strong> The path types we have talked about are absolute paths. They are called absolute paths because their origin is at the root location of YOUR system. This means that if you want to share your script with someone else, it won’t work (because they might place files at a different location compared to you). That’s why it’s important to use R projects or open scripts by opening a fresh R session by double clicking on the script - that way, the working directory location is consistent. So, what if we need to find a file that’s not levels down in our hierarchy, but up?</p>
 <p>What’s is available in our working directory <code>fs::dir_tree(path = "..", recurse = TRUE)</code> If we want to find a file that requires us to go up one level in the hierarchy, we can do the following “../experiment/” or we can set the wd one level higher: setwd(“../”) should you need to.</p>
 </section>
@@ -347,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="analyze-your-data" class="level2">
 <h2 class="anchored" data-anchor-id="analyze-your-data">Analyze Your Data!</h2>
-<p><em>Check your understanding:</em> What is the mean error?</p>
+<p>What is the mean error?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data) <span class="co">#An easy way to get a lot of info </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

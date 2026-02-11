@@ -33,10 +33,13 @@ dir1 <- "C:/Users/forrest/OneDrive/Documents/"
 
 How do I change the current working directory? To change the current working directory, you need to specify the directory to jump to. And, feed it in to `setwd()` function (you could also give a string without making a variable).
 
+
 ```{r}
 setwd(dir1) #changing directory
 getwd() #check if it worked or not
 ```
+*Note:* Look at the warning if you run this in your script window (this window) "The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks." This is because when you are setting your working directory, for it to actually change past this code chunk we'd need to run `setwd()` in the Console pane. 
+
 
 **To read in a datafile, you will need to set the working directory to the folder containing the "data" folder:** The path types we have talked about are absolute paths. They are called absolute paths because their origin is at the root location of YOUR system. This means that if you want to share your script with someone else, it won't work (because they might place files at a different location compared to you). That's why it's important to use R projects or open scripts by opening a fresh R session by double clicking on the script - that way, the working directory location is consistent. So, what if we need to find a file that's not levels down in our hierarchy, but up?
 
@@ -178,7 +181,7 @@ We could only look at cue check trials, demo of the OR operator
 
 ## Analyze Your Data!
 
-*Check your understanding:* What is the mean error?
+What is the mean error?
 
 ```{r}
 summary(data) #An easy way to get a lot of info 
