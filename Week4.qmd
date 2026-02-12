@@ -1,336 +1,176 @@
 ---
-title: "Let's traverse the TIDYVERSE!"
-description: "Introduction to Tidyverse packages"
+title: "Let's Work With Dataframes"
+format: html
+description: "Working and Analyzing a Dataframe"
 toc: true
 toc-depth: 3
-
-format:
-  html:
-    embed-resources: true
-    fig-format: png
-    fig-dpi: 96
-
-filters:
-  - panel-accordion
 ---
 
+Please download this [Week 4 Download](downloadforstudent/week_4_studentversion.qmd) to get the .qmd for this weeks lesson. Also be sure to download this [folder containing the datafiles you will be using today](downloadforstudent/data.zip). Practice importing these files into your project for this series!
+
+First, practice importing the data you downloaded last week (dogwood file) and name it `data`. 
 ```{r}
-#| include: False
+#| include: false
+library(rio)
 library(tidyverse)
+txt <- read.table("data/dogwood.txt", header = TRUE, fill = TRUE)
+
+data <- import("data/dogwood.txt")
 ```
 
-Please download this [Week 4 Download](downloadforstudent/week_4_studentversion.qmd) to get the .qmd for this weeks lesson. Practice importing this file into your project for this series!
+## Working with data
 
-## What is {tidyverse}?
+First....let's look at the data! The `$` sign is your new best friend. It let's you index into a dataframe without needing to know the position of the column.
 
-The {tidyverse} is a *collection* of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar. 
-
-**Packages within this collection include:**
-
-::: {.panel-accordion}
-
-### dplyr
-Houses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling.
-
-Cool stuff you can do! 
-
-*Note:* there are a lot of different preloaded datasets to play around with, like mtcars, iris, and (my personal favorite) penguins
-```{r}
-mtcars %>% 
-  group_by(cyl) %>% 
-  summarise(mean_mpg = mean(mpg))
-
-```
-
-
-### ggplot2
-Create custom data visualizations, compatible with themes and other custom functions.
-
-Cool stuff you can do! 
-```{r}
-ggplot(iris, aes(x = Species, y = Sepal.Length)) +
-  geom_boxplot()
-```
-### tidyr
-Data tidying and shaping. Helps you pivot, separate, join, and organize data structures.
-
-Cool stuff you can do! 
-```{r}
-pivot <- pivot_longer(airquality, 
-             cols = c(Ozone, Wind), 
-             names_to = "variable", 
-             values_to = "value")
-head(pivot)
-```
-### readr
-Reads in data files (like CSVs).
-
-Cool stuff you can do! 
-```{r}
-# Example using a built-in readr dataset
-read_csv(readr_example("mtcars.csv"))
-```
-### tibble
-Creates a more modern version of a dataframe that is cleaner and easier to use.
-
-Cool stuff you can do! 
-```{r}
-tibble(
-  x = 1:5,
-  y = x^2
-)
-```
-### forcats
-Works with *cat*egorical variables. Lets you build more customizable plots.
-
-Cool stuff you can do! 
-```{r}
-fct_reorder(iris$Species, iris$Sepal.Length) %>%
-  head()
-```
-### stringr
-Makes it easy to detect, extract, replace, and clean up strings (text data).
-
-Cool stuff you can do! 
-```{r}
-str_detect(c("apple", "banana", "pear"), "a")
-```
-### purrr
-Lets you repeat operations without writing loops. Great for applying a function to many things at once.
-
-Cool stuff you can do! 
-```{r}
-map_dbl(1:5, ~ .x^2)
-```
-### lubridate
-Helps you parse, extract, and do math with dates and times.
-
-Cool stuff you can do! 
-```{r}
-ymd("2024-02-01") + days(10)
-```
-:::
-
-
-## Let's work with {tidyverse}!
-
-Start off with loading in the package: 
-```{r}
-library(tidyverse)
-```
-
-And pick up where we left off last week working with basic dataframes. First, we will define the data.frame:
-
-```{r}
-# Define the data.frame
-People <-    c("Ulrich","Dom","Sophia","Neha","ExampleRA")
-Positions <- c("PI", "GE", "GE",   "GE",  "RA") 
-Sleep <-     c(4,6,8,7,8) #Sleep in hours
-Years <- c(25,6,2,2,1)#Years in our lab
-Count <- c(1:length(People))#should indicate row number
-
-df <- data.frame(People, Positions, Sleep, Years, Count)
-
-head(df)
-```
-
-Now, let's do everything we just did with dataframes, but using tidyverse functions
-
-We can use the package {dplyr} to group the data and aggregate by mean. Let's break it down first:
-
-
--   **`group_by()` function:** tells R how to organize your data before you do any calculations. We're essentially spliting our data into different groups to look closer at differences between groups.
-
-```{r}
-df %>% 
-  group_by(Positions)
-```
-
--   **`summarize()` function:** takes each group created by `group_by()` and computes something for it. (can be a mean, median, count, etc.). Where `group_by()` organizes the data but doesn't do any calculation, `summarize()` looks inside each group specified and computes a summary of whats inside.
-
-```{r}
-df %>% 
-  group_by(Positions) %>% 
-  summarise(mean_sleep = mean(Sleep, na.rm = T)) #note: summarize and summarise are the same function, dif spelling 
-```
-
--   **piping, i.e., `%>%`:** The pipe connects steps together so you can read the code like a sentence. It makes your code flow top‑to‑bottom instead of nesting functions inside each other.
-
-We use piping so that we can perform multiple functions on a single dataframe. where your dataframe is always the first argument in tidyverse functions- piping automatically fills that argument for you
-
-Format:
-
-```{r}
-#dataframe %>% 
- # some_function() %>% 
- # the_next_function()
-```
-
-### How to extract or index variables
-
-Let's using some new functions found in {tidyverse} packages to extract or index variables
-
-```{r}
-df$Positions # Get a column "Position"
-df[,c("People","Positions")]
-cbind(df$People,df$Positions) # Get multiple columns ("People" and "Position")
-```
-
-In the {tidyverse}, you can use `select()`
-
-```{r}
-df %>% 
-  select(Positions) 
-
-df %>% 
-  select(People, Positions)
-```
-
-**Exercise 1.** Create a new dataframe called 'df_new' that contains only People, Positions, and Sleep (using `select()`)
+**Exercise 1.** Try typing `data$` to see all of your column names!
 
 ```{r}
 
 ```
 
-### Adding and removing variables (columns)
-
-You can directly add variables
+There are lots of ways to index dataframes. You should know them all!
 
 ```{r}
-df$RowNum <- 1:nrow(df)
+#| warning: false
+#| message: false
+#| results: 'hide'   # hide printed output
+
+
+data$ID
+data[1]
+data$Trial[5] 
+data[5,3]
+data[1,] #note the comma! 
+data$ID[1]
 ```
 
-or directly remove
+We can reference the data inside the brackets too
 
 ```{r}
-df$RowNum <- NULL
+#| warning: false
+#| message: false
+#| results: 'hide'   # hide printed output
+
+data[data$Trial == 5,]
 ```
 
-But in the {tidyverse}, you can use `mutate()` and `select()` (for adding and removing, respectively)
+**Exercise 2.** Create a dataframe that contains trials 1 through 5. Then create a dataframe that contains trials 1, 2, and 7
 
 ```{r}
-df <- df %>% mutate(RowNum = 1:nrow(.), Years_2026 = Years + 1)
-
-df <- df %>% select(-RowNum)
 
 ```
 
-### Filtering rows by condition
-
-Filtering is an operation to keep or remove certain rows
-
-For example, we can filter rows corresponding to GEs
+We can also make new columns using the `$`
 
 ```{r}
-df_only_GE <- df[Positions == "GE",]
+data$New <- 1:nrow(data)
 ```
 
-In the {tidyverse}, you can use `filter()`
+Why would we need to do this? Often useful for cleaning data, so let's clean our data! Sometimes data files contain data that we don't want to analyze for various reasons...
+
+...like the first trial in a block might be counted as practice
 
 ```{r}
-df_only_GE <- df %>% 
-  filter(Positions == "GE" | Sleep >= 6)
+#| warning: false
+#| message: false
+#| results: 'hide'   # hide printed output
+
+
+
+data$Trial > 1 
+
+data[data$Trial > 1,] #index based on this logical argument
+
+dataCleaned <- data[data$Trial > 1,] #make sure to save the result!
 ```
-`filter()` is great for more complex filtering conditions, such as filtering out 
-### Why bother with the {tidyverse}?
 
-So far, everything we learned we also learned a very similar way to do using base R functions. So why should we even use {tidyverse}?
-
-{tidyverse} (particularly piping) is helpful for stacking functions:
+Functions can also be useful for cleaning. Let's remove RTs that are NaN. (What is Nan?)
 
 ```{r}
-df %>% 
-  select(-Count) %>% 
-  mutate(sleep_ideal = Sleep + 2) %>% 
-  filter(Positions == "RA")
+dataCleaned <- dataCleaned[!is.na(dataCleaned$RT),]
+dataCleaned <- dataCleaned[data$RT > mean(data$RT),]
 ```
 
-It's also helpful for aggregating:
-
-*What?:* Aggregation means taking lots of individual data points and combining them into a smaller set of summary values. *Why?* We do this becuase raw data is often too detailed to interpret directly. It also helps us see patterns more clearly in the data, prepare data for more complicated statistical models (e.g. ANOVA, regression, t-tests), and helps us to communicate results clearly to a wide audience. 
-
-*How?:*
-
-For aggregation, we need to use `group_by()` and `summarize()`
-
-Let's aggregate the average Sleep time for different Positions (PI,GE,RA)
+Now let's remove certain trials demo of the AND operator
 
 ```{r}
-df %>%
-  group_by(Positions) %>% 
-  summarize(meanSleep = mean(Sleep, na.rm = TRUE))
-
-# Sum of Sleep time for different Positions (PI,GTF,RA)
-
-df %>% group_by(Positions) %>% 
-  summarize(sumSleep = sum(Sleep, na.rm = TRUE))
+dataCleaned <- dataCleaned[data$Trial != 5 & data$Trial != 8,]
 ```
 
-What happens if you use People as a grouping variable?
-```{r}
-
-df %>% group_by(People) %>% 
-  summarize(meanSleep = mean(Sleep, na.rm = TRUE)) # Since people is unique for every row, data will not be reduced at all!
-```
-
-
-What if we want to get mean Sleep time for (Group1 = PI & GE, Group2 = RA)
+We could only look at cue check trials, demo of the OR operator
 
 ```{r}
-#?ifelse()
-
-df2 <- df%>% 
-  mutate(PositionsR = ifelse(Positions == "RA", "RA", "PI&GE")) %>%
-  group_by(PositionsR) %>% 
-  summarize(meanSleep = mean(Sleep, na.rm = TRUE))
+#dataCleaned2 <- dataCleaned2[dataCleaned$LCueCheck == 1|| dataCleaned$RCueCheck ==1,]
 ```
 
-## More fun with {dplyr}!
-
-We will be using datasets from the base package to show off some cool stuff we can do with {tidyverse} packages.
+**Exercise 3.** remove the first block from our data. We will count it as a practice block.
 
 ```{r}
-head(state.x77)
+
 ```
 
+## Analyze Your Data!
+
+What is the mean error?
 
 ```{r}
-df2 <-cbind(state.x77, data.frame(state.division),data.frame(state.region))
-
-a <-df2 %>%
-  group_by(state.region) %>% 
-  summarize(IlliteracyRate=mean(Illiteracy, na.rm=TRUE)) #someone walk us through what we're doing here
+summary(data) #An easy way to get a lot of info 
 ```
 
-{ggplot2} is a wonderful package in {tidyverse} that creates some very customizable visualizations:
+The mean is rarely enough on it's own to tell us much... We want to know how values differ across different experimental conditions.
+
+*Check your understanding:* What is the error rate for each blockType?
+
+Hopefully you can see that this would be a pain to do by hand... Luckily, there is a better way! Enter, the {dplyr} package. Aggregation in R requires the `group_by()` function, and the `summarize()` function. Pipes are weird... but AWESOME.
+
+{dplyr} is part of the {tidyverse} meta-package, which contains packages designed to help with data wrangling, but most importantly, plotting. Piping feeds in the first argument to a function `data %>% group_by(BlockType)` which is the same as `group_by(data, BlockType)` we need to save this to do anything with it... or we can use pipes
 
 ```{r}
-#| fig.show: "show"
-aplot<- ggplot(a, aes(x=state.region, y=IlliteracyRate, fill=IlliteracyRate)) + #sidenote: why the plus? shouldnt it be %>% ?!
-  geom_bar(position=position_dodge(), stat="identity")
-
-aplot
+errorRates <- data %>%
+  group_by(BlockType) %>%
+  summarise(meanError = mean(Error))
 ```
+
+This does the same thing without pipes, just harder to read
 
 ```{r}
-#| fig.show: "show"
-b <-df2 %>%
-  group_by(state.division) %>%
-  summarize(
-    IlliteracyRate=mean(Illiteracy, na.rm=TRUE),
-    AvgIncome=mean(Income, na.rm=TRUE)
-    )
-
-bplot<- ggplot(b, aes(x=state.division, y=IlliteracyRate, fill=AvgIncome))+
-  geom_bar(position=position_dodge(), stat="identity")
-
-bplot
+errorRates2 <- summarise(group_by(data, BlockType), meanError = mean(Error))
 ```
+
+Usually we do a 2 step aggregation, which means we do this process twice. Once for each subject individually, then a second time using all subjects data.
 
 ```{r}
-#| fig.show: "show"
-df2plot <- ggplot(df2, aes(x=Income, y=Illiteracy,color=state.region))+ 
-  geom_point(stat="identity", size=4, shape=18)
+#| warning: false
+#| message: false
 
-df2plot
+errorRates3 <- data %>% 
+  group_by(BlockType, Block) %>% summarise(meanError = mean(Error)) %>% #now we do it again
+  group_by(BlockType) %>% 
+  summarise(Error = mean(meanError), Error_SD = sd(meanError)) #be sure to use the new name of your mean column!
+
 ```
+
+Again you could try to do this without piping... it starts to get really hard.
+
+```{r}
+#| warning: false
+#| message: false
+
+errorRates3 <- summarise(group_by(summarise(group_by(data, BlockType, Block), meanError = mean(Error)), BlockType), Error = mean(meanError), Error_SD = sd(meanError))
+```
+
+But wait, this now contains the entire (raw!) dataset! Let's see tidyverse's version of data cleaning!
+
+```{r}
+#| warning: false
+#| message: false
+
+data <- data %>%
+  filter(Block >= 3 & !is.na(RT) & RT < 10000) %>% 
+  group_by(BlockType, Block) %>% summarise(meanError = mean(Error)) %>%
+  group_by(BlockType) %>%
+  summarise(Error = mean(meanError), Error_SD = sd(meanError))
+head(data)
+```
+
+Most likely, your data cleaning will be much more complex, so you will have to decide whether and when to save a cleaned version of your dataset, if you want to run multiple different analyses with it (instead of doing both, data cleaning, and analysis in one set of pipes).
