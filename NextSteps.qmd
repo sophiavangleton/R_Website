@@ -7,11 +7,9 @@ toc-depth: 3
 ---
 
 ## Online Resources
-
 Compiled here are some great resources found online that will help with your journey in R! Cheat sheets are great ways to reference a family of functions and to understand quickly what they are used for and how to use them. R has some great documentation of popular functions used in research analysis. Additionally, I've included some online resources that offer tutorials in R which cover what we learned here and more complicated coding and modeling.
 
 ### Cheat Sheets!
-
 Some great reference sheets that compile helpful functions and their uses!
 
 -   [R reference card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
@@ -19,7 +17,6 @@ Some great reference sheets that compile helpful functions and their uses!
 -   [R Markdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
 ### Online Learning
-
 Want to learn further on your own? Here are some free-ish online courses that are great to hone your skills more!
 
 -   [Learn R through codeacademy](https://www.codecademy.com/learn/learn-r)
@@ -28,11 +25,9 @@ Want to learn further on your own? Here are some free-ish online courses that ar
 -   [RStudio’sSwirl package](http://swirlstats.com/students.html)
 
 ## On-Campus Resources
-
 Compiled here are the excellent resources offered on-campus!
 
 ### Data Services at UO
-
 Data Services assists University of Oregon students, researchers, and staff with the management, curation, and analysis of data. This is a great resource for in-person personalized help with R or other coding languages you might use.
 
 **Whats Offered:**
@@ -42,7 +37,6 @@ Data Services assists University of Oregon students, researchers, and staff with
 -   [Help Desk](https://library.uoregon.edu/data-services) Drop by our Data Services Help Desk in Knight Library for assistance with stats, R, Python, SPSS, Excel and finding and managing data. Drop-in hours are Monday to Friday 11 a.m. to 4 p.m in Knight Library. Winter GIS hours are M 1-4, T 11-3, W 1-4, and Th 11-3. Finals, breaks, and summer term are by appointment only.
 
 ### Check Out The Library!
-
 The UO Library has various books and e-books on R for different uses and experience levels. [Search the UO Library catalog](https://library.uoregon.edu/) online using, for example, R Computer program language, in the search box.
 
 **Available eBooks include:**
@@ -55,7 +49,6 @@ The UO Library has various books and e-books on R for different uses and experie
 R is also available on all computers at the Social Science Instructional Labs (SSIL), located on the fourth floor of McKenzie Hall. You may be able to use R in other computer labs across campus. Computing labs managed by the UO Library also offers R.
 
 ## Limitations of R
-
 First, let's start with some pros. R is a great tool for statistical analysis, producing clear data visualizations and best of all is entirely free (looking at you Matlab) and open-source. R also hosts endless packages which streamline complex processes including (but not limited to) complex statistical computing, machine learning, customization data visualization, document writing (you can code up a professional looking document in R for manuscripts), website building (this website is entirely made in R), and more!
 
 R does have some limitations however, outside of the data analysis space R is not as popular or relevant of a tool as say Python or C++. One reason why is that it is not as efficient in terms of performance, this can be a hassle when you are working with very large and complex data/tasks.
