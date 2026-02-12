@@ -1,10 +1,125 @@
 ---
-title: "Let's Work With Dataframes"
+title: "Intro to Dataframes"
 format: html
-description: "Finding, importing, and working with a dataset"
+description: "Defining a dataframe, and finding + importing datasets"
 toc: true
 toc-depth: 3
 ---
+## What is a dataframe?
+
+Dataframe is a type of variable (or a mode of storage) to keep data. It is basically a spreadsheet like format, and this is the most often used mode in R. 
+Features of a DF: It looks like a list of possibly heterogeneous elements of equal length (matrix-esque list)
+- contains rows (cases) and columns (variables)
+- top rows are names of each variable
+- each column represents one kind of content
+- every column must have the same length (but missing data are allowed)
+
+### Lets generate a dataframe!
+```{r}
+People <- c('Neha', 'Sophia', 'Dominik', "Ulrich") #vector with names
+  Positions <- c("GE","GE","GE" ,"PI") #vector with positions, select from PI, LM (Lab Managaer), GE, and RA
+  Count <- 1:length(Positions) #vector with numbers from 1 to N
+  
+  df <- data.frame(People, Positions, Count)
+```
+
+**Exercise 1.** Look up what the function `rep()` does and how it can help us with the Positions vector! Look up the length function and how it could help us avoid hard-coding the Count maximum (here, 14)! Confirm that it is a data.frame (hint: `class(df)`)
+
+```{r}
+
+```
+
+Codes above are altogether making one data.frame variable. First three lines are creating vectors (as you can see in Environment). `mydf()` is a function to create a data.frame, which made independent columns from provided vectors.
+
+### Checking a data.frame
+`print()` will display the content of dataframe in the console. 
+```{r}
+print(df);
+df
+```
+
+
+`head()` will do same as `print()` except you can provide number of rows to display
+```{r}
+head(df)
+head(df, 2)
+```
+
+`tail()` shows the content from the bottom
+```{r}
+tail(df)
+tail(df, 2)
+```
+
+`View()` makes a new tab in the editor window and display the data.frame
+```{r}
+#View(df)
+```
+
+`dim()` gives back the size of data.frame (row by column)
+```{r}
+dim(df)
+ncol(df)
+nrow(df)
+```
+
+*Note:* that none of these operations will change the content of dataframes. But, it will be important to constantly check your data.frame as it gets updated.
+
+**Let's extract or index variables or specific values.** This is like the room number: The first number(s) is/are the vertical level (rows), the second number(s)/value(s) is/are the rows (room on level). 
+
+Think! `df[level, room]`
+
+**Exercise 2.** Get 4th row, 2nd column. 
+```{r}
+
+```
+
+With indexing, there are often multiple ways to achieve the same thing:
+
+You can get 2nd element of column "Position"
+```{r}
+df$Positions[2] #dollar sign gives us an entire column, which is just a vector and can be indexed as such
+df[2, "Positions"] #Here we use column name (has to match exactly) to get the column
+df[2, 2] #Here we use the column number to get the second column, which is Position
+
+df[,2] # Get all rows of 2nd column
+df$Positions # Get a column "Position"
+df[2,]
+```
+
+*Note:* When you extract a column from data.frame, it is no longer a data.frame. Do you remember how to check what class of variable it is?
+
+### Adding and removing variables (columns)
+```{r}
+# Direct
+df$RowNum <- rep(1, nrow(df))
+
+#indirect
+RowNum <- rep(1, nrow(df))
+df$RowNum <- RowNum
+
+#Remove
+df$RowNum <- NULL
+```
+
+*Note:* To add a variable or new column, you can directly feed in information or use a variable. Direct way is slightly more efficient as it leaves no trace in the Environment.
+
+### Filtering rows by conditioning
+
+Filtering is an operation to keep or remove certain rows. We can filter rows corresponding to RAs
+
+```{r}
+df[Positions == "RA",]
+
+df[df$Positions == "PI",]
+
+df_only_PI<- df[Positions == "PI",]
+
+# Filter rows corresponding to RAs or PI
+df[Positions == "GE" & Count == 2,]
+```
+
+Okay, now that we *know* what a dataframe is, lets practice finding and importing a dataset! 
 
 ## Find the data
 
@@ -31,12 +146,15 @@ dir1 <- "C:/Users/forrest/OneDrive/Documents/"
 
 How do I change the current working directory? To change the current working directory, you need to specify the directory to jump to. And, feed it in to `setwd()` function (you could also give a string without making a variable).
 
+
 ```{r}
 setwd(dir1) #changing directory
 getwd() #check if it worked or not
 ```
+*Note:* Look at the warning if you run this in your script window (this window) "The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks." This is because when you are setting your working directory, for it to actually change past this code chunk we'd need to run `setwd()` in the Console pane. 
 
-**To read in a datafile, you will need to set the working directory to the folder containing the "data" folder:** The path types we have talked about are absolute paths. They are called absolute paths because their origin is at the root location of YOUR system. This means that if you want to share your script #with someone else, it won't work (because they might place files at a different location compared to you). That's why it's important to use R projects or open scripts by opening a fresh R session by double clicking on the script - that way, the working directory location is consistent. So, what if #we need to find a file that's not levels down in our hierarchy, but up?
+
+**To read in a datafile, you will need to set the working directory to the folder containing the "data" folder:** The path types we have talked about are absolute paths. They are called absolute paths because their origin is at the root location of YOUR system. This means that if you want to share your script with someone else, it won't work (because they might place files at a different location compared to you). That's why it's important to use R projects or open scripts by opening a fresh R session by double clicking on the script - that way, the working directory location is consistent. So, what if we need to find a file that's not levels down in our hierarchy, but up?
 
 What's is available in our working directory `fs::dir_tree(path = "..", recurse = TRUE)` If we want to find a file that requires us to go up one level in the hierarchy, we can do the following "../experiment/" or we can set the wd one level higher: setwd("../") should you need to.
 
@@ -75,168 +193,9 @@ write.csv(txt, "results/data2.csv")
 write.foreign(txt, "results/data2.sav", package = "SPSS", codefile = "code.txt")
 ```
 
-Next, let's read in the .txt file dogwood.txt (data/data2.RDS) and assign it to the name data. 
+Finally, let's read in the .txt file dogwood.txt (data/data2.RDS) and assign it to the name data. 
 
 ```{r}
 data <- import("data/dogwood.txt")
 ```
 
-## Working with data
-
-First....let's look at the data! The `$` sign is your new best friend. It let's you index into a dataframe without needing to know the position of the column.
-
-**Exercise 1.** Try typing `data$` to see all of your column names!
-
-```{r}
-
-```
-
-
-There are lots of ways to index dataframes. You should know them all! 
-
-```{r}
-#| warning: false
-#| message: false
-#| results: 'hide'   # hide printed output
-
-
-data$ID
-data[1]
-data$Trial[5] 
-data[5,3]
-data[1,] #note the comma! 
-data$ID[1]
-```
-
-We can reference the data inside the brackets too
-
-```{r}
-#| warning: false
-#| message: false
-#| results: 'hide'   # hide printed output
-
-data[data$Trial == 5,]
-```
-
-**Exercise 2.** Create a dataframe that contains trials 1 through 5. Then create a dataframe that contains trials 1, 2, and 7
-
-```{r}
-
-```
-
-We can also make new columns using the `$`
-
-```{r}
-data$New <- 1:nrow(data)
-```
-
-Why would we need to do this? Often useful for cleaning data #So let's clean our data! Sometimes data files contain data that we don't want to analyze for various reasons... 
-
-...like the first trial in a block might be counted as practice 
-
-```{r}
-#| warning: false
-#| message: false
-#| results: 'hide'   # hide printed output
-
-
-
-data$Trial > 1 
-
-data[data$Trial > 1,] #index based on this logical argument
-
-dataCleaned <- data[data$Trial > 1,] #make sure to save the result!
-```
-
-Functions can also be useful for cleaning. Let's remove RTs that are NaN. (What is Nan?) 
-
-```{r}
-dataCleaned <- dataCleaned[!is.na(dataCleaned$RT),]
-dataCleaned <- dataCleaned[data$RT > mean(data$RT),]
-```
-
-Now let's remove certain trials demo of the AND operator 
-
-```{r}
-dataCleaned <- dataCleaned[data$Trial != 5 & data$Trial != 8,]
-```
-
-We could only look at cue check trials, demo of the OR operator
-
-```{r}
-#dataCleaned2 <- dataCleaned2[dataCleaned$LCueCheck == 1|| dataCleaned$RCueCheck ==1,]
-```
-
-
-**Exercise 3.** remove the first block from our data. We will count it as a practice block. 
-
-```{r}
-
-```
-
-## Analyze Your Data!
-
-*Check your understanding:* What is the mean error?
-
-```{r}
-summary(data) #An easy way to get a lot of info 
-```
-
-The mean is rarely enough on it's own to tell us much... We want to know how values differ across different experimental conditions. 
-
-*Check your understanding:* What is the error rate for each blockType?
-
-Hopefully you can see that this would be a pain to do by hand... Luckily, there is a better way! Enter, the {dplyr} package. Aggregation in R requires the `group_by()` function, and the `summarize()` function. Pipes are weird... but AWESOME.
-
-{dplyr} is part of the {tidyverse} meta-package, which contains packages designed to help with data wrangling, but most importantly, plotting. Piping feeds in the first argument to a function `data %>% group_by(BlockType)` which is the same as `group_by(data, BlockType)` we need to save this to do anything with it... or we can use pipes
-
-```{r}
-errorRates <- data %>%
-  group_by(BlockType) %>%
-  summarise(meanError = mean(Error))
-```
-
-
-This does the same thing without pipes, just harder to read 
-
-```{r}
-errorRates2 <- summarise(group_by(data, BlockType), meanError = mean(Error))
-```
-
-Usually we do a 2 step aggregation, which means we do this process twice. Once for each subject individually, then a second time using all subjects data.
-
-```{r}
-#| warning: false
-#| message: false
-
-errorRates3 <- data %>% 
-  group_by(BlockType, Block) %>% summarise(meanError = mean(Error)) %>% #now we do it again
-  group_by(BlockType) %>% 
-  summarise(Error = mean(meanError), Error_SD = sd(meanError)) #be sure to use the new name of your mean column!
-
-```
-
-Again you could try to do this without piping... it starts to get really hard. 
-
-```{r}
-#| warning: false
-#| message: false
-
-errorRates3 <- summarise(group_by(summarise(group_by(data, BlockType, Block), meanError = mean(Error)), BlockType), Error = mean(meanError), Error_SD = sd(meanError))
-```
-
-But wait, this now contains the entire (raw!) dataset! Let's see tidyverse's version of data cleaning!
-
-```{r}
-#| warning: false
-#| message: false
-
-data <- data %>%
-  filter(Block >= 3 & !is.na(RT) & RT < 10000) %>% 
-  group_by(BlockType, Block) %>% summarise(meanError = mean(Error)) %>%
-  group_by(BlockType) %>%
-  summarise(Error = mean(meanError), Error_SD = sd(meanError))
-head(data)
-```
-
-Most likely, your data cleaning will be much more complex, so you will have to decide whether and when to save a cleaned version of your dataset, if you want to run multiple different analyses with it (instead of doing both, data cleaning, and analysis in one set of pipes). 

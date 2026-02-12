@@ -26,7 +26,7 @@ People <- c('Neha', 'Sophia', 'Dominik', "Ulrich") #vector with names
   df <- data.frame(People, Positions, Count)
 ```
 
-**Exercise 5.** Look up what the function `rep()` does and how it can help us with the Positions vector! Look up the length function and how it could help us avoid hard-coding the Count maximum (here, 14)! Confirm that it is a data.frame (hint: `class(df)`)
+**Exercise 1.** Look up what the function `rep()` does and how it can help us with the Positions vector! Look up the length function and how it could help us avoid hard-coding the Count maximum (here, 14)! Confirm that it is a data.frame (hint: `class(df)`)
 
 ```{r}
 
@@ -72,7 +72,7 @@ nrow(df)
 
 Think! `df[level, room]`
 
-**Exercise 6.** Get 4th row, 2nd column. 
+**Exercise 2.** Get 4th row, 2nd column. 
 ```{r}
 
 ```
