@@ -37,7 +37,7 @@ website:
             href: week6.html
           - text: "Week 7"
             href: week7.html
-      - text: "What's Next?"
+      - text: "The Big Wide World Of R"
         href: NextSteps.html
     right: 
       - text: GitHub
