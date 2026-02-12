@@ -49,20 +49,19 @@ The UO Library has various books and e-books on R for different uses and experie
 
 -   Introductory Statistics with R. Peter Dalgaard; New York: Springer; 2008
 -   RData Analysis without Programming. David W. Gerbing; Hoboken: Taylor and Francis; 2013
--   Applied spatial data analysis with R. Roger Bivand, Edzer J. Pebesma, Virgilio
--   Gómez-Rubio; New York: Springer; 2008
+-   Applied spatial data analysis with R. Roger Bivand, Edzer J. Pebesma, Virgilio Gómez-Rubio; New York: Springer; 2008
 -   Beginning R The Statistical Programming Language. Mark Gardener; Hoboken: Wiley; 2012
 
 R is also available on all computers at the Social Science Instructional Labs (SSIL), located on the fourth floor of McKenzie Hall. You may be able to use R in other computer labs across campus. Computing labs managed by the UO Library also offers R.
 
 ## Limitations of R
 
-First, let's start with some pros. R is a great tool for statistical analysis, producing clear data visualizations and best of all is entirely free and open-source (looking at you Matlab). R also hosts endless packages which streamline complex processes including (but not limited to) complex statistical computing, machine learning, customization data visualization, document writing (you can code up a professional looking document in R for manuscripts!), website building (this website is entirely made in R), and more!
+First, let's start with some pros. R is a great tool for statistical analysis, producing clear data visualizations and best of all is entirely free (looking at you Matlab) and open-source. R also hosts endless packages which streamline complex processes including (but not limited to) complex statistical computing, machine learning, customization data visualization, document writing (you can code up a professional looking document in R for manuscripts), website building (this website is entirely made in R), and more!
 
 R does have some limitations however, outside of the data analysis space R is not as popular or relevant of a tool as say Python or C++. One reason why is that it is not as efficient in terms of performance, this can be a hassle when you are working with very large and complex data/tasks.
 
 The second limitation was also mentioned in the pros, R is open-source. This means that anybody can create a package, even you! As great as this aspect is, it also means that packages vary in reliability, and some packages have not been updated or maintained so tread with caution when exploring a niche package.
 
-Finally, the main thing I would say which you should not use R for is coding up experiments like the type we usually do in our lab. For example, if you want to create high‑precision reaction‑time paradigms, R isn’t the best tool, it’s designed for analysis, not stimulus presentation. In practice, researchers often build experiments in jsPsych or PsychoPy and analyze the data in R. We use Python or Matlab with the PsychoPy addon to code most of our experiments in lab.
+Finally, you should not use R for coding up experiments like the type we usually do in our lab. For example, if you want to create high‑precision reaction‑time paradigms, R isn’t the best tool, it’s designed for analysis, not stimulus presentation. In practice, researchers often build experiments in jsPsych or PsychoPy and analyze the data in R. We use Python or Matlab with the PsychoPy addon to code most of our experiments in lab.
 
 ## GenAI & Best Practices When Learning R
