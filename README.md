@@ -7,5 +7,5 @@ Within this repository you can find all the files we will use for this course, a
 **My Lessons App:**
 - This houses weekly problem sets geared for personalized individual learning of the basic in R. These problem sets use CAT or computerized adaptive testing so that the series of questions are guided by your skill level.
 
-**Next Steps Page:**
+**The Big Wide World of R Page:**
   - This page on the website houses external resources for building R knowlege both on and off campus. Here I will also discuss practical use of GenAI when you are learning (which is to say please let yourself learn something before you offload it to something else). 
