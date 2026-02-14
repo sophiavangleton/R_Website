@@ -16,7 +16,7 @@ Compiled here are some great resources found online that will help with your jou
 Some great reference sheets that compile helpful functions and their uses!
 
 -   [R reference card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
--   [RStudio cheat sheets](https://www.rstudio.com/resources/cheatsheets/o)
+-   [RStudio cheat sheets](https://posit.co/resources/cheatsheets/)
 -   [R Markdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
 ## Online Learning {.panel-name}
@@ -40,7 +40,7 @@ Data Services assists University of Oregon students, researchers, and staff with
 
 -   [Free Workshops.](https://uoregon.libcal.com/calendar/dataservices?cid=11979&t=d&d=0000-00-00&cal=11979&inc=0) Data Services offers free workshops on topics like R, Python, ArcGIS, Qualtrics, and data analysis, taught by a team of faculty, staff, and peer consultants.
 -   [Consultations](https://uoregon.libcal.com/appointments/data_services) Make an appointment to get help with statistics, R, Python, GIS, Excel, surveys, version control, data analysis, or data management in-person or over Zoom.
--   [Help Desk](https://library.uoregon.edu/data-services) Drop by our Data Services Help Desk in Knight Library for assistance with stats, R, Python, SPSS, Excel and finding and managing data. Drop-in hours are Monday to Friday 11 a.m. to 4 p.m in Knight Library. Winter GIS hours are M 1-4, T 11-3, W 1-4, and Th 11-3. Finals, breaks, and summer term are by appointment only.
+-   [Help Desk](https://library.uoregon.edu/data-services) Drop by UO's Data Services Help Desk in Knight Library for assistance with stats, R, Python, SPSS, Excel and finding and managing data. Drop-in hours are Monday to Friday 11 a.m. to 4 p.m in Knight Library. Winter GIS hours are M 1-4, T 11-3, W 1-4, and Th 11-3. Finals, breaks, and summer term are by appointment only.
 
 ## Check Out The Library! {.panel-name}
 
@@ -54,6 +54,11 @@ The UO Library has various books and e-books on R for different uses and experie
 -   Beginning R The Statistical Programming Language. Mark Gardener; Hoboken: Wiley; 2012
 
 R is also available on all computers at the Social Science Instructional Labs (SSIL), located on the fourth floor of McKenzie Hall. You may be able to use R in other computer labs across campus. Computing labs managed by the UO Library also offers R.
+
+## UO R Bootcamp Website {.panel-name}
+
+Every year, the psychology department at UO hosts a [R Bootcamp series](https://uorbootcamp2025.netlify.app/#materials) for the incoming grad students covering in detail the basics of R (so basically what we are doing). The materials section is a great resource for your reference and to get more tips & tricks about cool things to do in R. A lot of what we covered is also in this series, so take a look and see if it clicks! 
+
 :::
 
 ## Limitations of R
