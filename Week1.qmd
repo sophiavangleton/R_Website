@@ -56,6 +56,8 @@ For todays purposes, we will start with a new directory.
 
 Name your project, then choose where you want it to be saved. This is part of your working directory path.
 
+![](images/createProj.png)
+
 We can create files within your exisiting project, we can also import an existing file. Today we will practice importing this file into your exsiting project. You have a few options:
 
 1.  **Drag and Drop (simplest method)**
@@ -72,8 +74,6 @@ We can create files within your exisiting project, we can also import an existin
 -   Move your .qmd file into the folder
 -   Refresh the Files pane
 -   Click the file to open it
-
-![](images/createProj.png)
 
 ***Very Important Note.*** When you are naming a folder, project, script or file ***PLEASE*** **do not use space.** R has a hard time reading this when you want to import data or change working directories, and in general it is best practice not to have spaces. UseCamelCase or use_snake_case_instead! 
 
