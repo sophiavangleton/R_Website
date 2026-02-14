@@ -6,7 +6,7 @@ toc: true
 toc-depth: 3
 ---
 
-Please download this [Week 2 Download](downloadforstudent/week_2_studentversion.qmd) to get the .qmd for this weeks lesson. Practice importing this file into your project for this series!
+Please download this [Week 2 Download](downloadforstudent/week_2_studentversion.qmd) to get the .qmd for this weeks lesson. **IMPORTANT!! Practice importing this file into your project for this series! You need to make sure your datafiles and .qmds are all housed in your project you created last week.**
 
 ## What Is a Package/Library?
 
@@ -14,7 +14,7 @@ Directories are the location of files. Packages/libraries on R are optional set 
 
 **Let's walk through how to install and load a package into your environment:**
 
-**Step 1:** install the package in your console
+**Step 1:** install the package in your console (this is your script, which is fine for this purpose but more generally you want to install packages in your console because you only need to install once.)
 
 ```{r}
 #install.packages("dplyr")
@@ -34,7 +34,7 @@ To use your packages in a given session, you need to load libraries. You can thi
 
 ```{r}
 library(dplyr)
-library("dplyr")
+library("dplyr") #this works too but its not needed
 ```
 
 `library()` should be colored in blue on Rstudio, which indicates this is a special syntax like "for" or "if" or "while". You can provide either character(with "") or just a name.

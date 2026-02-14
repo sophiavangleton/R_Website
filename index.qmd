@@ -2,7 +2,10 @@
 title: "Cognitive Dynamics Lab R Lessons"
 format: html
 editor: visual
+toc: true 
+toc-depth: 3
 ---
+
 
 ## Start Here
 
@@ -10,9 +13,23 @@ Hi Cognitive Dynamics Folks! If you're new to R, you can get started by installi
 
 *Note:* Make sure you follow the download instructions that are suited for your computer (Mac, Windows, Etc.)!
 
-## R Glossary:
+
+::: {.panel-tabset}
+## Important Notes Before You Start {.panel-name}
+
+**Note 1.** We will mention this again but when you are naming a folder, project, script or file ***PLEASE*** **do not use space.** R has a hard time reading this when you want to import data or change working directories, and in general it is best practice not to have spaces. UseCamelCase or use_snake_case_instead! 
+
+**Note 2.** Get orientated to what RStudio looks like, understanding all the different things the interface contains will help so much with troubleshooting.
+![](images/interface.png)
+
+## R Glossary {.panel-name}
 
 For your reference I've compiled a shortlist of R & Computer Science jargon that will inevitably be used when we are explaining basics of R!
+
+- **Root Directory** — The top‑level folder of your project or file system. Everything else lives inside it. In RStudio projects, the root directory is the project folder.
+
+- **Working Directory** — The folder R is currently “looking at” for reading and writing files.
+Check it with `getwd()` and change it with `setwd()` (though RStudio Projects handle this automatically).
 
 -   **Object** — A piece of data stored in R (a number, vector, dataset, model, plot, etc.).
 
@@ -34,10 +51,6 @@ For your reference I've compiled a shortlist of R & Computer Science jargon that
 
 -   **Data Type (Class)** — The kind of data an object holds (numeric, character, integer, logical, factor, complex).
 
--   **Package** — A collection of functions, data, and documentation that extends R’s capabilities.
-
--   **Working Directory** — The folder R is currently “looking at” for reading and writing files.
-
 -   **Knitting / Rendering** — The process of turning a `.qmd` or `.Rmd` file into a finished HTML, PDF, or Word document.
 
 -   **Code Chunk** — A block of R code inside a Quarto document that runs and displays output.
@@ -53,6 +66,33 @@ For your reference I've compiled a shortlist of R & Computer Science jargon that
 -   **Indexing** — Selecting specific elements from a vector or dataset (e.g., `x[3]`).
 
 -   **Session** — Your current R workspace, including objects, loaded packages, and Console history.
+
+- **snake_case** — A naming style where words are separated by underscores (e.g., my_variable_name).
+This is the preferred style in tidyverse code.
+
+- **camelCase** — A naming style where words are joined and each new word starts with a capital letter (e.g., myVariableName). Common in JavaScript and some R packages, but less common in tidyverse workflows.
+
+-   **Package** — A collection of functions, data, and documentation that extends R’s capabilities. 
+
+## Tidyverse Glossary {.panel-name}
+
+{tidyverse} is a very popular package we will get acquainted with closely as we learn about data cleaning and wrangling. Here are some important terms for your reference: 
+
+- **{tidyverse}** — A collection of R packages designed for data science, all sharing a consistent grammar and philosophy.
+
+- **Pipe (`%>%`)** — A tool for writing readable code by passing the output of one function into the next.
+
+- **Tibble** — A modern, tidyverse‑friendly version of a data frame that prints cleanly and behaves more predictably.
+
+- **Aesthetic (aes)** — In {ggplot2}, the mapping between data and visual properties (e.g., `aes(x = mpg, y = hp, color = cyl)`).
+
+- **Geoms** — Geometric objects in {ggplot2} that define what kind of plot you’re making (e.g., `geom_point()`, `geom_bar()`, `geom_line()`).
+
+- **Faceting** — Splitting a plot into multiple panels based on a variable (`facet_wrap()`, `facet_grid()`).
+
+- **Tidy Data** — A data format where: each variable is a column, each observation is a row, each value is a cell. This structure makes data easier to manipulate and visualize.
+:::
+
 
 ## About This Series
 

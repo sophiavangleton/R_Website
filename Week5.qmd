@@ -81,7 +81,7 @@ tibble(
 )
 ```
 ### forcats
-Works with *cat*egorical variables. Lets you build more customizable plots.
+Works with **cat**egorical variables. Lets you build more customizable plots.
 
 Cool stuff you can do! 
 ```{r}
@@ -231,7 +231,12 @@ In the {tidyverse}, you can use `filter()`
 df_only_GE <- df %>% 
   filter(Positions == "GE" | Sleep >= 6)
 ```
-`filter()` is great for more complex filtering conditions, such as filtering out 
+`filter()` is great for more complex filtering conditions, such as filtering out multiple conditions. Say you want to take out the first block of an experiment by subject becuase it was a practice block, and you also wanted to filter out people who were slower than average. You can do that easily with `filter()`!
+
+![](images/filterop.png){fig-align="center"}
+
+This is the notation you want to use within the filter function, you can use multiple arguments in this function for complex jobs. 
+
 ### Why bother with the {tidyverse}?
 
 So far, everything we learned we also learned a very similar way to do using base R functions. So why should we even use {tidyverse}?
@@ -247,11 +252,11 @@ df %>%
 
 It's also helpful for aggregating:
 
-*What?:* Aggregation means taking lots of individual data points and combining them into a smaller set of summary values. *Why?* We do this becuase raw data is often too detailed to interpret directly. It also helps us see patterns more clearly in the data, prepare data for more complicated statistical models (e.g. ANOVA, regression, t-tests), and helps us to communicate results clearly to a wide audience. 
+*What?* Aggregation means taking lots of individual data points and combining them into a smaller set of summary values. 
 
-*How?:*
+*Why?* We do this becuase raw data is often too detailed to interpret directly. It also helps us see patterns more clearly in the data, prepare data for more complicated statistical models (e.g. ANOVA, regression, t-tests), and helps us to communicate results clearly to a wide audience. 
 
-For aggregation, we need to use `group_by()` and `summarize()`
+*How?* For aggregation, we need to use `group_by()` and `summarize()`
 
 Let's aggregate the average Sleep time for different Positions (PI,GE,RA)
 

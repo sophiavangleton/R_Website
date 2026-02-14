@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="theme.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -159,7 +159,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#start-here" id="toc-start-here" class="nav-link active" data-scroll-target="#start-here">Start Here</a></li>
+  <li><a href="#about-this-series" id="toc-about-this-series" class="nav-link" data-scroll-target="#about-this-series">About This Series</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -186,11 +195,18 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="start-here">Start Here</h2>
 <p>Hi Cognitive Dynamics Folks! If you’re new to R, you can get started by installing the latest version of R from the official <a href="https://cran.r-project.org/">CRAN download page</a> and then downloading RStudio from the official <a href="https://posit.co/download/rstudio-desktop/">RStudio (Posit) download page</a>. Together, these tools provide everything you need to write code, build visualizations, and explore data.</p>
 <p><em>Note:</em> Make sure you follow the download instructions that are suited for your computer (Mac, Windows, Etc.)!</p>
-</section>
-<section id="r-glossary" class="level2">
-<h2 class="anchored" data-anchor-id="r-glossary">R Glossary:</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Important Notes Before You Start</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">R Glossary</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Tidyverse Glossary</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><strong>Note 1.</strong> We will mention this again but when you are naming a folder, project, script or file <strong><em>PLEASE</em></strong> <strong>do not use space.</strong> R has a hard time reading this when you want to import data or change working directories, and in general it is best practice not to have spaces. UseCamelCase or use_snake_case_instead!</p>
+<p><strong>Note 2.</strong> Get orientated to what RStudio looks like, understanding all the different things the interface contains will help so much with troubleshooting. <img src="images/interface.png" class="img-fluid"></p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>For your reference I’ve compiled a shortlist of R &amp; Computer Science jargon that will inevitably be used when we are explaining basics of R!</p>
 <ul>
+<li><p><strong>Root Directory</strong> — The top‑level folder of your project or file system. Everything else lives inside it. In RStudio projects, the root directory is the project folder.</p></li>
+<li><p><strong>Working Directory</strong> — The folder R is currently “looking at” for reading and writing files. Check it with <code>getwd()</code> and change it with <code>setwd()</code> (though RStudio Projects handle this automatically).</p></li>
 <li><p><strong>Object</strong> — A piece of data stored in R (a number, vector, dataset, model, plot, etc.).</p></li>
 <li><p><strong>Variable</strong> — A name that refers to an object (e.g., <code>x &lt;- 5</code>).</p></li>
 <li><p><strong>Assignment (</strong><code>&lt;-</code><strong>)</strong> — The operation of storing a value in a variable.</p></li>
@@ -201,8 +217,6 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>Environment</strong> — A list of all objects currently stored in your R session.</p></li>
 <li><p><strong>Vector</strong> — A one‑dimensional list of values of the same type (e.g., <code>1:10</code>, <code>c("a", "b")</code>).</p></li>
 <li><p><strong>Data Type (Class)</strong> — The kind of data an object holds (numeric, character, integer, logical, factor, complex).</p></li>
-<li><p><strong>Package</strong> — A collection of functions, data, and documentation that extends R’s capabilities.</p></li>
-<li><p><strong>Working Directory</strong> — The folder R is currently “looking at” for reading and writing files.</p></li>
 <li><p><strong>Knitting / Rendering</strong> — The process of turning a <code>.qmd</code> or <code>.Rmd</code> file into a finished HTML, PDF, or Word document.</p></li>
 <li><p><strong>Code Chunk</strong> — A block of R code inside a Quarto document that runs and displays output.</p></li>
 <li><p><strong>Comment (</strong><code>#</code><strong>)</strong> — Text that R ignores; used to explain code or leave notes.</p></li>
@@ -211,7 +225,25 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>Logical Value</strong> — TRUE or FALSE; used in comparisons and filtering.</p></li>
 <li><p><strong>Indexing</strong> — Selecting specific elements from a vector or dataset (e.g., <code>x[3]</code>).</p></li>
 <li><p><strong>Session</strong> — Your current R workspace, including objects, loaded packages, and Console history.</p></li>
+<li><p><strong>snake_case</strong> — A naming style where words are separated by underscores (e.g., my_variable_name). This is the preferred style in tidyverse code.</p></li>
+<li><p><strong>camelCase</strong> — A naming style where words are joined and each new word starts with a capital letter (e.g., myVariableName). Common in JavaScript and some R packages, but less common in tidyverse workflows.</p></li>
+<li><p><strong>Package</strong> — A collection of functions, data, and documentation that extends R’s capabilities.</p></li>
 </ul>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>{tidyverse} is a very popular package we will get acquainted with closely as we learn about data cleaning and wrangling. Here are some important terms for your reference:</p>
+<ul>
+<li><p><strong>{tidyverse}</strong> — A collection of R packages designed for data science, all sharing a consistent grammar and philosophy.</p></li>
+<li><p><strong>Pipe (<code>%&gt;%</code>)</strong> — A tool for writing readable code by passing the output of one function into the next.</p></li>
+<li><p><strong>Tibble</strong> — A modern, tidyverse‑friendly version of a data frame that prints cleanly and behaves more predictably.</p></li>
+<li><p><strong>Aesthetic (aes)</strong> — In {ggplot2}, the mapping between data and visual properties (e.g., <code>aes(x = mpg, y = hp, color = cyl)</code>).</p></li>
+<li><p><strong>Geoms</strong> — Geometric objects in {ggplot2} that define what kind of plot you’re making (e.g., <code>geom_point()</code>, <code>geom_bar()</code>, <code>geom_line()</code>).</p></li>
+<li><p><strong>Faceting</strong> — Splitting a plot into multiple panels based on a variable (<code>facet_wrap()</code>, <code>facet_grid()</code>).</p></li>
+<li><p><strong>Tidy Data</strong> — A data format where: each variable is a column, each observation is a row, each value is a cell. This structure makes data easier to manipulate and visualize.</p></li>
+</ul>
+</div>
+</div>
+</div>
 </section>
 <section id="about-this-series" class="level2">
 <h2 class="anchored" data-anchor-id="about-this-series">About This Series</h2>

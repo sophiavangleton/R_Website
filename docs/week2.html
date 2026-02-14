@@ -240,12 +240,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Please download this <a href="downloadforstudent/week_2_studentversion.qmd">Week 2 Download</a> to get the .qmd for this weeks lesson. Practice importing this file into your project for this series!</p>
+<p>Please download this <a href="downloadforstudent/week_2_studentversion.qmd">Week 2 Download</a> to get the .qmd for this weeks lesson. <strong>IMPORTANT!! Practice importing this file into your project for this series! You need to make sure your datafiles and .qmds are all housed in your project you created last week.</strong></p>
 <section id="what-is-a-packagelibrary" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-a-packagelibrary">What Is a Package/Library?</h2>
 <p>Directories are the location of files. Packages/libraries on R are optional set of functions that you can attach to the coding environment. You can think of them as toolkit you can freely download to do complicated and advanced stuff. To use them, you need to first install it. Then, you can load to the current session. Libraries are constantly getting created and updated. Once you pass the basic level, using R(analyzing data) becomes equivalent to “using packages efficiently”. So, once you identify your specific issues to solve, always look for packages related to your issue.</p>
 <p><strong>Let’s walk through how to install and load a package into your environment:</strong></p>
-<p><strong>Step 1:</strong> install the package in your console</p>
+<p><strong>Step 1:</strong> install the package in your console (this is your script, which is fine for this purpose but more generally you want to install packages in your console because you only need to install once.)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("dplyr")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -272,7 +272,7 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>) <span class="co">#this works too but its not needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>library()</code> should be colored in blue on Rstudio, which indicates this is a special syntax like “for” or “if” or “while”. You can provide either character(with ““) or just a name.</p>
 <p><strong>Things to be careful when you use packages:</strong> There are few important things to keep in mind when you use libraries.</p>

@@ -12,6 +12,8 @@ Please download this [Week 1 Download](downloadforstudent/week_1_studentversion.
 
 Before writing any code, lets get situated with the Rstudio interface. There are **four main panels** in RStudio you will need to become familiar with:
 
+  ![](images/RStudioPanes.png)
+
 1.  **Script**: this is found in the *top left* of your screen. This is where you write and save your code. This is where you will be working in the most.
 
     -   To save code, you need to press the file icon at the top of your script, this icon looks like a small disk drive.
@@ -70,6 +72,10 @@ We can create files within your exisiting project, we can also import an existin
 -   Move your .qmd file into the folder
 -   Refresh the Files pane
 -   Click the file to open it
+
+![](images/createProj.png)
+
+***Very Important Note.*** When you are naming a folder, project, script or file ***PLEASE*** **do not use space.** R has a hard time reading this when you want to import data or change working directories, and in general it is best practice not to have spaces. UseCamelCase or use_snake_case_instead! 
 
 # Basic R use
 
