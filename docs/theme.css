@@ -1,0 +1,6 @@
+/* Change background color of code blocks */
+pre code {
+  background-color: #d2e1f1 !important;   /* pick any darker blue */
+}
+ 
+
