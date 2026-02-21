@@ -5,10 +5,6 @@ description: "Introduction to Tidyverse packages"
 toc: true
 toc-depth: 3
 ---
-```{r}
-#| include: False
-library(tidyverse)
-```
 
 ## What is {tidyverse}?
 
