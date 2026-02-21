@@ -4,12 +4,6 @@ title: "Let's traverse the TIDYVERSE!"
 description: "Introduction to Tidyverse packages"
 toc: true
 toc-depth: 3
-
-format:
-  html:
-    embed-resources: true
-    fig-format: png
-    fig-dpi: 96
 ---
 
 ## What is {tidyverse}?

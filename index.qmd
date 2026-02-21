@@ -8,23 +8,20 @@ Hi Cognitive Dynamics Folks! If you're new to R, you can get started by installi
 
 *Note:* Make sure you follow the download instructions that are suited for your computer (Mac, Windows, Etc.)!
 
-
-::: {.panel-tabset}
+::: panel-tabset
 ## Important Notes Before You Start {.panel-name}
 
-**Note 1.** We will mention this again but when you are naming a folder, project, script or file ***PLEASE*** **do not use space.** R has a hard time reading this when you want to import data or change working directories, and in general it is best practice not to have spaces. UseCamelCase or use_snake_case_instead! 
+**Note 1.** We will mention this again but when you are naming a folder, project, script or file ***PLEASE*** **do not use space.** R has a hard time reading this when you want to import data or change working directories, and in general it is best practice not to have spaces. UseCamelCase or use_snake_case_instead!
 
-**Note 2.** Get orientated to what RStudio looks like, understanding all the different things the interface contains will help so much with troubleshooting.
-![](images/interface.png)
+**Note 2.** Get orientated to what RStudio looks like, understanding all the different things the interface contains will help so much with troubleshooting. ![](images/interface.png)
 
 ## R Glossary {.panel-name}
 
 For your reference I've compiled a shortlist of R & Computer Science jargon that will inevitably be used when we are explaining basics of R!
 
-- **Root Directory** — The top‑level folder of your project or file system. Everything else lives inside it. In RStudio projects, the root directory is the project folder.
+-   **Root Directory** — The top‑level folder of your project or file system. Everything else lives inside it. In RStudio projects, the root directory is the project folder.
 
-- **Working Directory** — The folder R is currently “looking at” for reading and writing files.
-Check it with `getwd()` and change it with `setwd()` (though RStudio Projects handle this automatically).
+-   **Working Directory** — The folder R is currently “looking at” for reading and writing files. Check it with `getwd()` and change it with `setwd()` (though RStudio Projects handle this automatically).
 
 -   **Object** — A piece of data stored in R (a number, vector, dataset, model, plot, etc.).
 
@@ -62,36 +59,34 @@ Check it with `getwd()` and change it with `setwd()` (though RStudio Projects ha
 
 -   **Session** — Your current R workspace, including objects, loaded packages, and Console history.
 
-- **snake_case** — A naming style where words are separated by underscores (e.g., my_variable_name).
-This is the preferred style in tidyverse code.
+-   **snake_case** — A naming style where words are separated by underscores (e.g., my_variable_name). This is the preferred style in tidyverse code.
 
-- **camelCase** — A naming style where words are joined and each new word starts with a capital letter (e.g., myVariableName). Common in JavaScript and some R packages, but less common in tidyverse workflows.
+-   **camelCase** — A naming style where words are joined and each new word starts with a capital letter (e.g., myVariableName). Common in JavaScript and some R packages, but less common in tidyverse workflows.
 
--   **Package** — A collection of functions, data, and documentation that extends R’s capabilities. 
+-   **Package** — A collection of functions, data, and documentation that extends R’s capabilities.
 
 ## Tidyverse Glossary {.panel-name}
 
-{tidyverse} is a very popular package we will get acquainted with closely as we learn about data cleaning and wrangling. Here are some important terms for your reference: 
+{tidyverse} is a very popular package we will get acquainted with closely as we learn about data cleaning and wrangling. Here are some important terms for your reference:
 
-- **{tidyverse}** — A collection of R packages designed for data science, all sharing a consistent grammar and philosophy.
+-   **{tidyverse}** — A collection of R packages designed for data science, all sharing a consistent grammar and philosophy.
 
-- **Pipe (`%>%`)** — A tool for writing readable code by passing the output of one function into the next.
+-   **Pipe (`%>%`)** — A tool for writing readable code by passing the output of one function into the next.
 
-- **Tibble** — A modern, tidyverse‑friendly version of a data frame that prints cleanly and behaves more predictably.
+-   **Tibble** — A modern, tidyverse‑friendly version of a data frame that prints cleanly and behaves more predictably.
 
-- **Aesthetic (aes)** — In {ggplot2}, the mapping between data and visual properties (e.g., `aes(x = mpg, y = hp, color = cyl)`).
+-   **Aesthetic (aes)** — In {ggplot2}, the mapping between data and visual properties (e.g., `aes(x = mpg, y = hp, color = cyl)`).
 
-- **Geoms** — Geometric objects in {ggplot2} that define what kind of plot you’re making (e.g., `geom_point()`, `geom_bar()`, `geom_line()`).
+-   **Geoms** — Geometric objects in {ggplot2} that define what kind of plot you’re making (e.g., `geom_point()`, `geom_bar()`, `geom_line()`).
 
-- **Faceting** — Splitting a plot into multiple panels based on a variable (`facet_wrap()`, `facet_grid()`).
+-   **Faceting** — Splitting a plot into multiple panels based on a variable (`facet_wrap()`, `facet_grid()`).
 
-- **Tidy Data** — A data format where: each variable is a column, each observation is a row, each value is a cell. This structure makes data easier to manipulate and visualize.
+-   **Tidy Data** — A data format where: each variable is a column, each observation is a row, each value is a cell. This structure makes data easier to manipulate and visualize.
 :::
-
 
 ## About This Series
 
-This website is a compilation of all the scripts revised over the years created and taught by the various graduate students in the Cognitive Dynamics Lab. I (one of the current grad students Sophia) made this website as a place for all these files to live in a more straightforward way, and added some clarifying elements to each weeks content. I hope this resource will be a good tool to reference back to for y'all as young researchers and will help streamline teaching this series for future grad students. 
+This website is a compilation of all the scripts revised over the years created and taught by the various graduate students in the Cognitive Dynamics Lab. I (one of the current grad students Sophia) made this website as a place for all these files to live in a more straightforward way, and added some clarifying elements to each weeks content. I hope this resource will be a good tool to reference back to for y'all as young researchers and will help streamline teaching this series for future grad students.
 
 Thank you to everyone who contributed to each weeks content over the years and imparted their knowledge to the next round of R users. Yay collective knowledge!!
 
