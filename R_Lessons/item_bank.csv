@@ -1,0 +1,11 @@
+"id","question","choice1","choice2","choice3","choice4","answer","difficulty"
+1,"What is the independent variable in the study?","Music type","Agitation score","Patient age","AZ_stage",1,1
+2,"What is the dependent variable in the study?","Music type","Agitation score","Patient age","AZ_stage",2,1
+3,"Which function shows the structure and types of all variables?","glimpse()","summary()","class()","typeof()",1,1
+4,"Which dplyr function filters rows based on a condition?","filter()","mutate()","select()","arrange()",1,1
+5,"How do you compute the mean agitation score for each music type?","mean(agitation)","aggregate(agitation ~ music_type, data, mean)","sum(agitation)/3","table(agitation)",2,2
+6,"Which function selects only specific columns from a dataset?","select()","group_by()","rename()","filter()",1,1
+7,"How do you filter the dataset to include only late-stage Alzheimer's patients?","filter(AZ_stage == 'late')","filter(AZ_stage = 'late')","AZ_stage == 'late'","subset(AZ_stage == 'late')",1,2
+8,"Which function creates a new variable in a dataset?","mutate()","summarize()","arrange()","filter()",1,2
+9,"Which function counts the number of observations per group?","count()","group_by()","nrow()","slice()",1,2
+10,"Which function arranges rows in ascending order of agitation?","arrange(agitation)","filter(agitation)","order_by(agitation)","sort(agitation)",1,3

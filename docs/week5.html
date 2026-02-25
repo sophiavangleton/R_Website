@@ -4523,7 +4523,6 @@ Colorado         2541   4884        0.7    72.06    6.8    63.9   166 103766</co
 <span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state.region) <span class="sc">%&gt;%</span> </span>
 <span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">IlliteracyRate=</span><span class="fu">mean</span>(Illiteracy, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="co">#someone walk us through what we&#39;re doing here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>add in exersize for this then add in visualizations for next week also add in janitor package as a note for importing packages</p>
 <p>{ggplot2} is a wonderful package in {tidyverse} that creates some very customizable visualizations:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>aplot<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(a, <span class="fu">aes</span>(<span class="at">x=</span>state.region, <span class="at">y=</span>IlliteracyRate, <span class="at">fill=</span>IlliteracyRate)) <span class="sc">+</span> <span class="co">#sidenote: why the plus? shouldnt it be %&gt;% ?!</span></span>

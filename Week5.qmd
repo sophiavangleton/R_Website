@@ -307,8 +307,6 @@ a <-df2 %>%
   summarize(IlliteracyRate=mean(Illiteracy, na.rm=TRUE)) #someone walk us through what we're doing here
 ```
 
-add in exersize for this then add in visualizations for next week also add in janitor package as a note for importing packages
-
 {ggplot2} is a wonderful package in {tidyverse} that creates some very customizable visualizations:
 
 ```{r}
