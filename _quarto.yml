@@ -13,6 +13,9 @@ project:
     - week7.qmd
     - NextSteps.qmd
 
+filters:
+  - shinylive
+
 website:
   title: "Cognitive Dynamics Lab R Lessons"
   navbar:
@@ -48,4 +51,5 @@ format:
   html:
     theme: morph
     css: theme.css
+
 
