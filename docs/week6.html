@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="ggplot and more!">
+<meta name="description" content="Problem set practicing what we’ve learned up until now">
 
-<title>Visualizing Data – Cognitive Dynamics Lab R Lessons</title>
+<title>Practice Session – Cognitive Dynamics Lab R Lessons</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,20 +160,30 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#about-this-data" id="toc-about-this-data" class="nav-link active" data-scroll-target="#about-this-data">About this data</a></li>
+  <li><a href="#first-step-when-creating-a-script" id="toc-first-step-when-creating-a-script" class="nav-link" data-scroll-target="#first-step-when-creating-a-script">First Step when creating a script</a></li>
+  <li><a href="#inspect-our-data" id="toc-inspect-our-data" class="nav-link" data-scroll-target="#inspect-our-data">Inspect our data</a></li>
+  <li><a href="#clean-our-data" id="toc-clean-our-data" class="nav-link" data-scroll-target="#clean-our-data">Clean our data</a></li>
+  <li><a href="#save-your-cleaned-data-as-a-.csv-file" id="toc-save-your-cleaned-data-as-a-.csv-file" class="nav-link" data-scroll-target="#save-your-cleaned-data-as-a-.csv-file">Save your cleaned data as a .csv file</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Visualizing Data</h1>
+<h1 class="title">Practice Session</h1>
 </div>
 
 <div>
   <div class="description">
-    ggplot and more!
+    Problem set practicing what we’ve learned up until now
   </div>
 </div>
 
@@ -190,8 +200,66 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Please download this <a href="downloadforstudent/week_6_studentversion.qmd">Week 6 Download</a> to get the .qmd for this weeks lesson. Also be sure to download this <a href="downloadforstudent/PrepSwitch.csv">.csv dataframe you will be using today</a>. Practice importing these files into your project for this series!</p>
+<p><strong>The questions are going to be explained by a RA to the group as we practice what we’ve learned in prior weeks. Everyone needs to answer at least 1 question!</strong></p>
+<section id="about-this-data" class="level2">
+<h2 class="anchored" data-anchor-id="about-this-data">About this data</h2>
+<p>This data comes from a real experiment from our lab, it is data from a task-switching experiment collected last year. It contains 14 columns corresponding to different variables that are important to keep track of:</p>
+<ul>
+<li><p><strong>id:</strong> subject ID</p></li>
+<li><p><strong>block:</strong> blocks in the experiment</p></li>
+<li><p><strong>trial:</strong> trials in the experiment</p></li>
+<li><p><strong>var:</strong> ok so this one actually doesnt correspond to anything lol</p></li>
+<li><p><strong>practice:</strong> practice blocks, there are two practice blocks at the beginning of each experiment</p></li>
+<li><p><strong>csi:</strong> cue stimulus interval. This refers to the cue instruction for the task-switching design either being presented at stimulus onset (short) or before stimulus onset (long)</p></li>
+<li><p><strong>task:</strong> refers to which task was being presented (size or parity were the two tasks)</p></li>
+<li><p><strong>numpresent:</strong> what stimulus was present. Could be c(1,2,3,4,6,7,8,9) but not 5 because the task was to either determine if the stimulus presented was larger or smaller than 5 (size task) OR if the number present was odd or even (parity)</p></li>
+<li><p><strong>cor_res:</strong> what would have been the correct response</p></li>
+<li><p><strong>rt:</strong> response time</p></li>
+<li><p><strong>act_res:</strong> what the actual response was by the participant</p></li>
+<li><p><strong>error:</strong> if an error occurred (0 = no error, 1 = error)</p></li>
+<li><p><strong>act_res_again:</strong> this one doesn’t matter, its just the actual response again lol</p></li>
+<li><p><strong>points:</strong> to account for attentional interest throughout the experiment, we ‘gameified’ correct responses by adding in points, where they get 1 point every 3 correct responses</p></li>
+</ul>
+</section>
+<section id="first-step-when-creating-a-script" class="level2">
+<h2 class="anchored" data-anchor-id="first-step-when-creating-a-script">First Step when creating a script</h2>
+<p>Your first task is to install then put in your library the packages you will need to read then clean your data. The packages you want to load into your library are: {rio}, {tidyverse} &amp; {janitor}.</p>
+<p><em>note.</em> For tidy scripts, <code>install.packages()</code> in your console, and ALWAYS load your package in <code>library()</code> in your script.</p>
+<p><strong>Question 1:</strong> explain why you do this.</p>
+<p>Our downloaded dataset we will use for this lesson is called PrepSwitch.csv. Put the .csv in your project in a folder called <strong>week_6_data</strong>. Use the function <code>import()</code> to read in the data. Then use the function from the {janitor} package called <code>clean_names()</code> to make sure our column names are clean and readable.</p>
+<p><strong>Question 2:</strong> explain why we are using underscores to name our data file.</p>
+</section>
+<section id="inspect-our-data" class="level2">
+<h2 class="anchored" data-anchor-id="inspect-our-data">Inspect our data</h2>
+<p>Lets check our data file using <code>head()</code>. I also want to check the last 20 rows of my data, do that too using <code>tails()</code>. Next, lets inspect our dataframe using <code>str()</code>. Make sure you made your dataset an object to call later in the script.</p>
+<p><strong>Question 3:</strong> explain what would happen if we didn’t save our dataset as an object.</p>
+<p><strong>Question 4:</strong> interpret the output of <code>str()</code>.</p>
+</section>
+<section id="clean-our-data" class="level2">
+<h2 class="anchored" data-anchor-id="clean-our-data">Clean our data</h2>
+<p>Okay, now that we have some feel for what our raw data looks like, lets clean it up a bit. I want to filter our practice trials from our dataset using the <code>filter()</code> function. The column that states if it were a practice trial is in the column practice. First, lets take a look at what our practice column looks like by indexing.</p>
+<p>So we see that 1 indicates it is a practice trial and 0 indicates it is not. Filter out practice trials from our dataset and make sure you save that to your pre-made object. Use the <code>%&gt;%</code> format to pipe your dataframe to the <code>filter()</code> function. Check your work to make sure you’ve sucessfully filtered out when practice = 1.</p>
+<p><strong>Question 5:</strong> if you want to look at a functions documentation, how do you ask R for help?</p>
+<p>Now I want to filter out outliers form our dataset. Specifically, I want to filter participant who overall had an average accuracy score below 80%. There are a few ways to do this, but lets use our knowledge of {dplyr} to determine subjects who fall under our 80% accuracy threshold.</p>
+<p><strong>Question 6:</strong> where does the {dplyr} package come from? what does this package help us do?</p>
+<p>I want to get the mean score of error for each subject. Use the <code>group_by()</code> and the <code>summarize()</code> function from the {dplyr} package to compute the <code>mean()</code> of the variable error and save the output as a NEW object called sum_error. Look at your output by piping it into <code>print()</code>.</p>
+<p><em>note.</em> order matters. Also in the <code>summarize()</code> function, make sure you are naming what the mean output will be, look at the help documentation for this function to do this.</p>
+<p><strong>Question 7:</strong> when computing the mean of something, how do we make sure NAs are removed?</p>
+<p>Great, now that we have the mean error per subject, we need to determine who falls under the 80% accuracy threshold. In other words, we need to create a variable that determines whether each mean error per subject is &gt; 0.20. Call from the new object you made called sum_error and use <code>mutate()</code> to create a new column called outlier_error where you are taking the previously computed mean error and determine if it falls below .80. check the output.</p>
+<p><strong>Question 8:</strong> why’s it giving you TRUE or FALSE’s in your output? interpret this output.</p>
+<p>How many people fall under 80% accuracy? Use <code>filter()</code> to remove these subject from your dataframe then check to make sure they are removed.</p>
+<p>I want to create new variables to the dataset that look at the trial befores csi, error and rt. Look up the documentation for the function <code>lag()</code>.</p>
+<p>Use the <code>mutate()</code> function to create 3 new variables into your dataset: lcsi, lerror, and lrt using the <code>lag()</code> function. As always, check your dataframe to make sure that worked.</p>
+<p><strong>Question 9:</strong> after checking your dataframe, you see there are NAs in the lag variables for the first trials- why is this?</p>
+<p>Finally, I want to filter out NA’s for my lag variables lcsi, lerror and lrt. To do this, I need to filter out the first trial across the whole experiment. Do this by using the <code>filter()</code> function.</p>
+</section>
+<section id="save-your-cleaned-data-as-a-.csv-file" class="level2">
+<h2 class="anchored" data-anchor-id="save-your-cleaned-data-as-a-.csv-file">Save your cleaned data as a .csv file</h2>
+<p>Let’s save our cleaned dataframe to a new .csv file that will appear in your project. Use the <code>write.csv()</code> function to save this as a .csv file called <strong>Cleaned_PrepSwitch.csv</strong>. Check your project file to make sure its created.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

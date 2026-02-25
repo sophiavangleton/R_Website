@@ -35,6 +35,48 @@
     "text": "GenAI & Best Practices When Learning R"
   },
   {
+    "objectID": "week6.html",
+    "href": "week6.html",
+    "title": "Practice Session",
+    "section": "",
+    "text": "Please download this Week 6 Download to get the .qmd for this weeks lesson. Also be sure to download this .csv dataframe you will be using today. Practice importing these files into your project for this series!\nThe questions are going to be explained by a RA to the group as we practice what we’ve learned in prior weeks. Everyone needs to answer at least 1 question!"
+  },
+  {
+    "objectID": "week6.html#about-this-data",
+    "href": "week6.html#about-this-data",
+    "title": "Practice Session",
+    "section": "About this data",
+    "text": "About this data\nThis data comes from a real experiment from our lab, it is data from a task-switching experiment collected last year. It contains 14 columns corresponding to different variables that are important to keep track of:\n\nid: subject ID\nblock: blocks in the experiment\ntrial: trials in the experiment\nvar: ok so this one actually doesnt correspond to anything lol\npractice: practice blocks, there are two practice blocks at the beginning of each experiment\ncsi: cue stimulus interval. This refers to the cue instruction for the task-switching design either being presented at stimulus onset (short) or before stimulus onset (long)\ntask: refers to which task was being presented (size or parity were the two tasks)\nnumpresent: what stimulus was present. Could be c(1,2,3,4,6,7,8,9) but not 5 because the task was to either determine if the stimulus presented was larger or smaller than 5 (size task) OR if the number present was odd or even (parity)\ncor_res: what would have been the correct response\nrt: response time\nact_res: what the actual response was by the participant\nerror: if an error occurred (0 = no error, 1 = error)\nact_res_again: this one doesn’t matter, its just the actual response again lol\npoints: to account for attentional interest throughout the experiment, we ‘gameified’ correct responses by adding in points, where they get 1 point every 3 correct responses"
+  },
+  {
+    "objectID": "week6.html#first-step-when-creating-a-script",
+    "href": "week6.html#first-step-when-creating-a-script",
+    "title": "Practice Session",
+    "section": "First Step when creating a script",
+    "text": "First Step when creating a script\nYour first task is to install then put in your library the packages you will need to read then clean your data. The packages you want to load into your library are: {rio}, {tidyverse} & {janitor}.\nnote. For tidy scripts, install.packages() in your console, and ALWAYS load your package in library() in your script.\nQuestion 1: explain why you do this.\nOur downloaded dataset we will use for this lesson is called PrepSwitch.csv. Put the .csv in your project in a folder called week_6_data. Use the function import() to read in the data. Then use the function from the {janitor} package called clean_names() to make sure our column names are clean and readable.\nQuestion 2: explain why we are using underscores to name our data file."
+  },
+  {
+    "objectID": "week6.html#inspect-our-data",
+    "href": "week6.html#inspect-our-data",
+    "title": "Practice Session",
+    "section": "Inspect our data",
+    "text": "Inspect our data\nLets check our data file using head(). I also want to check the last 20 rows of my data, do that too using tails(). Next, lets inspect our dataframe using str(). Make sure you made your dataset an object to call later in the script.\nQuestion 3: explain what would happen if we didn’t save our dataset as an object.\nQuestion 4: interpret the output of str()."
+  },
+  {
+    "objectID": "week6.html#clean-our-data",
+    "href": "week6.html#clean-our-data",
+    "title": "Practice Session",
+    "section": "Clean our data",
+    "text": "Clean our data\nOkay, now that we have some feel for what our raw data looks like, lets clean it up a bit. I want to filter our practice trials from our dataset using the filter() function. The column that states if it were a practice trial is in the column practice. First, lets take a look at what our practice column looks like by indexing.\nSo we see that 1 indicates it is a practice trial and 0 indicates it is not. Filter out practice trials from our dataset and make sure you save that to your pre-made object. Use the %&gt;% format to pipe your dataframe to the filter() function. Check your work to make sure you’ve sucessfully filtered out when practice = 1.\nQuestion 5: if you want to look at a functions documentation, how do you ask R for help?\nNow I want to filter out outliers form our dataset. Specifically, I want to filter participant who overall had an average accuracy score below 80%. There are a few ways to do this, but lets use our knowledge of {dplyr} to determine subjects who fall under our 80% accuracy threshold.\nQuestion 6: where does the {dplyr} package come from? what does this package help us do?\nI want to get the mean score of error for each subject. Use the group_by() and the summarize() function from the {dplyr} package to compute the mean() of the variable error and save the output as a NEW object called sum_error. Look at your output by piping it into print().\nnote. order matters. Also in the summarize() function, make sure you are naming what the mean output will be, look at the help documentation for this function to do this.\nQuestion 7: when computing the mean of something, how do we make sure NAs are removed?\nGreat, now that we have the mean error per subject, we need to determine who falls under the 80% accuracy threshold. In other words, we need to create a variable that determines whether each mean error per subject is &gt; 0.20. Call from the new object you made called sum_error and use mutate() to create a new column called outlier_error where you are taking the previously computed mean error and determine if it falls below .80. check the output.\nQuestion 8: why’s it giving you TRUE or FALSE’s in your output? interpret this output.\nHow many people fall under 80% accuracy? Use filter() to remove these subject from your dataframe then check to make sure they are removed.\nI want to create new variables to the dataset that look at the trial befores csi, error and rt. Look up the documentation for the function lag().\nUse the mutate() function to create 3 new variables into your dataset: lcsi, lerror, and lrt using the lag() function. As always, check your dataframe to make sure that worked.\nQuestion 9: after checking your dataframe, you see there are NAs in the lag variables for the first trials- why is this?\nFinally, I want to filter out NA’s for my lag variables lcsi, lerror and lrt. To do this, I need to filter out the first trial across the whole experiment. Do this by using the filter() function."
+  },
+  {
+    "objectID": "week6.html#save-your-cleaned-data-as-a-.csv-file",
+    "href": "week6.html#save-your-cleaned-data-as-a-.csv-file",
+    "title": "Practice Session",
+    "section": "Save your cleaned data as a .csv file",
+    "text": "Save your cleaned data as a .csv file\nLet’s save our cleaned dataframe to a new .csv file that will appear in your project. Use the write.csv() function to save this as a .csv file called Cleaned_PrepSwitch.csv. Check your project file to make sure its created."
+  },
+  {
     "objectID": "week4.html",
     "href": "week4.html",
     "title": "Let’s Work With Dataframes",
@@ -186,6 +228,6 @@
     "href": "week5.html#more-fun-with-dplyr",
     "title": "Let’s traverse the TIDYVERSE!",
     "section": "More fun with {dplyr}!",
-    "text": "More fun with {dplyr}!\nWe will be using datasets from the base package to show off some cool stuff we can do with {tidyverse} packages.\n\nhead(state.x77)\n\n           Population Income Illiteracy Life Exp Murder HS Grad Frost   Area\nAlabama          3615   3624        2.1    69.05   15.1    41.3    20  50708\nAlaska            365   6315        1.5    69.31   11.3    66.7   152 566432\nArizona          2212   4530        1.8    70.55    7.8    58.1    15 113417\nArkansas         2110   3378        1.9    70.66   10.1    39.9    65  51945\nCalifornia      21198   5114        1.1    71.71   10.3    62.6    20 156361\nColorado         2541   4884        0.7    72.06    6.8    63.9   166 103766\n\n\n\ndf2 &lt;-cbind(state.x77, data.frame(state.division),data.frame(state.region))\n\na &lt;-df2 %&gt;%\n  group_by(state.region) %&gt;% \n  summarize(IlliteracyRate=mean(Illiteracy, na.rm=TRUE)) #someone walk us through what we're doing here\n\n{ggplot2} is a wonderful package in {tidyverse} that creates some very customizable visualizations:\n\naplot&lt;- ggplot(a, aes(x=state.region, y=IlliteracyRate, fill=IlliteracyRate)) + #sidenote: why the plus? shouldnt it be %&gt;% ?!\n  geom_bar(position=position_dodge(), stat=\"identity\")\n\naplot\n\n\n\n\n\n\n\n\n\nb &lt;-df2 %&gt;%\n  group_by(state.division) %&gt;%\n  summarize(\n    IlliteracyRate=mean(Illiteracy, na.rm=TRUE),\n    AvgIncome=mean(Income, na.rm=TRUE)\n    )\n\nbplot&lt;- ggplot(b, aes(x=state.division, y=IlliteracyRate, fill=AvgIncome))+\n  geom_bar(position=position_dodge(), stat=\"identity\")\n\nbplot\n\n\n\n\n\n\n\n\n\ndf2plot &lt;- ggplot(df2, aes(x=Income, y=Illiteracy,color=state.region))+ \n  geom_point(stat=\"identity\", size=4, shape=18)\n\ndf2plot"
+    "text": "More fun with {dplyr}!\nWe will be using datasets from the base package to show off some cool stuff we can do with {tidyverse} packages.\n\nhead(state.x77)\n\n           Population Income Illiteracy Life Exp Murder HS Grad Frost   Area\nAlabama          3615   3624        2.1    69.05   15.1    41.3    20  50708\nAlaska            365   6315        1.5    69.31   11.3    66.7   152 566432\nArizona          2212   4530        1.8    70.55    7.8    58.1    15 113417\nArkansas         2110   3378        1.9    70.66   10.1    39.9    65  51945\nCalifornia      21198   5114        1.1    71.71   10.3    62.6    20 156361\nColorado         2541   4884        0.7    72.06    6.8    63.9   166 103766\n\n\n\ndf2 &lt;-cbind(state.x77, data.frame(state.division),data.frame(state.region))\n\na &lt;-df2 %&gt;%\n  group_by(state.region) %&gt;% \n  summarize(IlliteracyRate=mean(Illiteracy, na.rm=TRUE)) #someone walk us through what we're doing here\n\nadd in exersize for this then add in visualizations for next week also add in janitor package as a note for importing packages\n{ggplot2} is a wonderful package in {tidyverse} that creates some very customizable visualizations:\n\naplot&lt;- ggplot(a, aes(x=state.region, y=IlliteracyRate, fill=IlliteracyRate)) + #sidenote: why the plus? shouldnt it be %&gt;% ?!\n  geom_bar(position=position_dodge(), stat=\"identity\")\n\naplot\n\n\n\n\n\n\n\n\n\nb &lt;-df2 %&gt;%\n  group_by(state.division) %&gt;%\n  summarize(\n    IlliteracyRate=mean(Illiteracy, na.rm=TRUE),\n    AvgIncome=mean(Income, na.rm=TRUE)\n    )\n\nbplot&lt;- ggplot(b, aes(x=state.division, y=IlliteracyRate, fill=AvgIncome))+\n  geom_bar(position=position_dodge(), stat=\"identity\")\n\nbplot\n\n\n\n\n\n\n\n\n\ndf2plot &lt;- ggplot(df2, aes(x=Income, y=Illiteracy,color=state.region))+ \n  geom_point(stat=\"identity\", size=4, shape=18)\n\ndf2plot"
   }
 ]
