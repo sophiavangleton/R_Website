@@ -12,6 +12,7 @@ project:
     - week6.qmd
     - week7.qmd
     - NextSteps.qmd
+    - R_Lessons/index.qmd
 
 filters:
   - shinylive
