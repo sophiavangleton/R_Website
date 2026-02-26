@@ -12,7 +12,6 @@ project:
     - week6.qmd
     - week7.qmd
     - NextSteps.qmd
-    - R_Lessons/index.qmd
 
 filters:
   - shinylive
@@ -23,7 +22,7 @@ website:
     left:
       - href: index.qmd
         text: Start Here
-      - href: R_Lessons/index.html
+      - href:  https://sophiavangleton.shinyapps.io/r_lessons/
         text: Lessons App
       - text: "Weekly Lessons"
         menu:
