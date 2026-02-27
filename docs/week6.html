@@ -201,6 +201,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Please download this <a href="downloadforstudent/week_6_studentversion.qmd">Week 6 Download</a> to get the .qmd for this weeks lesson. Also be sure to download this <a href="downloadforstudent/PrepSwitch.csv">.csv dataframe you will be using today</a>. Practice importing these files into your project for this series!</p>
+<p>This session will be mostly hands-on coding, we will walk through a real world example of what a dataset might look like and practice reading in the data, inspecting it, and cleaning + adding to it. Please utilize the internet AND the past lessons located on this website as all of these things are concepts we’ve covered up until now. Good luck!</p>
 <p><strong>The questions are going to be explained by a RA to the group as we practice what we’ve learned in prior weeks. Everyone needs to answer at least 1 question!</strong></p>
 <section id="about-this-data" class="level2">
 <h2 class="anchored" data-anchor-id="about-this-data">About this data</h2>
@@ -232,31 +233,33 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="inspect-our-data" class="level2">
 <h2 class="anchored" data-anchor-id="inspect-our-data">Inspect our data</h2>
-<p>Lets check our data file using <code>head()</code>. I also want to check the last 20 rows of my data, do that too using <code>tails()</code>. Next, lets inspect our dataframe using <code>str()</code>. Make sure you made your dataset an object to call later in the script.</p>
+<p>Lets check our data file using <code>head()</code> and <code>tail()</code> where I want to see the first 20 rows of dataset and the last 6 rows. Next, lets inspect our dataframe using <code>glimspe()</code>. Make sure you made your dataset an object to call later in the script.</p>
 <p><strong>Question 3:</strong> explain what would happen if we didn’t save our dataset as an object.</p>
-<p><strong>Question 4:</strong> interpret the output of <code>str()</code>.</p>
+<p><strong>Question 4:</strong> interpret the output of <code>glimspe()</code>.</p>
 </section>
 <section id="clean-our-data" class="level2">
 <h2 class="anchored" data-anchor-id="clean-our-data">Clean our data</h2>
-<p>Okay, now that we have some feel for what our raw data looks like, lets clean it up a bit. I want to filter our practice trials from our dataset using the <code>filter()</code> function. The column that states if it were a practice trial is in the column practice. First, lets take a look at what our practice column looks like by indexing.</p>
+<p>Okay, now that we have some feel for what our raw data looks like, lets clean it up a bit. I want to filter our practice trials from our dataset using the <code>filter()</code> function. The column that states if it were a practice trial is in the column practice. First, lets take a look at what our practice column looks like by calling the practice column and indexing the first 30 rows.</p>
 <p>So we see that 1 indicates it is a practice trial and 0 indicates it is not. Filter out practice trials from our dataset and make sure you save that to your pre-made object. Use the <code>%&gt;%</code> format to pipe your dataframe to the <code>filter()</code> function. Check your work to make sure you’ve sucessfully filtered out when practice = 1.</p>
 <p><strong>Question 5:</strong> if you want to look at a functions documentation, how do you ask R for help?</p>
-<p>Now I want to filter out outliers form our dataset. Specifically, I want to filter participant who overall had an average accuracy score below 80%. There are a few ways to do this, but lets use our knowledge of {dplyr} to determine subjects who fall under our 80% accuracy threshold.</p>
+<p>Now I want to filter out outliers form our dataset. Specifically, I want to filter participant who overall had an average accuracy score below 80%. There are a few ways to do this, but lets use our knowledge of {dplyr} to determine subjects who fall under our 80% accuracy threshold. Where if an error was made it = 1 and if no error = 0.</p>
 <p><strong>Question 6:</strong> where does the {dplyr} package come from? what does this package help us do?</p>
 <p>I want to get the mean score of error for each subject. Use the <code>group_by()</code> and the <code>summarize()</code> function from the {dplyr} package to compute the <code>mean()</code> of the variable error and save the output as a NEW object called sum_error. Look at your output by piping it into <code>print()</code>.</p>
 <p><em>note.</em> order matters. Also in the <code>summarize()</code> function, make sure you are naming what the mean output will be, look at the help documentation for this function to do this.</p>
 <p><strong>Question 7:</strong> when computing the mean of something, how do we make sure NAs are removed?</p>
 <p>Great, now that we have the mean error per subject, we need to determine who falls under the 80% accuracy threshold. In other words, we need to create a variable that determines whether each mean error per subject is &gt; 0.20. Call from the new object you made called sum_error and use <code>mutate()</code> to create a new column called outlier_error where you are taking the previously computed mean error and determine if it falls below .80. check the output.</p>
 <p><strong>Question 8:</strong> why’s it giving you TRUE or FALSE’s in your output? interpret this output.</p>
-<p>How many people fall under 80% accuracy? Use <code>filter()</code> to remove these subject from your dataframe then check to make sure they are removed.</p>
+<p>How many people fall under 80% accuracy? Use <code>filter()</code> to remove these subject from your dataframe then check to make sure they are removed by <code>group_by()</code> id and just counting the number of rows using <code>count()</code>. Inspect the output.</p>
+<p>Checking the ids were filtered, maybe you noticed that the number of rows per id were different per person. The study design does allow for differences in the number of trials participants complete per block, however there seems to be an outlier or two who completed a very small amount of overall trials. Lets go ahead and remove any participants who completed less than 900 observations using <code>filter()</code>.</p>
 <p>I want to create new variables to the dataset that look at the trial befores csi, error and rt. Look up the documentation for the function <code>lag()</code>.</p>
-<p>Use the <code>mutate()</code> function to create 3 new variables into your dataset: lcsi, lerror, and lrt using the <code>lag()</code> function. As always, check your dataframe to make sure that worked.</p>
+<p>We want to make sure we create the lag variable for rt, errror and csi it is grouped by subject and not continuous across subjects. First use the <code>group_by()</code> function to group by id. Then, use the <code>mutate()</code> function to create 3 new variables into your dataset: lcsi, lerror, and lrt using the <code>lag()</code> function. Check your dataframe to make sure that worked.</p>
 <p><strong>Question 9:</strong> after checking your dataframe, you see there are NAs in the lag variables for the first trials- why is this?</p>
-<p>Finally, I want to filter out NA’s for my lag variables lcsi, lerror and lrt. To do this, I need to filter out the first trial across the whole experiment. Do this by using the <code>filter()</code> function.</p>
+<p>Finally, I want to filter out NA’s for my lag variables lcsi, lerror and lrt. To do this, I need to filter out the very first trial across the whole experiment by subject. Since we’ve filtered out practice blocks, each subject should start at block == 3. Use the <code>group_by()</code> function first then the <code>filter()</code> function downstream to make sure you are only filtering the first trials for each subject and not every first trial across blocks. As always, check your work by inspecting the dataframe.</p>
 </section>
 <section id="save-your-cleaned-data-as-a-.csv-file" class="level2">
 <h2 class="anchored" data-anchor-id="save-your-cleaned-data-as-a-.csv-file">Save your cleaned data as a .csv file</h2>
 <p>Let’s save our cleaned dataframe to a new .csv file that will appear in your project. Use the <code>write.csv()</code> function to save this as a .csv file called <strong>Cleaned_PrepSwitch.csv</strong>. Check your project file to make sure its created.</p>
+<p>Answer Key <a href="downloadforstudent/week6_answerkey.qmd">downloadable here</a>. Please no peeking this is just here to check your work!</p>
 
 
 </section>

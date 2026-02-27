@@ -1,14 +1,3 @@
----
-title: "Practice Session"
-format: html
-description: "Problem set practicing what we've learned up until now"
-toc: true
-toc-depth: 3
----
-
-Please download this [Week 6 Download](downloadforstudent/week_6_studentversion.qmd) to get the .qmd for this weeks lesson. Also be sure to download this [.csv dataframe you will be using today](downloadforstudent/PrepSwitch.csv). Practice importing these files into your project for this series!
-
-This session will be mostly hands-on coding, we will walk through a real world example of what a dataset might look like and practice reading in the data, inspecting it, and cleaning + adding to it. Please utilize the internet AND the past lessons located on this website as all of these things are concepts we've covered up until now. Good luck! 
 
 **The questions are going to be explained by a RA to the group as we practice what we've learned in prior weeks. Everyone needs to answer at least 1 question!**
 
@@ -53,7 +42,9 @@ Your first task is to install then put in your library the packages you will nee
 **Question 1:** explain why you do this.
 
 ```{r}
-
+library(rio)
+library(tidyverse)
+library(janitor)
 ```
 
 Our downloaded dataset we will use for this lesson is called PrepSwitch.csv. Put the .csv in your project in a folder called **week_6_data**. Use the function `import()` to read in the data. Then use the function from the {janitor} package called `clean_names()` to make sure our column names are clean and readable. 
@@ -61,6 +52,9 @@ Our downloaded dataset we will use for this lesson is called PrepSwitch.csv. Put
 **Question 2:** explain why we are using underscores to name our data file.
 
 ```{r}
+
+prep <- import('PrepSwitch.csv') %>% 
+  clean_names()
 
 ```
 
@@ -71,7 +65,11 @@ Lets check our data file using `head()` and `tail()` where I want to see the fir
 **Question 3:** explain what would happen if we didn't save our dataset as an object.
 
 ```{r}
+head(prep, 20)
 
+tail(prep)
+
+glimpse(prep)
 ```
 **Question 4:** interpret the output of `glimspe()`. 
 
@@ -81,6 +79,7 @@ Okay, now that we have some feel for what our raw data looks like, lets clean it
 
 ```{r}
 
+prep$practice[1:30]
 ```
 
 So we see that 1 indicates it is a practice trial and 0 indicates it is not. Filter out practice trials from our dataset and make sure you save that to your pre-made object. Use the ` %>% ` format to pipe your dataframe to the `filter()` function. Check your work to make sure you've sucessfully filtered out when practice = 1. 
@@ -88,7 +87,9 @@ So we see that 1 indicates it is a practice trial and 0 indicates it is not. Fil
 **Question 5:** if you want to look at a functions documentation, how do you ask R for help? 
 
 ```{r}
-
+prep <- prep %>% 
+  filter(practice != 1) %>% 
+  print()
 ```
 
 Now I want to filter out outliers form our dataset. Specifically, I want to filter participant who overall had an average accuracy score below 80%. There are a few ways to do this, but lets use our knowledge of {dplyr} to determine subjects who fall under our 80% accuracy threshold. Where if an error was made it = 1 and if no error = 0. 
@@ -102,23 +103,64 @@ I want to get the mean score of error for each subject. Use the `group_by()` and
 **Question 7:** when computing the mean of something, how do we make sure NAs are removed? 
 
 ```{r}
-
+#this way
+sum_error1 <- prep %>% 
+  group_by(id) %>% 
+  summarise(mean_error = (mean(error, na.rm = TRUE))) %>% 
+  print()
+#or this way
+sum_error2 <- prep %>% 
+  group_by(id) %>% 
+  summarise(mean_error = (100*mean(error, na.rm = TRUE))) %>% 
+  print()
 ```
 
 Great, now that we have the mean error per subject, we need to determine who falls under the 80% accuracy threshold. In other words, we need to create a variable that determines whether each mean error per subject is > 0.20. Call from the new object you made called sum_error and use `mutate()` to create a new column called outlier_error where you are taking the previously computed mean error and determine if it falls below .80. check the output. 
 
 **Question 8:** why's it giving you TRUE or FALSE's in your output? interpret this output. 
 ```{r}
-
+#this way 
+sum_error1 <- sum_error1 %>% 
+  mutate(outlier_error_20 = mean_error > .20) %>% 
+  print()
+#or this way
+sum_error2 <- sum_error2 %>% 
+  mutate(outlier_error_20 = mean_error > 20) %>% 
+  print()
+# sub 19 and 30 fall under 80% acc
 ```
 How many people fall under 80% accuracy? Use `filter()` to remove these subject from your dataframe then check to make sure they are removed by `group_by()` id and just counting the number of rows using `count()`. Inspect the output.  
 
 ```{r}
+prep <- prep %>% 
+  filter(id != 19, id != 30) %>% 
+  print()
+
+?count()
+
+prep %>% 
+  group_by(id) %>% 
+  count()
+
+#could also do this
+
+prep %>% 
+  group_by(id) %>% 
+  summarise(n())
 
 ```
 Checking the ids were filtered, maybe you noticed that the number of rows per id were different per person. The study design does allow for differences in the number of trials participants complete per block, however there seems to be an outlier or two who completed a very small amount of overall trials. Lets go ahead and remove any participants who completed less than 900 observations using `filter()`. 
 
 ```{r}
+prep <- prep %>% 
+  filter(id != 17, id != 18)
+
+#check work
+
+prep %>% 
+  group_by(id) %>% 
+  count()
+
 
 ```
 
@@ -128,21 +170,34 @@ I want to create new variables to the dataset that look at the trial befores csi
 We want to make sure we create the lag variable for rt, errror and csi it is grouped by subject and not continuous across subjects. First use the `group_by()` function to group by id. Then, use the `mutate()` function to create 3 new variables into your dataset: lcsi, lerror, and lrt using the `lag()` function. Check your dataframe to make sure that worked. 
 
 ```{r}
+?lag()
 
+prep <- prep %>% 
+  group_by(id) %>% 
+  mutate(lcsi = lag(csi,1), lerror = lag(error, 1), lrt = lag(rt,1)) %>% 
+  ungroup()
+
+view(prep)
 ```
 **Question 9:** after checking your dataframe, you see there are NAs in the lag variables for the first trials- why is this?
 
 Finally, I want to filter out NA's for my lag variables lcsi, lerror and lrt. To do this, I need to filter out the very first trial across the whole experiment by subject. Since we've filtered out practice blocks, each subject should start at block == 3. Use the `group_by()` function first then the `filter()` function downstream to make sure you are only filtering the first trials for each subject and not every first trial across blocks. As always, check your work by inspecting the dataframe.  
 
 ```{r}
+?filter()
+?group_by()
+prep <- prep %>% #filter out trial 1 only in block 3
+  group_by(block == 3) %>% 
+  filter(trial != 1) %>% 
+  ungroup()
 
+view(prep)
 ```
 
 ## Save your cleaned data as a .csv file
 Let's save our cleaned dataframe to a new .csv file that will appear in your project. Use the `write.csv()` function to save this as a .csv file called **Cleaned_PrepSwitch.csv**. Check your project file to make sure its created. 
 
 ```{r}
-
+write.csv(prep,"Cleaned_PrepSwitch")
 ```
 
-Answer Key [downloadable here](downloadforstudent/week6_answerkey.qmd). Please no peeking this is just here to check your work!
