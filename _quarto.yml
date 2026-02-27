@@ -23,7 +23,7 @@ website:
       - href: index.qmd
         text: Start Here
       - href:  https://sophiavangleton.shinyapps.io/r_lessons/
-        text: Lessons App
+        text: CAT Quiz
       - text: "Weekly Lessons"
         menu:
           - text: "Week 1"

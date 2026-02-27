@@ -1,7 +1,160 @@
 ---
-title: "Basic Statistical Computing in R"
-format: html
-description: "How to write T-tests, Repeated Measures ANOVAs, and basics of multilevel models"
+title: "Visualizating Your Data"
+description: "Visualizations using ggplot"
 toc: true
 toc-depth: 3
+format:
+  html:
+    embed-resources: true
+    fig-format: png
+    fig-dpi: 96
+
+filters:
+  - panel-accordion
 ---
+```{r}
+#| include: False
+library(tidyverse)
+```
+
+Please download this [Week 7 Download](downloadforstudent/week_6_studentversion.qmd) to get the .qmd for this weeks lesson. Practice importing this file into your project for this series!
+
+## {tidyverse} packages refresher
+
+The {tidyverse} is a *collection* of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar. 
+
+**Packages within this collection include:**
+
+::: {.panel-accordion}
+
+### dplyr
+Houses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling.
+
+Cool stuff you can do! 
+
+*Note:* there are a lot of different preloaded datasets to play around with, like mtcars, iris, and (my personal favorite) penguins
+```{r}
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(mean_mpg = mean(mpg))
+
+```
+
+
+### ggplot2
+Create custom data visualizations, compatible with themes and other custom functions. (this is what we will be focusing on today!)
+
+Cool stuff you can do! 
+```{r}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot()
+```
+### tidyr
+Data tidying and shaping. Helps you pivot, separate, join, and organize data structures.
+
+Cool stuff you can do! 
+```{r}
+pivot <- pivot_longer(airquality, 
+             cols = c(Ozone, Wind), 
+             names_to = "variable", 
+             values_to = "value")
+head(pivot)
+```
+### readr
+Reads in data files (like CSVs).
+
+Cool stuff you can do! 
+```{r}
+# Example using a built-in readr dataset
+read_csv(readr_example("mtcars.csv"))
+```
+### tibble
+Creates a more modern version of a dataframe that is cleaner and easier to use.
+
+Cool stuff you can do! 
+```{r}
+tibble(
+  x = 1:5,
+  y = x^2
+)
+```
+### forcats
+Works with **cat**egorical variables. Lets you build more customizable plots.
+
+Cool stuff you can do! 
+```{r}
+fct_reorder(iris$Species, iris$Sepal.Length) %>%
+  head()
+```
+### stringr
+Makes it easy to detect, extract, replace, and clean up strings (text data).
+
+Cool stuff you can do! 
+```{r}
+str_detect(c("apple", "banana", "pear"), "a")
+```
+### purrr
+Lets you repeat operations without writing loops. Great for applying a function to many things at once.
+
+Cool stuff you can do! 
+```{r}
+map_dbl(1:5, ~ .x^2)
+```
+### lubridate
+Helps you parse, extract, and do math with dates and times.
+
+Cool stuff you can do! 
+```{r}
+ymd("2024-02-01") + days(10)
+```
+:::
+
+## Visualing using {ggplot2}
+
+We will be using datasets from the base package to show off some cool stuff we can do with {tidyverse} packages. Firstly, lets load in the {tidyverse} package. Then, lets use the function `head()` to inspect the preloaded dataset called **state.x77**. 
+
+```{r}
+head(state.x77)
+```
+
+
+```{r}
+df2 <-cbind(state.x77, data.frame(state.division),data.frame(state.region))
+
+a <-df2 %>%
+  group_by(state.region) %>% 
+  summarize(IlliteracyRate=mean(Illiteracy, na.rm=TRUE)) #someone walk us through what we're doing here
+```
+
+{ggplot2} is a wonderful package in {tidyverse} that creates some very customizable visualizations:
+
+```{r}
+#| fig.show: "show"
+aplot<- ggplot(a, aes(x=state.region, y=IlliteracyRate, fill=IlliteracyRate)) + #sidenote: why the plus? shouldnt it be %>% ?!
+  geom_bar(position=position_dodge(), stat="identity")
+
+aplot
+```
+
+```{r}
+#| fig.show: "show"
+b <-df2 %>%
+  group_by(state.division) %>%
+  summarize(
+    IlliteracyRate=mean(Illiteracy, na.rm=TRUE),
+    AvgIncome=mean(Income, na.rm=TRUE)
+    )
+
+bplot<- ggplot(b, aes(x=state.division, y=IlliteracyRate, fill=AvgIncome))+
+  geom_bar(position=position_dodge(), stat="identity")
+
+bplot
+```
+
+```{r}
+#| fig.show: "show"
+df2plot <- ggplot(df2, aes(x=Income, y=Illiteracy,color=state.region))+ 
+  geom_point(stat="identity", size=4, shape=18)
+
+df2plot
+```
