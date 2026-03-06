@@ -1,0 +1,154 @@
+---
+title: "Visualizating Your Data"
+description: "Visualizations using ggplot"
+toc: true
+toc-depth: 3
+format:
+  html:
+    embed-resources: true
+    fig-format: png
+    fig-dpi: 96
+
+filters:
+  - panel-accordion
+---
+
+
+## Visualing using {ggplot2}
+
+First, lets load {tidyverse} in our script. We will be using preloaded data from a package called {palmerpenguins} so install then load that into your script as well. The dataset is called **penguins**, lets inspect the data using `head()` and then check how many rows and columns it has using a function we've learned previously.  
+
+```{r}
+#install and load packages first
+
+head(penguins)
+```
+
+
+**Every `ggplot()` has 3 main components:**
+
+**1. Data:** the data used to produce a plot. If you are using the pipe function `%>%` you can pipe your data into the plot before you use `ggplot()` and you dont have to specify data inside the plot.
+
+Data can be called within `ggplot()`
+```{r}
+#| fig.show: "hide"
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point()
+```
+
+or can be piped in
+```{r}
+#| fig.show: "hide"
+penguins %>% 
+ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point()
+
+```
+
+**2. Aesthetic mappings:** this is achieved using the `aes()` function within `ggplot()`. it specifies how variables in the data are mapped to visual properties.
+
+**Some visual properties include:**
+
+-   x
+-   y
+-   color
+-   fill
+-   alpha
+-   others (linetype, shape, linewidth, size, group)
+
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point()
+```
+***Exercise 1.*** play around with the `aes()` function in the ggplot above, use some other aes mapping like alpha = to see what it does. 
+
+3.  **Layer(s):** this is usually achieved using `geom_*()` and adding additional layers on top. You will use a `geom_*()` function to represent data points. some `geom_*()` functions include:
+
+![geom\_\*() Functions](images/geomfunctions.jpeg)
+
+*note.* within ggplot, you need to use `+` instead of `%>%` to add layers, its just the syntax.
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram(binwidth = 5, color = "white")
+
+```
+
+You can also use the `aes()` function in different layers within `ggplot()`. 
+
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species))
+```
+***Exercise 2.*** I want to add a layer to the ggplot above that adds a line by species. Add a geom layer called `geom_smooth()` and using `aes()` inside the `geom_smooth()` use linetype = to specify you want the lines to use linetype by species. 
+
+```{r}
+
+```
+
+## Visualizing aggregated data
+
+Using our Penguins dataset, lets aggregate the data so we can visualize some cool stats! I want to aggregate by species and get the mean body mass per species of pengies. 
+
+```{r}
+penguins_bodymass_agg <- penguins %>%
+  group_by(species) %>%
+  summarize(
+    mean_body_mass = mean(body_mass_g) #whats missing here??
+  )
+
+head(penguins_bodymass_agg)
+```
+Now lets create a bar plot of body mass per species. 
+```{r}
+ggplot(penguins_bodymass_agg,
+       aes(x = species, y = mean_body_mass, fill = mean_body_mass)) +
+  geom_col()
+```
+This is great, but lets add some more visual context using `labs()` function. `labs()` is used in ggplot, and lets you add a title, axis labels, captions, and labels!
+```{r}
+ggplot(penguins_bodymass_agg,
+       aes(x = species, y = mean_body_mass, fill = mean_body_mass)) +
+  geom_col() +
+  labs(
+    title = "Mean Body Mass by Species",
+    x = "Species",
+    y = "Mean Body Mass (g)", 
+    fill = "Avg Body Mass by Species"
+  )
+
+```
+You can also change the theme of the figure to look more presentable using `theme_*()`. There are also packages that are made just for fun visual themes, one is called {ggthemes}
+
+***Exercise 3.*** Look up online a list of different themes in {ggthemes} you can add in ggplot(). Install then load in this package and pick a theme you like and use it! 
+```{r}
+ggplot(penguins_bodymass_agg,
+       aes(x = species, y = mean_body_mass, fill = mean_body_mass)) +
+  geom_col() +
+  labs(
+    title = "Mean Body Mass by Species",
+    x = "Species",
+    y = "Mean Body Mass (g)", 
+    fill = "Avg Body Mass by Species"
+  ) +
+  theme_minimal() #replace with a theme of your choosing! 
+```
+***Exercise 4.*** I want to aggregate by species and island. To a new object, use the penguins data and `group_by()` species and island, then `summarize()` the mean body mass of penguins AND the mean flipper length of penguins. name these mean_mass and mean_flipper in the summarize function. 
+
+```{r}
+
+```
+Now I want to see this new aggregated data in two side-by-side plots separated by the island variable. We can do this by faceting using the function `facet_wrap()`:
+
+```{r}
+ggplot(penguins_s_i,
+       aes(x = species, y = mean_mass, fill = island)) +
+  geom_col(position = "dodge") +
+  facet_wrap(~ island) +
+  labs(
+    title = "Mean Body Mass by Species and Island",
+    x = "Species",
+    y = "Mean Body Mass (g)"
+  )
+
+```
+There are many more cool things you can add to a ggplot plot, the internet is your friend for all the customizable ways you can use this function! 
