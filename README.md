@@ -2,7 +2,7 @@
 
 This github repo houses all materials for the website used in the 7 week series of r lessons for the research assistants in the [Cognitive Dynamics Laboratory](https://blogs.uoregon.edu/cognitivedynamics/home/) at the University of Oregon. This website is a compilation of all the scripts revised over the years created and taught by the various graduate students in the Cognitive Dynamics Lab. I made this website as a place for all these files to live in a more straightforward way, and added some clarifying elements + new lessons to each weeks content. This site is made to be updated as the way we use R inevitably changes, so please copy this repo and update the site when needed!
 
-Within this repository you can find all the files we will use for this course, and all relevent links to each weeks content are also downloadable on the website. In addition to the weekly lessons that are made to be taught in-person, there are a number of resources for independent work. 
+Within this repository you can find all the files we will use for this course, and all relevent links to each weeks content are also downloadable on the website. In addition to the weekly lessons that are made to be taught in-person, there are a number of resources for independent work. Output of the site (all renderings and files for download) are found in the 'Docs' folder. 
 
 ## This Websites Features:
 
