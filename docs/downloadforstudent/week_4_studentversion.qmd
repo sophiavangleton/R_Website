@@ -1,0 +1,171 @@
+---
+title: "Let's Work With Dataframes"
+format: html
+description: "Working and Analyzing a Dataframe"
+toc: true
+toc-depth: 3
+---
+
+Please download this [Week 4 Download](downloadforstudent/week_4_studentversion.qmd) to get the .qmd for this weeks lesson. Also be sure to download this [folder containing the datafiles you will be using today](downloadforstudent/data.zip). Practice importing these files into your project for this series!
+
+First, practice importing the data you downloaded last week (dogwood file) and name it `data`. 
+```{r}
+
+```
+
+## Working with data
+
+First....let's look at the data! The `$` sign is your new best friend. It let's you index into a dataframe without needing to know the position of the column.
+
+**Exercise 1.** Try typing `data$` to see all of your column names!
+
+```{r}
+
+```
+
+There are lots of ways to index dataframes. You should know them all!
+
+```{r}
+#| warning: false
+#| message: false
+#| results: 'hide'   # hide printed output
+
+
+data$ID
+data[1]
+data$Trial[5] 
+data[5,3]
+data[1,] #note the comma! 
+data$ID[1]
+```
+
+We can reference the data inside the brackets too
+
+```{r}
+#| warning: false
+#| message: false
+#| results: 'hide'   # hide printed output
+
+data[data$Trial == 5,]
+```
+
+**Exercise 2.** Create a dataframe that contains trials 1 through 5. Then create a dataframe that contains trials 1, 2, and 7
+
+```{r}
+
+```
+
+We can also make new columns using the `$`
+
+```{r}
+data$New <- 1:nrow(data)
+```
+
+Why would we need to do this? Often useful for cleaning data, so let's clean our data! Sometimes data files contain data that we don't want to analyze for various reasons...
+
+...like the first trial in a block might be counted as practice
+
+```{r}
+#| warning: false
+#| message: false
+#| results: 'hide'   # hide printed output
+
+
+
+data$Trial > 1 
+
+data[data$Trial > 1,] #index based on this logical argument
+
+dataCleaned <- data[data$Trial > 1,] #make sure to save the result!
+```
+
+Functions can also be useful for cleaning. Let's remove RTs that are NaN. (What is Nan?)
+
+```{r}
+dataCleaned <- dataCleaned[!is.na(dataCleaned$RT),]
+dataCleaned <- dataCleaned[data$RT > mean(data$RT),]
+```
+
+Now let's remove certain trials demo of the AND operator
+
+```{r}
+dataCleaned <- dataCleaned[data$Trial != 5 & data$Trial != 8,]
+```
+
+We could only look at cue check trials, demo of the OR operator
+
+```{r}
+#dataCleaned2 <- dataCleaned2[dataCleaned$LCueCheck == 1|| dataCleaned$RCueCheck ==1,]
+```
+
+**Exercise 3.** remove the first block from our data. We will count it as a practice block.
+
+```{r}
+
+```
+
+## Analyze Your Data!
+
+What is the mean error?
+
+```{r}
+summary(data) #An easy way to get a lot of info 
+```
+
+The mean is rarely enough on it's own to tell us much... We want to know how values differ across different experimental conditions.
+
+*Check your understanding:* What is the error rate for each blockType?
+
+Hopefully you can see that this would be a pain to do by hand... Luckily, there is a better way! Enter, the {dplyr} package. Aggregation in R requires the `group_by()` function, and the `summarize()` function. Pipes are weird... but AWESOME.
+
+{dplyr} is part of the {tidyverse} meta-package, which contains packages designed to help with data wrangling, but most importantly, plotting. Piping feeds in the first argument to a function `data %>% group_by(BlockType)` which is the same as `group_by(data, BlockType)` we need to save this to do anything with it... or we can use pipes
+
+```{r}
+errorRates <- data %>%
+  group_by(BlockType) %>%
+  summarise(meanError = mean(Error))
+```
+
+This does the same thing without pipes, just harder to read
+
+```{r}
+errorRates2 <- summarise(group_by(data, BlockType), meanError = mean(Error))
+```
+
+Usually we do a 2 step aggregation, which means we do this process twice. Once for each subject individually, then a second time using all subjects data.
+
+```{r}
+#| warning: false
+#| message: false
+
+errorRates3 <- data %>% 
+  group_by(BlockType, Block) %>% summarise(meanError = mean(Error)) %>% #now we do it again
+  group_by(BlockType) %>% 
+  summarise(Error = mean(meanError), Error_SD = sd(meanError)) #be sure to use the new name of your mean column!
+
+```
+
+Again you could try to do this without piping... it starts to get really hard.
+
+```{r}
+#| warning: false
+#| message: false
+
+errorRates3 <- summarise(group_by(summarise(group_by(data, BlockType, Block), meanError = mean(Error)), BlockType), Error = mean(meanError), Error_SD = sd(meanError))
+```
+
+But wait, this now contains the entire (raw!) dataset! Let's see tidyverse's version of data cleaning!
+
+```{r}
+#| warning: false
+#| message: false
+
+data <- data %>%
+  filter(Block >= 3 & !is.na(RT) & RT < 10000) %>% 
+  group_by(BlockType, Block) %>% summarise(meanError = mean(Error)) %>%
+  group_by(BlockType) %>%
+  summarise(Error = mean(meanError), Error_SD = sd(meanError))
+head(data)
+```
+
+Most likely, your data cleaning will be much more complex, so you will have to decide whether and when to save a cleaned version of your dataset, if you want to run multiple different analyses with it (instead of doing both, data cleaning, and analysis in one set of pipes).

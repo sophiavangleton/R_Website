@@ -1,14 +1,10 @@
 ---
-title: "Honors Session"
+title: "Practice Session"
 format: html
-description: "This sesson, we will be walking through a real life example of what data cleaning, wrangling, manipulating and visualization might look like using data previously collected in this lab. This is your chance to apply all the skills we've learned throughout this course and will set you up for what data analysis will look when completing an honors project."
+description: "Problem set practicing what we've learned up until now"
 toc: true
 toc-depth: 3
 ---
-
-Please download this [Week 7 Download](downloadforstudent/week_7_studentversion.qmd) to get the .qmd for this weeks lesson. Also be sure to download this [.csv dataframe you will be using today](downloadforstudent/PrepSwitch.csv). Practice importing these files into your project for this series!
-
-This session will be mostly hands-on coding, we will walk through a real world example of what a dataset might look like and practice reading in the data, inspecting it, and cleaning + adding to it. Please utilize the internet AND the past lessons located on this website as all of these things are concepts we've covered up until now. Good luck! 
 
 **The questions are going to be explained by a RA to the group as we practice what we've learned in prior weeks. Everyone needs to answer at least 1 question!**
 
@@ -61,6 +57,7 @@ Our downloaded dataset we will use for this lesson is called PrepSwitch.csv. Put
 **Question 2:** explain why we are using underscores to name our data file.
 
 ```{r}
+
 
 ```
 
@@ -156,6 +153,7 @@ Now that your switch variable is factorized, use `ggplot()` to create a boxplot 
 ```{r}
 
 ```
+
 **Question 10:** Interpret the results. 
 
 ## Save your cleaned data as a .csv file
@@ -165,4 +163,3 @@ Let's save our cleaned dataframe to a new .csv file that will appear in your pro
 
 ```
 
-Answer Key [downloadable here](downloadforstudent/week7_answerkey.qmd). Please no peeking this is just here to check your work!

@@ -1,0 +1,201 @@
+---
+title: "Intro to Dataframes"
+format: html
+description: "Defining a dataframe, and finding + importing datasets"
+toc: true
+toc-depth: 3
+---
+## What is a dataframe?
+
+Dataframe is a type of variable (or a mode of storage) to keep data. It is basically a spreadsheet like format, and this is the most often used mode in R. 
+Features of a DF: It looks like a list of possibly heterogeneous elements of equal length (matrix-esque list)
+- contains rows (cases) and columns (variables)
+- top rows are names of each variable
+- each column represents one kind of content
+- every column must have the same length (but missing data are allowed)
+
+### Lets generate a dataframe!
+```{r}
+People <- c('Neha', 'Sophia', 'Dominik', "Ulrich") #vector with names
+  Positions <- c("GE","GE","GE" ,"PI") #vector with positions, select from PI, LM (Lab Managaer), GE, and RA
+  Count <- 1:length(Positions) #vector with numbers from 1 to N
+  
+  df <- data.frame(People, Positions, Count)
+```
+
+**Exercise 1.** Look up what the function `rep()` does and how it can help us with the Positions vector! Look up the length function and how it could help us avoid hard-coding the Count maximum (here, 14)! Confirm that it is a data.frame (hint: `class(df)`)
+
+```{r}
+
+```
+
+Codes above are altogether making one data.frame variable. First three lines are creating vectors (as you can see in Environment). `mydf()` is a function to create a data.frame, which made independent columns from provided vectors.
+
+### Checking a data.frame
+`print()` will display the content of dataframe in the console. 
+```{r}
+print(df);
+df
+```
+
+
+`head()` will do same as `print()` except you can provide number of rows to display
+```{r}
+head(df)
+head(df, 2)
+```
+
+`tail()` shows the content from the bottom
+```{r}
+tail(df)
+tail(df, 2)
+```
+
+`View()` makes a new tab in the editor window and display the data.frame
+```{r}
+#View(df)
+```
+
+`dim()` gives back the size of data.frame (row by column)
+```{r}
+dim(df)
+ncol(df)
+nrow(df)
+```
+
+*Note:* that none of these operations will change the content of dataframes. But, it will be important to constantly check your data.frame as it gets updated.
+
+**Let's extract or index variables or specific values.** This is like the room number: The first number(s) is/are the vertical level (rows), the second number(s)/value(s) is/are the rows (room on level). 
+
+Think! `df[level, room]`
+
+**Exercise 2.** Get 4th row, 2nd column. 
+```{r}
+
+```
+
+With indexing, there are often multiple ways to achieve the same thing:
+
+You can get 2nd element of column "Position"
+```{r}
+df$Positions[2] #dollar sign gives us an entire column, which is just a vector and can be indexed as such
+df[2, "Positions"] #Here we use column name (has to match exactly) to get the column
+df[2, 2] #Here we use the column number to get the second column, which is Position
+
+df[,2] # Get all rows of 2nd column
+df$Positions # Get a column "Position"
+df[2,]
+```
+
+*Note:* When you extract a column from data.frame, it is no longer a data.frame. Do you remember how to check what class of variable it is?
+
+### Adding and removing variables (columns)
+```{r}
+# Direct
+df$RowNum <- rep(1, nrow(df))
+
+#indirect
+RowNum <- rep(1, nrow(df))
+df$RowNum <- RowNum
+
+#Remove
+df$RowNum <- NULL
+```
+
+*Note:* To add a variable or new column, you can directly feed in information or use a variable. Direct way is slightly more efficient as it leaves no trace in the Environment.
+
+### Filtering rows by conditioning
+
+Filtering is an operation to keep or remove certain rows. We can filter rows corresponding to RAs
+
+```{r}
+df[Positions == "RA",]
+
+df[df$Positions == "PI",]
+
+df_only_PI<- df[Positions == "PI",]
+
+# Filter rows corresponding to RAs or PI
+df[Positions == "GE" & Count == 2,]
+```
+
+Okay, now that we *know* what a dataframe is, lets practice finding and importing a dataset! 
+
+## Find the data
+
+What is a directory? Directories are the location of files.
+
+**How do I check the current working directory?** For each session (i.e., every time you open Rstudio), the current working directory is set as the default location. You can change this using [this guide](https://stackoverflow.com/questions/22432344/how-do-you-change-the-default-directory-in-rstudio-or-r). When you have an R project open, the working directory is the location of the project. When you have don't have an R project, have R closed and open R by double clicking on a script, then R will open a session with the working directory being the location of the file. If you open R by just clicking on the R icon, it will open a new session with some kind of default location (for windows, this is often "Documents"). 
+
+Let's check our working directory first. 
+
+```{r}
+getwd() #print it in a command window 
+dirWD <- getwd() #store the current directory as dirWD
+```
+
+Specifying a working directory is important for loading and saving files, and it is recommended to define at the beginning of sessions. In R, directories are expressed in the form of string variable like:
+
+```{r}
+# This defines a string variable called "dir1".
+
+dir1 <- "C:/Users/forrest/OneDrive/Documents/"
+```
+
+*Note:* that each folder is separated by "/". Pressing the tab key may help selecting the right folder/file without typing errors.
+
+How do I change the current working directory? To change the current working directory, you need to specify the directory to jump to. And, feed it in to `setwd()` function (you could also give a string without making a variable).
+
+
+```{r}
+setwd(dir1) #changing directory
+getwd() #check if it worked or not
+```
+*Note:* Look at the warning if you run this in your script window (this window) "The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks." This is because when you are setting your working directory, for it to actually change past this code chunk we'd need to run `setwd()` in the Console pane. 
+
+
+**To read in a datafile, you will need to set the working directory to the folder containing the "data" folder:** The path types we have talked about are absolute paths. They are called absolute paths because their origin is at the root location of YOUR system. This means that if you want to share your script with someone else, it won't work (because they might place files at a different location compared to you). That's why it's important to use R projects or open scripts by opening a fresh R session by double clicking on the script - that way, the working directory location is consistent. So, what if we need to find a file that's not levels down in our hierarchy, but up?
+
+What's is available in our working directory `fs::dir_tree(path = "..", recurse = TRUE)` If we want to find a file that requires us to go up one level in the hierarchy, we can do the following "../experiment/" or we can set the wd one level higher: setwd("../") should you need to.
+
+## Import The Data
+There are many different forms datafiles can take. There are different ways of reading in different files (or different packages that help read in certain datafiles). 
+
+```{r}
+#| warning: false
+#| message: false
+#| results: 'hide'   # hide printed output
+
+
+#txt files 
+txt <- read.table("data/dogwood.txt", header = TRUE, fill = TRUE)
+
+#csv files 
+csv <- read.csv("data/2021_demographic.csv")
+
+#spss files 
+library(foreign) 
+library(tidyverse) 
+library(rio)
+
+spss <- as.data.frame(read.spss("data/Experiment_1.sav"))
+
+#RDS files 
+rds <- readRDS("data/CCdata.RDS")
+
+#creates results directory 
+dir.create("results")
+
+#SAVE FILES 
+saveRDS(txt, "results/data2.RDS") 
+write.table(txt, "results/data2.txt", sep = "\t") 
+write.csv(txt, "results/data2.csv") 
+write.foreign(txt, "results/data2.sav", package = "SPSS", codefile = "code.txt")
+```
+
+Finally, let's read in the .txt file dogwood.txt (data/data2.RDS) and assign it to the name data. 
+
+```{r}
+data <- import("data/dogwood.txt")
+```
+

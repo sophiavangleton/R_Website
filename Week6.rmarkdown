@@ -284,3 +284,4 @@ ggplot(penguins_s_i,
 
 ```
 There are many more cool things you can add to a ggplot plot, the internet is your friend for all the customizable ways you can use this function! 
+
