@@ -5,7 +5,6 @@ description: "Introduction to Tidyverse packages"
 toc: true
 toc-depth: 3
 ---
-
 ## What is {tidyverse}?
 
 The {tidyverse} is a *collection* of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar. 
