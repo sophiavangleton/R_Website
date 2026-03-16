@@ -1,6 +1,6 @@
 ---
 title: "Let's traverse the TIDYVERSE!"
-
+format: html
 description: "Introduction to Tidyverse packages"
 toc: true
 toc-depth: 3

@@ -1,16 +1,9 @@
 ---
 title: "Visualizating Your Data"
+format: html
 description: "Visualizations using ggplot"
 toc: true
 toc-depth: 3
-format:
-  html:
-    embed-resources: true
-    fig-format: png
-    fig-dpi: 96
-
-filters:
-  - panel-accordion
 ---
 
 
