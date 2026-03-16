@@ -1,138 +1,11 @@
 ---
 title: "Visualizating Your Data"
+format: html
 description: "Visualizations using ggplot"
 toc: true
 toc-depth: 3
-format:
-  html:
-    embed-resources: true
-    fig-format: png
-    fig-dpi: 96
-
-filters:
-  - panel-accordion
 ---
 
-```{r}
-#| include: False
-library(tidyverse)
-library(palmerpenguins)
-```
-
-Please download this [Week 6 Download](downloadforstudent/week_6_studentversion.qmd) to get the .qmd for this weeks lesson. Practice importing this file into your project for this series!
-
-## {tidyverse} packages refresher
-
-The {tidyverse} is a *collection* of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar.
-
-**Packages within this collection include:**
-
-::: panel-accordion
-### dplyr
-
-Houses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling.
-
-Cool stuff you can do!
-
-*Note:* there are a lot of different preloaded datasets to play around with, like mtcars, iris, and (my personal favorite) penguins
-
-```{r}
-mtcars %>% 
-  group_by(cyl) %>% 
-  summarise(mean_mpg = mean(mpg))
-
-```
-
-### ggplot2
-
-Create custom data visualizations, compatible with themes and other custom functions. (this is what we will be focusing on today!)
-
-Cool stuff you can do!
-
-```{r}
-ggplot(iris, aes(x = Species, y = Sepal.Length)) +
-  geom_boxplot()
-```
-
-### tidyr
-
-Data tidying and shaping. Helps you pivot, separate, join, and organize data structures.
-
-Cool stuff you can do!
-
-```{r}
-pivot <- pivot_longer(airquality, 
-             cols = c(Ozone, Wind), 
-             names_to = "variable", 
-             values_to = "value")
-head(pivot)
-```
-
-### readr
-
-Reads in data files (like CSVs).
-
-Cool stuff you can do!
-
-```{r}
-# Example using a built-in readr dataset
-read_csv(readr_example("mtcars.csv"))
-```
-
-### tibble
-
-Creates a more modern version of a dataframe that is cleaner and easier to use.
-
-Cool stuff you can do!
-
-```{r}
-tibble(
-  x = 1:5,
-  y = x^2
-)
-```
-
-### forcats
-
-Works with **cat**egorical variables. Lets you build more customizable plots.
-
-Cool stuff you can do!
-
-```{r}
-fct_reorder(iris$Species, iris$Sepal.Length) %>%
-  head()
-```
-
-### stringr
-
-Makes it easy to detect, extract, replace, and clean up strings (text data).
-
-Cool stuff you can do!
-
-```{r}
-str_detect(c("apple", "banana", "pear"), "a")
-```
-
-### purrr
-
-Lets you repeat operations without writing loops. Great for applying a function to many things at once.
-
-Cool stuff you can do!
-
-```{r}
-map_dbl(1:5, ~ .x^2)
-```
-
-### lubridate
-
-Helps you parse, extract, and do math with dates and times.
-
-Cool stuff you can do!
-
-```{r}
-ymd("2024-02-01") + days(10)
-```
-:::
 
 ## Visualing using {ggplot2}
 
@@ -188,7 +61,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
 
 *note.* within ggplot, you need to use `+` instead of `%>%` to add layers, its just the syntax.
 ```{r}
-ggplot(penguins, aes(x = flipper_length_mm, fill = species)) + #for a histogram, need to specify fill in aes() and no Y-axis
+ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +
   geom_histogram(binwidth = 5, color = "white")
 
 ```
@@ -202,9 +75,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 ***Exercise 2.*** I want to add a layer to the ggplot above that adds a line by species. Add a geom layer called `geom_smooth()` and using `aes()` inside the `geom_smooth()` use linetype = to specify you want the lines to use linetype by species. 
 
 ```{r}
-ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
-  geom_point(aes(color = species))+ 
-  geom_smooth(aes(color = species, linetype = species), method = lm, se = F)
+
 ```
 
 ## Visualizing aggregated data
@@ -215,7 +86,7 @@ Using our Penguins dataset, lets aggregate the data so we can visualize some coo
 penguins_bodymass_agg <- penguins %>%
   group_by(species) %>%
   summarize(
-    mean_body_mass = mean(body_mass_g, na.rm = T) #whats missing here??
+    mean_body_mass = mean(body_mass_g) #whats missing here??
   )
 
 head(penguins_bodymass_agg)
@@ -229,7 +100,7 @@ ggplot(penguins_bodymass_agg,
 This is great, but lets add some more visual context using `labs()` function. `labs()` is used in ggplot, and lets you add a title, axis labels, captions, and labels!
 ```{r}
 ggplot(penguins_bodymass_agg,
-       aes(x = species, y = mean_body_mass, fill = factor(mean_body_mass))) +
+       aes(x = species, y = mean_body_mass, fill = mean_body_mass)) +
   geom_col() +
   labs(
     title = "Mean Body Mass by Species",
@@ -255,16 +126,6 @@ ggplot(penguins_bodymass_agg,
   theme_minimal() #replace with a theme of your choosing! 
 ```
 ***Exercise 4.*** I want to aggregate by species and island. To a new object, use the penguins data and `group_by()` species and island, then `summarize()` the mean body mass of penguins AND the mean flipper length of penguins. name these mean_mass and mean_flipper in the summarize function. 
-```{r}
-#| include: False
-penguins_s_i <- penguins %>%
-  group_by(species, island) %>%
-  summarize(
-    mean_mass = mean(body_mass_g, na.rm = TRUE),
-    mean_flipper = mean(flipper_length_mm, na.rm = TRUE)
-  )
-
-```
 
 ```{r}
 
@@ -284,4 +145,3 @@ ggplot(penguins_s_i,
 
 ```
 There are many more cool things you can add to a ggplot plot, the internet is your friend for all the customizable ways you can use this function! 
-

@@ -13,6 +13,9 @@ project:
     - week7.qmd
     - NextSteps.qmd
 
+resources:
+  - downloadforstudent/*
+  
 filters:
   - shinylive
 

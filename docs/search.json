@@ -39,7 +39,7 @@
     "href": "week6.html",
     "title": "Visualizating Your Data",
     "section": "",
-    "text": "Please download this Week 7 Download to get the .qmd for this weeks lesson. Practice importing this file into your project for this series!"
+    "text": "Please download this Week 6 Download to get the .qmd for this weeks lesson. Practice importing this file into your project for this series!"
   },
   {
     "objectID": "week6.html#tidyverse-packages-refresher",
@@ -214,7 +214,7 @@
     "href": "week7.html",
     "title": "Honors Session",
     "section": "",
-    "text": "Please download this Week 6 Download to get the .qmd for this weeks lesson. Also be sure to download this .csv dataframe you will be using today. Practice importing these files into your project for this series!\nThis session will be mostly hands-on coding, we will walk through a real world example of what a dataset might look like and practice reading in the data, inspecting it, and cleaning + adding to it. Please utilize the internet AND the past lessons located on this website as all of these things are concepts we’ve covered up until now. Good luck!\nThe questions are going to be explained by a RA to the group as we practice what we’ve learned in prior weeks. Everyone needs to answer at least 1 question!"
+    "text": "Please download this Week 7 Download to get the .qmd for this weeks lesson. Also be sure to download this .csv dataframe you will be using today. Practice importing these files into your project for this series!\nThis session will be mostly hands-on coding, we will walk through a real world example of what a dataset might look like and practice reading in the data, inspecting it, and cleaning + adding to it. Please utilize the internet AND the past lessons located on this website as all of these things are concepts we’ve covered up until now. Good luck!\nThe questions are going to be explained by a RA to the group as we practice what we’ve learned in prior weeks. Everyone needs to answer at least 1 question!"
   },
   {
     "objectID": "week7.html#about-this-data",
