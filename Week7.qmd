@@ -1,284 +1,168 @@
 ---
-title: "Visualizating Your Data"
-description: "Visualizations using ggplot"
+title: "Honors Session"
+format: html
+description: "This sesson, we will be walking through a real life example of what data cleaning, wrangling, manipulating and visualization might look like using data previously collected in this lab. This is your chance to apply all the skills we've learned throughout this course and will set you up for what data analysis will look when completing an honors project."
 toc: true
 toc-depth: 3
-format:
-  html:
-    embed-resources: true
-    fig-format: png
-    fig-dpi: 96
-
-filters:
-  - panel-accordion
 ---
 
-```{r}
-#| include: False
-library(tidyverse)
-library(palmerpenguins)
-```
+Please download this [Week 6 Download](downloadforstudent/week_7_studentversion.qmd) to get the .qmd for this weeks lesson. Also be sure to download this [.csv dataframe you will be using today](downloadforstudent/PrepSwitch.csv). Practice importing these files into your project for this series!
 
-Please download this [Week 7 Download](downloadforstudent/week_7_studentversion.qmd) to get the .qmd for this weeks lesson. Practice importing this file into your project for this series!
+This session will be mostly hands-on coding, we will walk through a real world example of what a dataset might look like and practice reading in the data, inspecting it, and cleaning + adding to it. Please utilize the internet AND the past lessons located on this website as all of these things are concepts we've covered up until now. Good luck! 
 
-## {tidyverse} packages refresher
+**The questions are going to be explained by a RA to the group as we practice what we've learned in prior weeks. Everyone needs to answer at least 1 question!**
 
-The {tidyverse} is a *collection* of R packages that are designed to work together smoothly, so once you learn one, the others feel familiar.
+## About this data
 
-**Packages within this collection include:**
+This data comes from a real experiment from our lab, it is data from a task-switching experiment collected last year. It contains 14 columns corresponding to different variables that are important to keep track of:
 
-::: panel-accordion
-### dplyr
+-   **id:** subject ID
 
-Houses lots of functions to help with data manipulation. Helps you filter, select, group data variables, and aggregate data. This is a great package for data wrangling.
+-   **block:** blocks in the experiment
 
-Cool stuff you can do!
+-   **trial:** trials in the experiment
 
-*Note:* there are a lot of different preloaded datasets to play around with, like mtcars, iris, and (my personal favorite) penguins
+-   **var:** ok so this one actually doesnt correspond to anything lol
 
-```{r}
-mtcars %>% 
-  group_by(cyl) %>% 
-  summarise(mean_mpg = mean(mpg))
+-   **practice:** practice blocks, there are two practice blocks at the beginning of each experiment
 
-```
+-   **csi:** cue stimulus interval. This refers to the cue instruction for the task-switching design either being presented at stimulus onset (short) or before stimulus onset (long)
 
-### ggplot2
+-   **task:** refers to which task was being presented (size or parity were the two tasks)
 
-Create custom data visualizations, compatible with themes and other custom functions. (this is what we will be focusing on today!)
+-   **numpresent:** what stimulus was present. Could be c(1,2,3,4,6,7,8,9) but not 5 because the task was to either determine if the stimulus presented was larger or smaller than 5 (size task) OR if the number present was odd or even (parity)
 
-Cool stuff you can do!
+-   **cor_res:** what would have been the correct response
 
-```{r}
-ggplot(iris, aes(x = Species, y = Sepal.Length)) +
-  geom_boxplot()
-```
+-    **rt:** response time
 
-### tidyr
+-   **act_res:** what the actual response was by the participant
 
-Data tidying and shaping. Helps you pivot, separate, join, and organize data structures.
+-   **error:** if an error occurred (0 = no error, 1 = error)
 
-Cool stuff you can do!
+-   **act_res_again:** this one doesn't matter, its just the actual response again lol
 
-```{r}
-pivot <- pivot_longer(airquality, 
-             cols = c(Ozone, Wind), 
-             names_to = "variable", 
-             values_to = "value")
-head(pivot)
-```
+-   **points:** to account for attentional interest throughout the experiment, we 'gameified' correct responses by adding in points, where they get 1 point every 3 correct responses
 
-### readr
+## First Step when creating a script
 
-Reads in data files (like CSVs).
+Your first task is to install then put in your library the packages you will need to read then clean your data. The packages you want to load into your library are: {rio}, {tidyverse} & {janitor}.
 
-Cool stuff you can do!
+*note.* For tidy scripts, `install.packages()` in your console, and ALWAYS load your package in `library()` in your script.
 
-```{r}
-# Example using a built-in readr dataset
-read_csv(readr_example("mtcars.csv"))
-```
-
-### tibble
-
-Creates a more modern version of a dataframe that is cleaner and easier to use.
-
-Cool stuff you can do!
-
-```{r}
-tibble(
-  x = 1:5,
-  y = x^2
-)
-```
-
-### forcats
-
-Works with **cat**egorical variables. Lets you build more customizable plots.
-
-Cool stuff you can do!
-
-```{r}
-fct_reorder(iris$Species, iris$Sepal.Length) %>%
-  head()
-```
-
-### stringr
-
-Makes it easy to detect, extract, replace, and clean up strings (text data).
-
-Cool stuff you can do!
-
-```{r}
-str_detect(c("apple", "banana", "pear"), "a")
-```
-
-### purrr
-
-Lets you repeat operations without writing loops. Great for applying a function to many things at once.
-
-Cool stuff you can do!
-
-```{r}
-map_dbl(1:5, ~ .x^2)
-```
-
-### lubridate
-
-Helps you parse, extract, and do math with dates and times.
-
-Cool stuff you can do!
-
-```{r}
-ymd("2024-02-01") + days(10)
-```
-:::
-
-## Visualing using {ggplot2}
-
-First, lets load {tidyverse} in our script. We will be using preloaded data from a package called {palmerpenguins} so install then load that into your script as well. The dataset is called **penguins**, lets inspect the data using `head()` and then check how many rows and columns it has using a function we've learned previously.  
-
-```{r}
-#install and load packages first
-
-head(penguins)
-```
-
-
-**Every `ggplot()` has 3 main components:**
-
-**1. Data:** the data used to produce a plot. If you are using the pipe function `%>%` you can pipe your data into the plot before you use `ggplot()` and you dont have to specify data inside the plot.
-
-Data can be called within `ggplot()`
-```{r}
-#| fig.show: "hide"
-ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
-  geom_point()
-```
-
-or can be piped in
-```{r}
-#| fig.show: "hide"
-penguins %>% 
-ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +
-  geom_point()
-
-```
-
-**2. Aesthetic mappings:** this is achieved using the `aes()` function within `ggplot()`. it specifies how variables in the data are mapped to visual properties.
-
-**Some visual properties include:**
-
--   x
--   y
--   color
--   fill
--   alpha
--   others (linetype, shape, linewidth, size, group)
-
-```{r}
-ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
-  geom_point()
-```
-***Exercise 1.*** play around with the `aes()` function in the ggplot above, use some other aes mapping like alpha = to see what it does. 
-
-3.  **Layer(s):** this is usually achieved using `geom_*()` and adding additional layers on top. You will use a `geom_*()` function to represent data points. some `geom_*()` functions include:
-
-![geom\_\*() Functions](images/geomfunctions.jpeg)
-
-*note.* within ggplot, you need to use `+` instead of `%>%` to add layers, its just the syntax.
-```{r}
-ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +
-  geom_histogram(binwidth = 5, color = "white")
-
-```
-
-You can also use the `aes()` function in different layers within `ggplot()`. 
-
-```{r}
-ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
-  geom_point(aes(color = species))
-```
-***Exercise 2.*** I want to add a layer to the ggplot above that adds a line by species. Add a geom layer called `geom_smooth()` and using `aes()` inside the `geom_smooth()` use linetype = to specify you want the lines to use linetype by species. 
+**Question 1:** explain why you do this.
 
 ```{r}
 
 ```
 
-## Visualizing aggregated data
+Our downloaded dataset we will use for this lesson is called PrepSwitch.csv. Put the .csv in your project in a folder called **week_6_data**. Use the function `import()` to read in the data. Then use the function from the {janitor} package called `clean_names()` to make sure our column names are clean and readable. 
 
-Using our Penguins dataset, lets aggregate the data so we can visualize some cool stats! I want to aggregate by species and get the mean body mass per species of pengies. 
-
-```{r}
-penguins_bodymass_agg <- penguins %>%
-  group_by(species) %>%
-  summarize(
-    mean_body_mass = mean(body_mass_g, na.rm = T) #whats missing here??
-  )
-
-head(penguins_bodymass_agg)
-```
-Now lets create a bar plot of body mass per species. 
-```{r}
-ggplot(penguins_bodymass_agg,
-       aes(x = species, y = mean_body_mass, fill = mean_body_mass)) +
-  geom_col()
-```
-This is great, but lets add some more visual context using `labs()` function. `labs()` is used in ggplot, and lets you add a title, axis labels, captions, and labels!
-```{r}
-ggplot(penguins_bodymass_agg,
-       aes(x = species, y = mean_body_mass, fill = mean_body_mass)) +
-  geom_col() +
-  labs(
-    title = "Mean Body Mass by Species",
-    x = "Species",
-    y = "Mean Body Mass (g)", 
-    fill = "Avg Body Mass by Species"
-  )
-
-```
-You can also change the theme of the figure to look more presentable using `theme_*()`. There are also packages that are made just for fun visual themes, one is called {ggthemes}
-
-***Exercise 3.*** Look up online a list of different themes in {ggthemes} you can add in ggplot(). Install then load in this package and pick a theme you like and use it! 
-```{r}
-ggplot(penguins_bodymass_agg,
-       aes(x = species, y = mean_body_mass, fill = mean_body_mass)) +
-  geom_col() +
-  labs(
-    title = "Mean Body Mass by Species",
-    x = "Species",
-    y = "Mean Body Mass (g)", 
-    fill = "Avg Body Mass by Species"
-  ) +
-  theme_minimal() #replace with a theme of your choosing! 
-```
-***Exercise 4.*** I want to aggregate by species and island. To a new object, use the penguins data and `group_by()` species and island, then `summarize()` the mean body mass of penguins AND the mean flipper length of penguins. name these mean_mass and mean_flipper in the summarize function. 
-```{r}
-#| include: False
-penguins_s_i <- penguins %>%
-  group_by(species, island) %>%
-  summarize(
-    mean_mass = mean(body_mass_g, na.rm = TRUE),
-    mean_flipper = mean(flipper_length_mm, na.rm = TRUE)
-  )
-
-```
+**Question 2:** explain why we are using underscores to name our data file.
 
 ```{r}
 
 ```
-Now I want to see this new aggregated data in two side-by-side plots separated by the island variable. We can do this by faceting using the function `facet_wrap()`:
+
+## Inspect our data
+
+Lets check our data file using `head()` and `tail()` where I want to see the first 20 rows of dataset and the last 6 rows. Next, lets inspect our dataframe using `glimspe()`. Make sure you made your dataset an object to call later in the script. 
+
+**Question 3:** explain what would happen if we didn't save our dataset as an object.
 
 ```{r}
-ggplot(penguins_s_i,
-       aes(x = species, y = mean_mass, fill = island)) +
-  geom_col(position = "dodge") +
-  facet_wrap(~ island) +
-  labs(
-    title = "Mean Body Mass by Species and Island",
-    x = "Species",
-    y = "Mean Body Mass (g)"
-  )
 
 ```
-There are many more cool things you can add to a ggplot plot, the internet is your friend for all the customizable ways you can use this function! 
+**Question 4:** interpret the output of `glimspe()`. 
+
+## Clean our data
+
+Okay, now that we have some feel for what our raw data looks like, lets clean it up a bit. I want to filter our practice trials from our dataset using the `filter()` function. The column that states if it were a practice trial is in the column practice. First, lets take a look at what our practice column looks like by calling the practice column and indexing the first 30 rows. 
+
+```{r}
+
+```
+
+So we see that 1 indicates it is a practice trial and 0 indicates it is not. Filter out practice trials from our dataset and make sure you save that to your pre-made object. Use the ` %>% ` format to pipe your dataframe to the `filter()` function. Check your work to make sure you've sucessfully filtered out when practice = 1. 
+
+**Question 5:** if you want to look at a functions documentation, how do you ask R for help? 
+
+```{r}
+
+```
+
+Now I want to filter out outliers form our dataset. Specifically, I want to filter participant who overall had an average accuracy score below 80%. There are a few ways to do this, but lets use our knowledge of {dplyr} to determine subjects who fall under our 80% accuracy threshold. Where if an error was made it = 1 and if no error = 0. 
+
+**Question 6:** where does the {dplyr} package come from? what does this package help us do? 
+
+I want to get the mean score of error for each subject. Use the `group_by()` and the `summarize()` function from the {dplyr} package to compute the `mean()` of the variable error and save the output as a NEW object called sum_error. Look at your output by piping it into `print()`. 
+
+*note.* order matters. Also in the `summarize()` function, make sure you are naming what the mean output will be, look at the help documentation for this function to do this. 
+
+**Question 7:** when computing the mean of something, how do we make sure NAs are removed? 
+
+```{r}
+
+```
+
+Great, now that we have the mean error per subject, we need to determine who falls under the 80% accuracy threshold. In other words, we need to create a variable that determines whether each mean error per subject is > 0.20. Call from the new object you made called sum_error and use `mutate()` to create a new column called outlier_error where you are taking the previously computed mean error and determine if it falls below .80. check the output. 
+
+**Question 8:** why's it giving you TRUE or FALSE's in your output? interpret this output. 
+```{r}
+
+```
+How many people fall under 80% accuracy? Use `filter()` to remove these subject from your dataframe then check to make sure they are removed by `group_by()` id and just counting the number of rows using `count()`. Inspect the output.  
+
+```{r}
+
+```
+Checking the ids were filtered, maybe you noticed that the number of rows per id were different per person. The study design does allow for differences in the number of trials participants complete per block, however there seems to be an outlier or two who completed a very small amount of overall trials. Lets go ahead and remove any participants who completed less than 900 observations using `filter()`. 
+
+```{r}
+
+```
+
+
+I want to create new variables to the dataset that look at the trial befores csi, error and rt. Look up the documentation for the function `lag()`. 
+
+We want to make sure we create the lag variable for rt, errror and csi it is grouped by subject and not continuous across subjects. First use the `group_by()` function to group by id. Then, use the `mutate()` function to create 3 new variables into your dataset: lcsi, lerror, and lrt using the `lag()` function. Check your dataframe to make sure that worked. 
+
+```{r}
+
+```
+**Question 9:** after checking your dataframe, you see there are NAs in the lag variables for the first trials- why is this?
+
+Finally, I want to filter out NA's for my lag variables lcsi, lerror and lrt. To do this, I need to filter out the very first trial across the whole experiment by subject. Since we've filtered out practice blocks, each subject should start at block == 3. Use the `group_by()` function first then the `filter()` function downstream to make sure you are only filtering the first trials for each subject and not every first trial across blocks. As always, check your work by inspecting the dataframe.  
+
+```{r}
+
+```
+
+Lets visualize some data! Using `ggplot()`, I want to see how task switching is effected by response time. Using a boxplot, I want to use the variable **switch** and **rt** on the x and y axis of a boxplot, respectively. 
+
+First, check your data and how **rt** and **switch** is represented. Specifically, use `head()` to check the data, then `class()` to check what class type both **rt** and **switch** is. I want to change **switch** to be a factor, with two levels: "no-switch" and "switch" using the `factor()` function. Save this in a new object called **prepvis**
+
+```{r}
+
+```
+
+Now, I want to aggregate my data where I want to `group_by()` id and switch, then `summarize()` and get the mean reponse time when where are no errors or NA's. Within `summarize()` name this average **rt**. Add this to the prepvis object you created before. 
+
+```{r}
+
+```
+
+Now that your switch variable is factorized, use `ggplot()` to create a boxplot with x as switch and y as response time. Use the `labs()` function in the ggplot to add a title, x and y axis labels, and any other information you think would help clarify the results. 
+```{r}
+
+```
+**Question 10:** Interpret the results. 
+
+## Save your cleaned data as a .csv file
+Let's save our cleaned dataframe to a new .csv file that will appear in your project. Use the `write.csv()` function to save this as a .csv file called **Cleaned_PrepSwitch.csv**. Check your project file to make sure its created. 
+
+```{r}
+
+```
+
+Answer Key [downloadable here](downloadforstudent/week7_answerkey.qmd). Please no peeking this is just here to check your work!

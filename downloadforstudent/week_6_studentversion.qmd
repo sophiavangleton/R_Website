@@ -1,144 +1,154 @@
 ---
-title: "Practice Session"
-format: html
-description: "Problem set practicing what we've learned up until now"
+title: "Visualizating Your Data"
+description: "Visualizations using ggplot"
 toc: true
 toc-depth: 3
+format:
+  html:
+    embed-resources: true
+    fig-format: png
+    fig-dpi: 96
+
+filters:
+  - panel-accordion
 ---
 
-**The questions are going to be explained by a RA to the group as we practice what we've learned in prior weeks. Everyone needs to answer at least 1 question!**
 
-## About this data
+## Visualing using {ggplot2}
 
-This data comes from a real experiment from our lab, it is data from a task-switching experiment collected last year. It contains 14 columns corresponding to different variables that are important to keep track of:
+First, lets load {tidyverse} in our script. We will be using preloaded data from a package called {palmerpenguins} so install then load that into your script as well. The dataset is called **penguins**, lets inspect the data using `head()` and then check how many rows and columns it has using a function we've learned previously.  
 
--   **id:** subject ID
+```{r}
+#install and load packages first
 
--   **block:** blocks in the experiment
+head(penguins)
+```
 
--   **trial:** trials in the experiment
 
--   **var:** ok so this one actually doesnt correspond to anything lol
+**Every `ggplot()` has 3 main components:**
 
--   **practice:** practice blocks, there are two practice blocks at the beginning of each experiment
+**1. Data:** the data used to produce a plot. If you are using the pipe function `%>%` you can pipe your data into the plot before you use `ggplot()` and you dont have to specify data inside the plot.
 
--   **csi:** cue stimulus interval. This refers to the cue instruction for the task-switching design either being presented at stimulus onset (short) or before stimulus onset (long)
+Data can be called within `ggplot()`
+```{r}
+#| fig.show: "hide"
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point()
+```
 
--   **task:** refers to which task was being presented (size or parity were the two tasks)
+or can be piped in
+```{r}
+#| fig.show: "hide"
+penguins %>% 
+ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point()
 
--   **numpresent:** what stimulus was present. Could be c(1,2,3,4,6,7,8,9) but not 5 because the task was to either determine if the stimulus presented was larger or smaller than 5 (size task) OR if the number present was odd or even (parity)
+```
 
--   **cor_res:** what would have been the correct response
+**2. Aesthetic mappings:** this is achieved using the `aes()` function within `ggplot()`. it specifies how variables in the data are mapped to visual properties.
 
--    **rt:** response time
+**Some visual properties include:**
 
--   **act_res:** what the actual response was by the participant
+-   x
+-   y
+-   color
+-   fill
+-   alpha
+-   others (linetype, shape, linewidth, size, group)
 
--   **error:** if an error occurred (0 = no error, 1 = error)
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point()
+```
+***Exercise 1.*** play around with the `aes()` function in the ggplot above, use some other aes mapping like alpha = to see what it does. 
 
--   **act_res_again:** this one doesn't matter, its just the actual response again lol
+3.  **Layer(s):** this is usually achieved using `geom_*()` and adding additional layers on top. You will use a `geom_*()` function to represent data points. some `geom_*()` functions include:
 
--   **points:** to account for attentional interest throughout the experiment, we 'gameified' correct responses by adding in points, where they get 1 point every 3 correct responses
+![geom\_\*() Functions](images/geomfunctions.jpeg)
 
-## First Step when creating a script
+*note.* within ggplot, you need to use `+` instead of `%>%` to add layers, its just the syntax.
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram(binwidth = 5, color = "white")
 
-Your first task is to install then put in your library the packages you will need to read then clean your data. The packages you want to load into your library are: {rio}, {tidyverse} & {janitor}.
+```
 
-*note.* For tidy scripts, `install.packages()` in your console, and ALWAYS load your package in `library()` in your script.
+You can also use the `aes()` function in different layers within `ggplot()`. 
 
-**Question 1:** explain why you do this.
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species))
+```
+***Exercise 2.*** I want to add a layer to the ggplot above that adds a line by species. Add a geom layer called `geom_smooth()` and using `aes()` inside the `geom_smooth()` use linetype = to specify you want the lines to use linetype by species. 
 
 ```{r}
 
 ```
 
-Our downloaded dataset we will use for this lesson is called PrepSwitch.csv. Put the .csv in your project in a folder called **week_6_data**. Use the function `import()` to read in the data. Then use the function from the {janitor} package called `clean_names()` to make sure our column names are clean and readable. 
+## Visualizing aggregated data
 
-**Question 2:** explain why we are using underscores to name our data file.
-
-```{r}
-
-
-```
-
-## Inspect our data
-
-Lets check our data file using `head()` and `tail()` where I want to see the first 20 rows of dataset and the last 6 rows. Next, lets inspect our dataframe using `glimspe()`. Make sure you made your dataset an object to call later in the script. 
-
-**Question 3:** explain what would happen if we didn't save our dataset as an object.
+Using our Penguins dataset, lets aggregate the data so we can visualize some cool stats! I want to aggregate by species and get the mean body mass per species of pengies. 
 
 ```{r}
+penguins_bodymass_agg <- penguins %>%
+  group_by(species) %>%
+  summarize(
+    mean_body_mass = mean(body_mass_g) #whats missing here??
+  )
 
+head(penguins_bodymass_agg)
 ```
-**Question 4:** interpret the output of `glimspe()`. 
-
-## Clean our data
-
-Okay, now that we have some feel for what our raw data looks like, lets clean it up a bit. I want to filter our practice trials from our dataset using the `filter()` function. The column that states if it were a practice trial is in the column practice. First, lets take a look at what our practice column looks like by calling the practice column and indexing the first 30 rows. 
-
+Now lets create a bar plot of body mass per species. 
 ```{r}
-
+ggplot(penguins_bodymass_agg,
+       aes(x = species, y = mean_body_mass, fill = mean_body_mass)) +
+  geom_col()
 ```
-
-So we see that 1 indicates it is a practice trial and 0 indicates it is not. Filter out practice trials from our dataset and make sure you save that to your pre-made object. Use the ` %>% ` format to pipe your dataframe to the `filter()` function. Check your work to make sure you've sucessfully filtered out when practice = 1. 
-
-**Question 5:** if you want to look at a functions documentation, how do you ask R for help? 
-
+This is great, but lets add some more visual context using `labs()` function. `labs()` is used in ggplot, and lets you add a title, axis labels, captions, and labels!
 ```{r}
+ggplot(penguins_bodymass_agg,
+       aes(x = species, y = mean_body_mass, fill = mean_body_mass)) +
+  geom_col() +
+  labs(
+    title = "Mean Body Mass by Species",
+    x = "Species",
+    y = "Mean Body Mass (g)", 
+    fill = "Avg Body Mass by Species"
+  )
 
 ```
+You can also change the theme of the figure to look more presentable using `theme_*()`. There are also packages that are made just for fun visual themes, one is called {ggthemes}
 
-Now I want to filter out outliers form our dataset. Specifically, I want to filter participant who overall had an average accuracy score below 80%. There are a few ways to do this, but lets use our knowledge of {dplyr} to determine subjects who fall under our 80% accuracy threshold. Where if an error was made it = 1 and if no error = 0. 
-
-**Question 6:** where does the {dplyr} package come from? what does this package help us do? 
-
-I want to get the mean score of error for each subject. Use the `group_by()` and the `summarize()` function from the {dplyr} package to compute the `mean()` of the variable error and save the output as a NEW object called sum_error. Look at your output by piping it into `print()`. 
-
-*note.* order matters. Also in the `summarize()` function, make sure you are naming what the mean output will be, look at the help documentation for this function to do this. 
-
-**Question 7:** when computing the mean of something, how do we make sure NAs are removed? 
-
+***Exercise 3.*** Look up online a list of different themes in {ggthemes} you can add in ggplot(). Install then load in this package and pick a theme you like and use it! 
 ```{r}
-
+ggplot(penguins_bodymass_agg,
+       aes(x = species, y = mean_body_mass, fill = mean_body_mass)) +
+  geom_col() +
+  labs(
+    title = "Mean Body Mass by Species",
+    x = "Species",
+    y = "Mean Body Mass (g)", 
+    fill = "Avg Body Mass by Species"
+  ) +
+  theme_minimal() #replace with a theme of your choosing! 
 ```
-
-Great, now that we have the mean error per subject, we need to determine who falls under the 80% accuracy threshold. In other words, we need to create a variable that determines whether each mean error per subject is > 0.20. Call from the new object you made called sum_error and use `mutate()` to create a new column called outlier_error where you are taking the previously computed mean error and determine if it falls below .80. check the output. 
-
-**Question 8:** why's it giving you TRUE or FALSE's in your output? interpret this output. 
-```{r}
-
-```
-How many people fall under 80% accuracy? Use `filter()` to remove these subject from your dataframe then check to make sure they are removed by `group_by()` id and just counting the number of rows using `count()`. Inspect the output.  
+***Exercise 4.*** I want to aggregate by species and island. To a new object, use the penguins data and `group_by()` species and island, then `summarize()` the mean body mass of penguins AND the mean flipper length of penguins. name these mean_mass and mean_flipper in the summarize function. 
 
 ```{r}
 
 ```
-Checking the ids were filtered, maybe you noticed that the number of rows per id were different per person. The study design does allow for differences in the number of trials participants complete per block, however there seems to be an outlier or two who completed a very small amount of overall trials. Lets go ahead and remove any participants who completed less than 900 observations using `filter()`. 
+Now I want to see this new aggregated data in two side-by-side plots separated by the island variable. We can do this by faceting using the function `facet_wrap()`:
 
 ```{r}
+ggplot(penguins_s_i,
+       aes(x = species, y = mean_mass, fill = island)) +
+  geom_col(position = "dodge") +
+  facet_wrap(~ island) +
+  labs(
+    title = "Mean Body Mass by Species and Island",
+    x = "Species",
+    y = "Mean Body Mass (g)"
+  )
 
 ```
-
-
-I want to create new variables to the dataset that look at the trial befores csi, error and rt. Look up the documentation for the function `lag()`. 
-
-We want to make sure we create the lag variable for rt, errror and csi it is grouped by subject and not continuous across subjects. First use the `group_by()` function to group by id. Then, use the `mutate()` function to create 3 new variables into your dataset: lcsi, lerror, and lrt using the `lag()` function. Check your dataframe to make sure that worked. 
-
-```{r}
-
-```
-**Question 9:** after checking your dataframe, you see there are NAs in the lag variables for the first trials- why is this?
-
-Finally, I want to filter out NA's for my lag variables lcsi, lerror and lrt. To do this, I need to filter out the very first trial across the whole experiment by subject. Since we've filtered out practice blocks, each subject should start at block == 3. Use the `group_by()` function first then the `filter()` function downstream to make sure you are only filtering the first trials for each subject and not every first trial across blocks. As always, check your work by inspecting the dataframe.  
-
-```{r}
-
-```
-
-## Save your cleaned data as a .csv file
-Let's save our cleaned dataframe to a new .csv file that will appear in your project. Use the `write.csv()` function to save this as a .csv file called **Cleaned_PrepSwitch.csv**. Check your project file to make sure its created. 
-
-```{r}
-
-```
-
+There are many more cool things you can add to a ggplot plot, the internet is your friend for all the customizable ways you can use this function! 
