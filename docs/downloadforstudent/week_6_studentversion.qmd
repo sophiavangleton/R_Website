@@ -145,3 +145,37 @@ ggplot(penguins_s_i,
 
 ```
 There are many more cool things you can add to a ggplot plot, the internet is your friend for all the customizable ways you can use this function! 
+
+## Problem Set 6
+
+**1.** Create a scatterplot of flipper_length_mm (x‑axis) vs body_mass_g (y‑axis) using the penguins dataset. Color the points by species and add a title using `labs()`
+```{r}
+
+```
+
+**2.** Using bill length and bill depth: 
+
+- Create a scatterplot
+
+- Add a `geom_smooth()` layer
+
+- Use linetype = species inside the `geom_smooth()` layer
+
+- Turn off the confidence interval `(se = FALSE)`
+
+```{r}
+
+```
+
+**3.** Make a histogram of flipper_length_mm:
+
+- Use fill = species
+
+- Set binwidth = 5
+
+- Add a white border around bars (color = "white")
+
+```{r}
+
+```
+

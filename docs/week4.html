@@ -202,6 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#working-with-data" id="toc-working-with-data" class="nav-link active" data-scroll-target="#working-with-data">Working with data</a></li>
   <li><a href="#analyze-your-data" id="toc-analyze-your-data" class="nav-link" data-scroll-target="#analyze-your-data">Analyze Your Data!</a></li>
+  <li><a href="#problem-set-4" id="toc-problem-set-4" class="nav-link" data-scroll-target="#problem-set-4">Problem Set 4</a></li>
   </ul>
 </nav>
     </div>
@@ -392,6 +393,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Most likely, your data cleaning will be much more complex, so you will have to decide whether and when to save a cleaned version of your dataset, if you want to run multiple different analyses with it (instead of doing both, data cleaning, and analysis in one set of pipes).</p>
+</section>
+<section id="problem-set-4" class="level2">
+<h2 class="anchored" data-anchor-id="problem-set-4">Problem Set 4</h2>
+<p>load the package {tidyverse} and run this code which is a preloaded dataset that is about starwars stats:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>1.</strong> Inspect the dataframe by:</p>
+<ul>
+<li><p>Type data$ to view all column names</p></li>
+<li><p>Print the first 6 rows</p></li>
+<li><p>Print the last 6 rows</p></li>
+<li><p>Use <code>dim()</code> to check how many rows and columns the dataset has</p></li>
+<li><p>Use <code>glimpse()</code> to inspect variable types</p></li>
+</ul>
+<p><strong>2.</strong> Extract the name column.</p>
+<p>Extract the 5th value of the height column</p>
+<p>Extract the 3rd row, 5th column</p>
+<p>Extract the entire first row</p>
+<p>Extract the first 10 rows</p>
+<p><strong>3.</strong> Using the {dplyr} functions, clean the data by:</p>
+<p>Remove all rows where mass is NA</p>
+<p>Remove all rows where species is “Droid”</p>
+<p><strong>4.</strong> Aggregate the data using {dplyr} functions. Compute the mean height for each species using <code>group_by()</code> and <code>summarise()</code></p>
 
 
 </section>

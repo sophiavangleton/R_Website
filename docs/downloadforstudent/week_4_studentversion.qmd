@@ -169,3 +169,68 @@ head(data)
 ```
 
 Most likely, your data cleaning will be much more complex, so you will have to decide whether and when to save a cleaned version of your dataset, if you want to run multiple different analyses with it (instead of doing both, data cleaning, and analysis in one set of pipes).
+
+## Problem Set 4
+
+load the package {tidyverse} and run this code which is a preloaded dataset that is about starwars stats: 
+```{r}
+data <- starwars
+```
+
+**1.** Inspect the dataframe by: 
+
+- Type data$ to view all column names
+
+- Print the first 6 rows
+
+- Print the last 6 rows
+
+- Use `dim()` to check how many rows and columns the dataset has
+
+- Use `glimpse()` to inspect variable types
+```{r}
+
+```
+
+**2.** Extract the name column. 
+```{r}
+
+```
+
+Extract the 5th value of the height column
+```{r}
+
+```
+
+Extract the 3rd row, 5th column
+```{r}
+
+```
+
+Extract the entire first row
+```{r}
+
+```
+
+Extract the first 10 rows
+```{r}
+
+```
+
+**3.** Using the {dplyr} functions, clean the data by: 
+
+Remove all rows where mass is NA
+```{r}
+
+```
+
+Remove all rows where species is "Droid"
+```{r}
+
+```
+
+**4.** Aggregate the data using {dplyr} functions. Compute the mean height for each species using `group_by()` and `summarise()`
+```{r}
+
+```
+

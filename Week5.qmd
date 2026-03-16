@@ -290,3 +290,58 @@ df2 <- df%>%
   summarize(meanSleep = mean(Sleep, na.rm = TRUE))
 ```
 
+## Problem Set 5
+
+Like last week, lets use the starwars dataset again. save this dataset as an object. 
+
+**1.** Create a new dataframe called df_new that contains only: name, species, height. Use `select()`.
+```{r}
+
+```
+
+**2.** Using the starwars dataframe:
+
+Filter characters who are Human
+```{r}
+
+```
+
+Filter characters who are Human OR Droid
+```{r}
+
+```
+
+Filter characters who are Female AND taller than 170 cm
+```{r}
+
+```
+
+**3.** Add a column called is_tall that is TRUE if height > 180
+```{r}
+
+```
+
+**4.** In a different object, compute the mean height for each species
+```{r}
+
+```
+
+Then compute the mean mass for each homeworld
+```{r}
+
+```
+
+Lastly, compute the mean height and SD for each sex
+```{r}
+
+```
+
+**5.** Two‑Step Aggregation. All in one pipe, compute mean height per species per homeworld  
+THEN Compute the mean and SD of those homeworld‑level means per species. 
+
+Use `group_by()` and `summarize()` in the first step, then pipe down into another `group_by()` and `summarize()` that acheives the second step. Check your work using `head()`. 
+```{r}
+
+```
+
+

@@ -199,3 +199,38 @@ Finally, let's read in the .txt file dogwood.txt (data/data2.RDS) and assign it 
 data <- import("data/dogwood.txt")
 ```
 
+## Problem Set 3
+
+**1.** Use the `read.csv()` function to import the **2021_demographic.csv** file. Make this an obeject. 
+```{r}
+
+```
+
+**2.** Use `head()` to look at the first 6 rows of **2021_demographic.csv**.
+```{r}
+
+```
+
+
+**3.** Use `dim()` to find out how many rows and columns the dataset has.
+```{r}
+
+```
+
+
+**4.** Use `class()` and `typeof()` for one of the columns in this dataset — what type of object is this?
+```{r}
+
+```
+
+**5.** Your dataset currently has no column names. 
+
+Create a vector of column names based on what you see in the file (e.g., date, study, ID, handedness, age, gender, race, ethnicity, class standing, education, sleep hours, rating, etc.) and assign them to the data frame.
+```{r}
+
+```
+
+After creating that vector, use the function `colnames()` to assign them to the dataframe.
+```{r}
+
+```

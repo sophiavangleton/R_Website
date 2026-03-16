@@ -3999,6 +3999,7 @@ vertical-align: -.125em;
   <li><a href="#filtering-rows-by-condition" id="toc-filtering-rows-by-condition" class="nav-link" data-scroll-target="#filtering-rows-by-condition">Filtering rows by condition</a></li>
   <li><a href="#why-bother-with-the-tidyverse" id="toc-why-bother-with-the-tidyverse" class="nav-link" data-scroll-target="#why-bother-with-the-tidyverse">Why bother with the {tidyverse}?</a></li>
   </ul></li>
+  <li><a href="#problem-set-5" id="toc-problem-set-5" class="nav-link" data-scroll-target="#problem-set-5">Problem Set 5</a></li>
   </ul>
 </nav>
     </div>
@@ -4498,9 +4499,25 @@ Levels: setosa versicolor virginica</code></pre>
 <span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PositionsR) <span class="sc">%&gt;%</span> </span>
 <span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meanSleep =</span> <span class="fu">mean</span>(Sleep, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-
-
 </section>
+</section>
+<section id="problem-set-5" class="level2">
+<h2 class="anchored" data-anchor-id="problem-set-5">Problem Set 5</h2>
+<p>Like last week, lets use the starwars dataset again. save this dataset as an object.</p>
+<p><strong>1.</strong> Create a new dataframe called df_new that contains only: name, species, height. Use <code>select()</code>.</p>
+<p><strong>2.</strong> Using the starwars dataframe:</p>
+<p>Filter characters who are Human</p>
+<p>Filter characters who are Human OR Droid</p>
+<p>Filter characters who are Female AND taller than 170 cm</p>
+<p><strong>3.</strong> Add a column called is_tall that is TRUE if height &gt; 180</p>
+<p><strong>4.</strong> In a different object, compute the mean height for each species</p>
+<p>Then compute the mean mass for each homeworld</p>
+<p>Lastly, compute the mean height and SD for each sex</p>
+<p><strong>5.</strong> Two‑Step Aggregation. All in one pipe, compute mean height per species per homeworld<br>
+THEN Compute the mean and SD of those homeworld‑level means per species.</p>
+<p>Use <code>group_by()</code> and <code>summarize()</code> in the first step, then pipe down into another <code>group_by()</code> and <code>summarize()</code> that acheives the second step. Check your work using <code>head()</code>.</p>
+
+
 </section>
 
 </main> <!-- /main -->

@@ -267,3 +267,58 @@ rm(s)
 # Remove everything
 # rm(list=ls())
 ```
+
+## Problem Set 1
+
+**1.** Use R to compute the following:
+12+7
+```{r}
+
+```
+
+4^3
+```{r}
+
+```
+
+(10−3)∗2
+```{r}
+
+```
+
+**2.** Create two objects: a and b. 
+
+a assigned the value 15
+```{r}
+
+```
+
+b assigned the value 4
+```{r}
+
+```
+
+Print a and b
+```{r}
+
+```
+
+Compute a - b
+```{r}
+
+```
+
+Compute a / b
+```{r}
+
+```
+
+**3.** Check the class of each object:
+
+```{r}
+x <- "42"
+y <- 42
+z <- c("a", "b", "c")
+w <- 1:5
+```
+

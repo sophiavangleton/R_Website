@@ -209,6 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#find-the-data" id="toc-find-the-data" class="nav-link" data-scroll-target="#find-the-data">Find the data</a></li>
   <li><a href="#import-the-data" id="toc-import-the-data" class="nav-link" data-scroll-target="#import-the-data">Import The Data</a></li>
+  <li><a href="#problem-set-3" id="toc-problem-set-3" class="nav-link" data-scroll-target="#problem-set-3">Problem Set 3</a></li>
   </ul>
 </nav>
     </div>
@@ -445,7 +446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#csv files </span></span>
 <span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/2021_demographic.csv"</span>)</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(csv)</span>
 <span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">#spss files </span></span>
 <span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign) </span>
 <span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
@@ -469,6 +470,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"data/dogwood.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="problem-set-3" class="level2">
+<h2 class="anchored" data-anchor-id="problem-set-3">Problem Set 3</h2>
+<p><strong>1.</strong> Use the <code>read.csv()</code> function to import the <strong>2021_demographic.csv</strong> file. Make this an obeject.</p>
+<p><strong>2.</strong> Use <code>head()</code> to look at the first 6 rows of <strong>2021_demographic.csv</strong>.</p>
+<p><strong>3.</strong> Use <code>dim()</code> to find out how many rows and columns the dataset has.</p>
+<p><strong>4.</strong> Use <code>class()</code> and <code>typeof()</code> for one of the columns in this dataset — what type of object is this?</p>
+<p><strong>5.</strong> Your dataset currently has no column names.</p>
+<p>Create a vector of column names based on what you see in the file (e.g., date, study, ID, handedness, age, gender, race, ethnicity, class standing, education, sleep hours, rating, etc.) and assign them to the data frame.</p>
+<p>After creating that vector, use the function <code>colnames()</code> to assign them to the dataframe.</p>
 
 
 </section>
